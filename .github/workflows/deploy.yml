@@ -22,7 +22,19 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:pages
       - uses: actions/configure-pages@v5
+        id: pages
+      - name: Verify GitHub Pages uses Actions
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          build_type=$(gh api "repos/${GITHUB_REPOSITORY}/pages" --jq .build_type)
+          if [ "$build_type" != "workflow" ]; then
+            echo "::error::Set Settings > Pages > Source to GitHub Actions, then rerun this workflow."
+            exit 1
+          fi
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

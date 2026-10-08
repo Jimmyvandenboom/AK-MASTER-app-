@@ -50,3 +50,19 @@ Vite gebruikt `base: '/AK-MASTER-app-/'`, zodat CSS, JavaScript en andere assets
 - `index.html`, `vite.config.js`, `package.json`, `package-lock.json`: ingang en buildconfiguratie.
 - `.github/workflows/deploy.yml`: automatische GitHub Pages-publicatie.
 - `.gitignore`: excludes voor dependencies en buildoutput.
+
+## Controle op een wit scherm
+
+De workflow controleert de productieversie met Chromium voordat `dist/` wordt gepubliceerd. De controle test JavaScript- en CSS-paden, renderen, quiz, opslag, navigatie en herladen onder `/AK-MASTER-app-/`. Hij controleert ook dat Pages als bron GitHub Actions gebruikt.
+
+Lokaal dezelfde controle uitvoeren:
+
+```sh
+npm run build
+npx playwright install chromium
+npm run test:pages
+```
+
+Bij een bestaande Chromium-installatie kun je `CHROMIUM_PATH=/pad/naar/chromium npm run test:pages` gebruiken.
+
+Een Pages-publicatie van bronbestanden bevat nog `src/main.jsx`: browsers kunnen dat bestand niet rechtstreeks als productie-app uitvoeren. Kies **Settings → Pages → Source → GitHub Actions**, en voer de deploymentworkflow opnieuw uit. Controleer dat de nieuwste run groen is en herlaad de website daarna met Ctrl+Shift+R (Mac: Cmd+Shift+R). Er zijn geen aparte URL-routes: de vier navigatieknoppen wisselen schermen op dezelfde Pages-URL.
