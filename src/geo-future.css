@@ -122,3 +122,7 @@ footer p { color: #5c7364; }
   .stats { padding: 20px 16px; gap: 22px 12px; }
   .topic { padding: 20px 15px; }
 }
+
+.brand-mark { display: flex; align-items: center; flex-shrink: 0; }
+.brand-mark svg { width: 48px; height: 48px; }
+@media(max-width:650px) { .brand { font-size: 1.2rem; gap: 8px; } .brand-mark svg { width: 34px; height: 34px; } }
