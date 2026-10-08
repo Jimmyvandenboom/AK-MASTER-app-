@@ -1,0 +1,124 @@
+/* GEO Future: cartographic canvas, expedition panels and floating navigation. */
+:root {
+  --mint: #d7ef87;
+  --warm: #ffb780;
+  --muted: #bbd3cc;
+  --border: #94c8bd35;
+  background: #f2f0e4;
+  color: #f5f7e9;
+}
+body {
+  background-color: #f2f0e4;
+  background-image: linear-gradient(#689f9410 1px, transparent 1px), linear-gradient(90deg, #689f9410 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+.app { background: transparent; padding-bottom: 105px; }
+.header { border: 0; padding-top: 35px; padding-bottom: 35px; }
+.brand { color: #10383d; font-size: 2rem; text-transform: uppercase; letter-spacing: -.06em; }
+.brand-mark { color: #168b92; font-size: 3.4rem; }
+.brand small { color: #4e6d69; font-size: .72rem; text-transform: none; letter-spacing: .03em; }
+.header-xp { background: #dfe9c9; border-color: #cad9b2; color: #244940; font-weight: 750; }
+.header nav {
+  position: fixed; bottom: max(20px, env(safe-area-inset-bottom)); left: 50%; transform: translateX(-50%);
+  z-index: 20; width: min(640px, calc(100% - 32px)); padding: 9px; gap: 8px;
+  background: #14261f; border: 1px solid #6f9c8159; border-radius: 23px; box-shadow: 0 12px 35px #0a252c30;
+}
+.header nav button { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 9px 12px; color: #c4d2bd; border-radius: 15px; font-size: .8rem; }
+.nav-icon { font-size: 1.35rem; line-height: 1.3; }
+.header nav .nav-active { color: #213724; background: var(--mint); }
+.header nav button:hover { color: #fff; background: #ffffff10; }
+.header nav .nav-active:hover { color: #213724; background: #e4f7ad; }
+main { padding-top: 10px; }
+.hero, .welcome {
+  position: relative; isolation: isolate; overflow: hidden;
+  background-color: #0c3038;
+  background-image: linear-gradient(#91c9c315 1px, transparent 1px), linear-gradient(90deg, #91c9c315 1px, transparent 1px), linear-gradient(130deg, #092a33, #173f40);
+  background-size: 72px 72px, 72px 72px, auto;
+  border: 1px solid #79b9b33d; border-radius: 18px 72px 18px 18px;
+}
+.map-artwork { position: absolute; inset: 0; width: 100%; height: 100%; color: #76c6c5; z-index: -1; pointer-events: none; }
+.hero { padding: 72px 48px 60px; gap: 30px; min-height: 535px; }
+.hero h1, .welcome h1 { font-family: Impact, 'Arial Narrow', system-ui, sans-serif; font-weight: 900; text-transform: uppercase; letter-spacing: -.035em; line-height: 1.03; }
+.hero h1 { font-size: clamp(2.5rem, 4.2vw, 4.8rem); max-width: 650px; }
+.hero p { color: #c3dcd4; max-width: 430px; }
+.hero .eyebrow { color: #b4dfd5; letter-spacing: .18em; }
+.primary { border-radius: 13px; padding: 15px 23px; color: #233926; box-shadow: none; }
+.primary:hover { background: #e5f7ac; }
+.hero-note { color: #c3dcd4; }
+.countdown { border-color: #83bdb95c; background: #0b3038ed; border-radius: 18px; padding: 25px; align-self: center; }
+.countdown:before { display: none; }
+.countdown .eyebrow { color: var(--warm); letter-spacing: .18em; }
+.countdown h2 { color: #e4eee2; font-size: 1rem; }
+.clock { gap: 7px; margin-top: 23px; }
+.clock strong { font-size: clamp(1.5rem, 2.3vw, 2.3rem); letter-spacing: .02em; }
+.clock div:first-child strong { font-size: clamp(1.8rem, 2.8vw, 2.8rem); color: #f5f7e9; }
+.clock span { text-transform: uppercase; }
+.stats { background: #e7ead9; border: 1px solid #cbd8c5; border-radius: 16px; padding: 25px; margin: 25px 0 38px; color: #153f3c; }
+.stats>div { border-color: #b5c8b7; }
+.stats small { color: #4c6b64; }
+.stat-icon { background: #d5e2c4; color: #376952; }
+.section-heading h2, .practice-progress h2, .page-heading h1 { color: #173c3c; }
+.section-heading .eyebrow, .page-heading .eyebrow { color: #277e7d; }
+.section-heading .small-note, .page-heading p, .quiz-container>.small-note { color: #536e67; }
+.topic { background: #f8f7ef; border: 1px solid #c8d7ca; color: #21433f; border-radius: 18px; box-shadow: 0 6px 20px #1b4c3505; }
+.topic p { color: #58736b; }
+.topic-icon { color: #638779; }
+.badge.muted { background: #e7ebdb; color: #536b54; }
+.coming { color: #647969; }
+.topic.active { background: #143c3f; border-color: #528c7b; color: #f5f7e9; }
+.topic.active p { color: #c5ddd2; }
+.topic.active .badge { background: #d7ef8718; }
+.practice-progress { background: #e7ead9; border-color: #cbd8c5; }
+.practice-progress p, .practice-progress .progress-label { color: #4c6b64; }
+.practice-progress .progress-label strong { color: #285d46; }
+.practice-progress progress { background: #c9d4bf; }
+.practice-progress progress::-webkit-progress-bar { background: #c9d4bf; }
+.practice-progress progress::-webkit-progress-value { background: #477863; }
+.practice-progress progress::-moz-progress-bar { background: #477863; }
+.panel { background-color: #12363c; border-color: #729f9140; }
+.practice-progress.panel { background-color: #e7ead9; }
+.lesson .step { color: #d7ef87; }
+.connection { background: linear-gradient(110deg, #12373b, #204a40); }
+.quiz { background: #10353c; }
+.letter { color: #dbe5d0; }
+.result { background: #10353c; }
+.welcome { max-width: none; padding: 65px 40px; }
+.welcome h1 { font-size: clamp(2.8rem, 6vw, 5.6rem); max-width: 840px; margin: auto; }
+.welcome .eyebrow { color: #bae1d3; }
+.welcome form { background: #0b2b32d9; border: 1px solid #94c8bd35; padding: 25px; border-radius: 18px; max-width: 430px; }
+.welcome input { background: #173e43; border-color: #7fae9c70; color: #f5f7e9; }
+.welcome input::placeholder { color: #aec6be; }
+.welcome p { color: #c3dcd4; }
+footer { border-color: #c3d0bd; color: #5c7364; }
+footer p { color: #5c7364; }
+.footer-brand { color: #24493d; }
+.footer-brand span { color: #5c7364; }
+@media(max-width:1000px) {
+  .hero { padding: 45px 30px; gap: 25px; grid-template-columns: 1.25fr 1fr; }
+  .hero h1 { font-size: 3.2rem; }
+  .clock strong { font-size: 1.7rem; }
+  .clock div:first-child strong { font-size: 2rem; }
+  .countdown { padding: 20px; }
+  .stats { padding: 22px 16px; }
+}
+@media(max-width:650px) {
+  .header { flex-wrap: nowrap; padding: 24px 20px; }
+  .brand { font-size: 1.55rem; }
+  .brand-mark { font-size: 2.7rem; }
+  .brand small { font-size: .58rem; }
+  .header nav { width: calc(100% - 24px); gap: 5px; padding: 7px; border-radius: 20px; }
+  .header nav button { padding: 8px; font-size: .75rem; }
+  .hero { grid-template-columns: 1fr; padding: 34px 24px; border-top-right-radius: 48px; min-height: auto; }
+  .hero h1 { font-size: clamp(2.3rem, 10vw, 3.2rem); }
+  .hero p { font-size: .9rem; }
+  .hero .eyebrow { font-size: .6rem; }
+  .clock strong { font-size: 1.9rem; }
+  .clock div:first-child strong { font-size: 2.2rem; }
+  .countdown { padding: 22px; }
+  .welcome { padding: 38px 20px; border-top-right-radius: 48px; }
+  .welcome h1 { font-size: clamp(2.3rem, 10vw, 3.3rem); }
+  .welcome p { font-size: .9rem; }
+  .welcome form { padding: 20px; }
+  .stats { padding: 20px 16px; gap: 22px 12px; }
+  .topic { padding: 20px 15px; }
+}
