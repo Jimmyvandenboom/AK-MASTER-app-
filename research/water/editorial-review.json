@@ -1,0 +1,18 @@
+{
+  "questions": 245,
+  "themes": {
+    "bodem": 60,
+    "rivieren": 86,
+    "wereld": 99
+  },
+  "formats": {
+    "choice": 38,
+    "open": 154,
+    "statements": 33,
+    "multi": 1,
+    "excluded": 1,
+    "shorts": 15,
+    "sequence": 3
+  },
+  "review": "Per-vraag uitleg, correcties en gesloten sleutels gecontroleerd aan geëxtraheerde officiële tekst; bronpagina’s zijn ongewijzigde renders van de PDF. Uitleg is eigen redactionele tekst."
+}

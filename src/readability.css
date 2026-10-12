@@ -1,0 +1,52 @@
+/* Local fonts and comfortable reading across the existing app. */
+:root { font-family: 'Atkinson Hyperlegible', system-ui, sans-serif; font-size: 17px; line-height: 1.65; }
+h1,h2,h3 { letter-spacing: -.025em; }
+.hero h1, .welcome h1, .brand-wordmark { font-family: 'Atkinson Hyperlegible', system-ui, sans-serif; text-transform: none; font-weight: 700; letter-spacing: -.035em; }
+.hero h1 { font-size: clamp(2.25rem, 4vw, 3.7rem); line-height: 1.08; }
+.welcome h1 { font-size: clamp(2.5rem, 5vw, 4.7rem); line-height: 1.1; }
+.brand-wordmark { font-size: 1.75rem; letter-spacing: -.03em; }
+.brand small { font-size: .75rem; }
+.header nav button { font-size: .85rem; }
+.topic p, .lesson p, .profile p, .privacy p, .connection p { font-size: 1rem; }
+.topic h3 { line-height: 1.3; }
+.badge { font-size: .65rem; }
+.small-note, .coming, .topic-link, .hero-note { font-size: .85rem; }
+.primary, .secondary { min-height: 48px; font-size: 1rem; }
+.header nav button { min-height: 64px; }
+.exam-prompt, .answer { line-height: 1.65; }
+.trainer-entry { display: flex; justify-content: space-between; align-items: center; gap: 28px; border: 1px solid #c6d5c2; background: #e5ebd5; padding: 28px; border-radius: 18px; margin-top: 24px; color: #183c3b; }
+.trainer-entry .eyebrow { color: #25675a; font-size: .75rem; }
+.trainer-entry h2 { font-size: 1.6rem; margin-bottom: 10px; }
+.trainer-entry p { color: #3d5c54; max-width: 620px; }
+.trainer-entry .primary { flex-shrink: 0; background: #183c3b; color: #f5f7e9; white-space: normal; }
+.trainer-entry .primary:hover { background: #25675a; }
+.trainer-entry + .connection { margin-top: 20px; }
+.trainer-loading { color: #183c3b; padding: 40px; }
+html { scroll-padding-bottom: 130px; }
+button,input,select,textarea,summary { scroll-margin-bottom: 140px; }
+@media(max-width:800px) { .trainer-entry { flex-direction: column; align-items: start; } }
+@media(max-width:650px) {
+  .brand-wordmark { font-size: 1.1rem; }
+  .brand small { font-size: .6rem; }
+  .brand-mark img { width: 43px; }
+  .header { padding: 19px 16px; }
+  main { padding-inline: 16px; }
+  .hero { padding: 30px 22px; }
+  .hero h1 { font-size: 2.35rem; }
+  .hero p, .welcome p { font-size: 1rem; }
+  .clock strong { font-size: 1.55rem; }
+  .clock div:first-child strong { font-size: 1.85rem; }
+  .stats small { font-size: .8rem; }
+  .trainer-entry { padding: 22px; }
+  .trainer-entry .primary { width: 100%; }
+  .topic p { font-size: .92rem; }
+  .header nav button { font-size: .8rem; }
+}
+@media(max-width:360px) { .header { gap: 6px; } .brand-wordmark { font-size: .98rem; } .brand small { font-size: .54rem; } .header-xp { padding: 4px 8px; } }
+
+.practice-hub { max-width: 1000px; margin: auto; }
+.quick-entry { margin-top: 22px; padding: 28px; border: 1px solid #cbd8c5; background: #fffef8; color: #183b3d; border-radius: 17px; }
+.quick-entry .eyebrow { color: #42746a; }
+.quick-entry p { color: #4d6962; margin: 14px 0 20px; }
+.quick-entry .primary { background: #d7ef87; }
+.practice-hub .connection { margin-top: 22px; }
