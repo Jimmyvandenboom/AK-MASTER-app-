@@ -73,9 +73,9 @@ Open **Oefenen → Water-examentrainer**, of direct `https://jimmyvandenboom.git
 
 Alle 245 Water-vragen uit 16 GL/TL-examens (2018, 2019 en 2021–2026, tijdvak 1 en 2) zijn verdeeld over drie leerroutes:
 
-- Regen, bodem & drinkwater: 60 vragen.
-- Rivieren & waterveiligheid: 86 vragen.
-- Waterschaarste & wereld: 99 vragen.
+- Water in Nederland: 109 vragen.
+- Water in China: 46 vragen.
+- Water in het Midden-Oosten: 90 vragen.
 
 De vraag uit 2019-I nummer 18 kreeg wegens een foutieve bron officieel automatisch een punt. In deze trainer kan de leerling die bron bestuderen, maar de vraag telt niet als goed/fout. De voortgang telt daarom 244 verschillende beoordeelbare vragen. De erratumoptie D uit 2021-II vraag 15 is verwijderd; de aangepaste deelpuntregel voor 2026-I vraag 29 is verwerkt.
 

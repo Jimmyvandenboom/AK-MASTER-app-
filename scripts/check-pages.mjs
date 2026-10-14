@@ -99,6 +99,13 @@ try {
   assert.equal(waterProgress.records['2025-2-28'].method, 'self');
   assert.ok(waterProgress.bookmarks.includes('2026-2-18'));
   await page.getByRole('button', { name: 'Terug naar de trainer' }).click();
+  for (const [region, count, label] of [['nederland',109,'Water in Nederland'], ['china',46,'Water in China'], ['midden-oosten',90,'Water in het Midden-Oosten']]) {
+    await page.getByRole('button', { name: new RegExp(label) }).click();
+    assert.equal(await page.getByLabel('Thema', { exact: true }).inputValue(), region);
+    assert.equal(await page.locator('.bank-toolbar [role=status]').textContent(), `${count} vragen`);
+    assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), region);
+  }
+  await page.getByLabel('Thema', { exact: true }).selectOption('all');
   await page.getByLabel('Mijn route', { exact: true }).selectOption('saved');
   assert.equal(await page.locator('.question-list-item').count(), 1);
   await page.getByLabel('Mijn route', { exact: true }).selectOption('all');

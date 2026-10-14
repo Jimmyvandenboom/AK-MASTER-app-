@@ -65,3 +65,13 @@ test('beschadigde, ontbrekende en kwaadaardig gevormde opslag crasht niet', () =
   assert.deepEqual(p.records,{}); assert.deepEqual(p.bookmarks,['2026-2-18']); assert.equal(p.draft.response,'');
   assert.ok(matches('  NIET DUURZAAM ','niet-duurzaam')); assert.ok(!matches('niet juist','juist'));
 });
+
+ test('geografische routes volgen de vraag én bron en behouden opgeslagen antwoorden', () => {
+  assert.deepEqual(themes.map(t => t.id), ['nederland', 'china', 'midden-oosten']);
+  assert.deepEqual(Object.fromEntries(themes.map(t => [t.id, questions.filter(q => q.theme === t.id).length])), { nederland: 109, china: 46, 'midden-oosten': 90 });
+  for (const [id, region] of Object.entries({ '2018-1-24': 'china', '2021-1-27': 'midden-oosten', '2023-2-22': 'nederland', '2024-1-24': 'china', '2025-2-25': 'midden-oosten', '2026-2-24': 'nederland', '2026-2-32': 'midden-oosten' })) assert.equal(find(id).theme, region, id);
+  const oldProgress = { records: { '2018-1-24': { points: 1, method: 'self', attempts: 2, response: 'Duurzame energie' } }, bookmarks: ['2018-1-24'] };
+  const restored = readWaterProgress({ getItem: () => JSON.stringify(oldProgress) }, questions);
+  assert.equal(restored.records['2018-1-24'].attempts, 2);
+  assert.deepEqual(restored.bookmarks, ['2018-1-24']);
+});

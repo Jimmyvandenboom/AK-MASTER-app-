@@ -1,8 +1,8 @@
 export const WATER_STORAGE_KEY = 'ak-master-water-v1';
 export const themes = [
-  { id: 'bodem', number: '01', name: 'Regen, bodem & drinkwater', short: 'Bodem & drinkwater', description: 'Van een regendruppel naar grondwater, een sponsstad en schoon drinkwater.', icon: 'drop', color: 'blue' },
-  { id: 'rivieren', number: '02', name: 'Rivieren & waterveiligheid', short: 'Rivieren & veiligheid', description: 'Lees rivierkaarten. Begrijp afvoer, scheepvaart en ruimte voor water.', icon: 'river', color: 'green' },
-  { id: 'wereld', number: '03', name: 'Waterschaarste & wereld', short: 'Water in de wereld', description: 'Onderzoek irrigatie, stuwdammen en de verdeling van water tussen mensen.', icon: 'globe', color: 'orange' },
+  { id: 'nederland', number: '01', name: 'Water in Nederland', short: 'Nederland', description: 'Drinkwater, rivieren, kustbescherming en wateroverlast. Ook de basis van de waterkringloop.', icon: 'drop', color: 'blue' },
+  { id: 'china', number: '02', name: 'Water in China', short: 'China', description: 'Grote rivieren, stuwdammen, waterverdeling en sponssteden. Van Huang He tot Chang Jiang.', icon: 'river', color: 'green' },
+  { id: 'midden-oosten', number: '03', name: 'Water in het Midden-Oosten', short: 'Midden-Oosten', description: 'Waterschaarste, irrigatie en waterconflicten. Inclusief Egypte en het stroomgebied van de Nijl.', icon: 'globe', color: 'orange' },
 ];
 export const formatLabels = { choice: 'Meerkeuze', statements: 'Juist / onjuist', shorts: 'Invullen', sequence: 'Volgorde', multi: 'Selecteren', open: 'Open vraag', excluded: 'Bron met correctie' };
 export function normalize(value) {

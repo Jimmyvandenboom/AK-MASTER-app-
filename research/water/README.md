@@ -6,11 +6,11 @@ Deze release bevat 245 echte Water-vragen uit 16 centrale examens vmbo GL/TL, 20
 
 De indeling is redactioneel, geen officiële extra verdeling van de syllabus:
 
-- `bodem`: Regen, bodem & drinkwater — 60 vragen.
-- `rivieren`: Rivieren & waterveiligheid — 86 vragen.
-- `wereld`: Waterschaarste & wereld — 99 vragen.
+- `nederland`: Water in Nederland — 109 vragen.
+- `china`: Water in China — 46 vragen.
+- `midden-oosten`: Water in het Midden-Oosten — 90 vragen.
 
-Een vraag krijgt één primaire leerroute, ook als een verband meerdere onderwerpen raakt.
+Een vraag krijgt één primaire leerroute op basis van de geografische context van de vraag én bron. Algemene basisvragen over de waterkringloop staan bij Nederland, net als de grensoverschrijdende Rijn en Maas. Vergelijkingsvragen tussen China en het Midden-Oosten staan bij China. Midden-Oosten omvat Egypte en het bijbehorende Nijlstroomgebied, ook de stuwdammen in Sudan en Ethiopië. Vraag-ID’s en de opslagsleutel blijven gelijk: bestaande voortgang en bewaarde vragen blijven behouden.
 
 ## Beoordeling
 
