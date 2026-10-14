@@ -39,10 +39,40 @@ try {
   await page.getByRole('button', { name: 'Start mijn avontuur' }).click();
   await page.getByRole('heading', { name: 'Hoi Sam, jouw wereld wordt groter.' }).waitFor();
   assert.equal(await page.locator('body').evaluate(el => getComputedStyle(el).margin), '0px', 'CSS must load');
+  assert.equal(await page.getByRole('button', {name:'Stijl 1',exact:true}).getAttribute('aria-pressed'), 'true');
+  await page.getByRole('button', {name:'Stijl 2 · Kimi',exact:true}).click();
+  assert.equal(await page.locator('.app').getAttribute('data-style'), 'kimi');
+  await page.reload();
+  await page.getByRole('heading', { name: 'Hoi Sam, jouw wereld wordt groter.' }).waitFor();
+  assert.equal(await page.locator('.app').getAttribute('data-style'), 'kimi');
+  for (const style of ['Stijl 1','Stijl 2 · Kimi']) {
+    await page.getByRole('button', {name:style,exact:true}).click();
+    for (const width of [320,390,430,1440]) {
+      await page.setViewportSize({width,height:900});
+      for (const section of ['Home','Leren','Oefenen','Profiel']) {
+        await page.getByRole('button', {name:section,exact:true}).click();
+        assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `${style}/${section}/${width}: overflow`);
+        assert.equal(await page.locator('h1').count(), 1);
+        assert.ok(await page.getByRole('group', {name:'Kies jouw stijl'}).isVisible());
+      }
+      await page.getByRole('button', {name:'Home',exact:true}).click();
+      await page.screenshot({path:`/tmp/ak-${style==='Stijl 1'?'original':'kimi'}-${width}.png`,fullPage:true});
+    }
+  }
+  await page.setViewportSize({width:390,height:844});
+
   await page.getByRole('button', { name: 'Oefenen', exact: true }).click();
   await page.getByRole('button', { name: 'Start de korte quiz' }).click();
   for (const [index, answer] of [1, 2, 0, 3, 1].entries()) {
     await page.locator('.answer').nth(answer).click();
+    if (index === 0) {
+      const stored = await page.evaluate(() => localStorage.getItem('ak-master-v1'));
+      await page.getByRole('button', {name:'Stijl 1',exact:true}).click();
+      assert.ok(await page.getByRole('button', {name:'Volgende vraag'}).isVisible());
+      await page.getByRole('button', {name:'Stijl 2 · Kimi',exact:true}).click();
+      assert.equal(await page.evaluate(() => localStorage.getItem('ak-master-v1')), stored);
+    }
+
     await page.getByRole('button', { name: index === 4 ? 'Bekijk je resultaat' : 'Volgende vraag' }).click();
   }
   await page.getByText('5 / 5 goed').waitFor();

@@ -107,3 +107,7 @@ npm run test:pages
 De tests controleren alle 245 datarijen, alle gesloten antwoordmodellen met juiste en foute antwoorden, deelpunten, officiële wijzigingen, opslag en herhaling. De productiebrowsertest oefent ook alle antwoordvormen, bronvergroting, zelfbeoordeling, bookmarks, filters, lege resultaten, hervatten en mobiele navigatie.
 
 De scripts `scripts/water-extract.py`, `water-editorial.py`, `water-polish.py` en `water-feedback.py` documenteren de dataverwerking. Deze zijn niet nodig voor `npm install` of de build. Extractie vereist Python met PyMuPDF en Pillow, `pdftotext`, en de lokale bron-PDF’s en onderzoeksindex onder `/workspace/examenbronnen` en `/workspace/examenanalyse`. Na inhoudelijke wijziging moeten ook transcripties, bronkoppelingen en deelpuntregels worden gecontroleerd; automatische extractie alleen is geen inhoudelijke review.
+
+## Twee presentaties
+
+Bovenaan staan Stijl 1 (de bestaande vormgeving, standaard) en Stijl 2 · Kimi. Stijl 2 is een eigen ontwerp geïnspireerd op de openbare GetLayers Kimi-preview: zwart/wit, turquoise accenten, grote koppen, een decoratieve wereldbol en navigatie bovenaan. Er is geen GetLayers-templatecode gekopieerd. De keuze wordt lokaal bewaard onder `ak-master-style`; geblokkeerde opslag verhindert het wisselen niet. Beide presentaties gebruiken dezelfde inhoud, quiz, Water-examentrainer en voortgang. Tijdens een vraag wisselen behoudt het antwoord. Bewegingsreductie wordt gerespecteerd.
