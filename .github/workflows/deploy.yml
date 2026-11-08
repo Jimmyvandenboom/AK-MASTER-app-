@@ -24,6 +24,7 @@ jobs:
       - run: npm run build
       - run: npx playwright install --with-deps chromium
       - run: npm run test:pages
+      - run: node scripts/check-quest.mjs
       - uses: actions/configure-pages@v5
         id: pages
       - name: Verify GitHub Pages uses Actions
