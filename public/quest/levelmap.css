@@ -1,0 +1,25 @@
+/* Illustrated 2.5D expedition map. All checkpoints remain accessible without a WebGL GPU. */
+.quest-map-shell{position:relative;overflow:hidden;border-radius:28px;border:2px solid #547f80;min-height:630px;background:#1c4553;box-shadow:inset 0 0 70px #0b172d,0 18px 60px #0008}
+.quest-map-shell.nl{background:linear-gradient(#4c9eb0,#256779)}
+.quest-map-shell.cn{background:linear-gradient(#7898b6,#2f5b74)}
+.quest-map-shell.me{background:linear-gradient(#dbac79,#896d6f)}
+.quest-map-art{position:absolute;inset:0;width:100%;height:100%;display:block}
+.quest-map-shell:after{content:"";pointer-events:none;position:absolute;inset:0;background:linear-gradient(0deg,#091e2bbc 0%,transparent 22%,transparent 75%,#0b203f52)}
+.quest-map-checkpoints{position:relative;height:620px;z-index:2}
+.quest-map-line{position:absolute;inset:0;width:100%;height:100%;filter:drop-shadow(2px 5px 3px #0d2c3699)}
+.map-point{position:absolute;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:5px}
+.map-point button{width:62px;height:62px;border:3px solid #bfffe3;border-radius:22px 27px 25px 19px;background:linear-gradient(145deg,#17425c,#0f253a);color:white;font-size:28px;box-shadow:0 6px 0 #18364d,0 10px 14px #07152599;transform:rotate(-8deg);transition:transform .2s,filter .2s}
+.map-point button:hover,.map-point button:focus-visible{outline:3px solid #fff8b5;transform:rotate(0) scale(1.14);z-index:10}
+.map-point button.complete{background:linear-gradient(145deg,#64f4b5,#197e70);border-color:#d7fff1}
+.map-point button.answered{background:linear-gradient(145deg,#eecb77,#b3754a);border-color:#ffecc7}
+.map-point button.current{animation:pulsemap 1.9s infinite;border-color:#fffad1;background:linear-gradient(145deg,#ffd27b,#ce775f)}
+@keyframes pulsemap{50%{box-shadow:0 6px 0 #79573b,0 0 0 12px #ffebaa44}}
+.map-point .map-label{font:800 11px Outfit,sans-serif;max-width:140px;text-align:center;padding:5px 9px;border:1px solid #ffffff44;border-radius:10px;background:#081c30eb;box-shadow:0 5px 12px #0005;line-height:1.3;color:#fff}
+.map-point .player-pin{position:absolute;top:-55px;font-size:41px;filter:drop-shadow(4px 6px 2px #0009);animation:float 1.6s ease-in-out infinite alternate;z-index:3}
+.map-flag{position:absolute;left:20px;top:20px;z-index:3;border:1px solid #a3f9d3a6;color:#d0fff5;background:#102c3ed9;border-radius:14px;padding:10px 13px;font:800 12px Outfit,sans-serif;letter-spacing:1px}
+.map-flag.bottom{top:auto;bottom:17px;left:auto;right:20px}
+.zone-switcher{display:flex;gap:9px;flex-wrap:wrap;margin:15px 0 18px}
+.zone-switcher button{border:1px solid #537989;background:#172c42;color:#e5f5fc;border-radius:14px;padding:12px 19px;font:800 13px Outfit,sans-serif}
+.zone-switcher button.on{background:linear-gradient(135deg,#56e9b8,#83d9ed);color:#073333;border-color:#bdffe8}
+.map-side{display:grid;gap:16px;align-content:start}
+@media(max-width:650px){.quest-map-shell{min-height:560px}.quest-map-checkpoints{height:540px}.map-point button{width:48px;height:48px;font-size:21px;border-radius:18px}.map-point .map-label{font-size:9px;padding:4px 6px;max-width:92px}.map-point .player-pin{font-size:31px;top:-42px}.map-flag{font-size:10px}.quest-map-line{height:540px}}
