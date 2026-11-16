@@ -72,7 +72,12 @@ html[data-theme="light"] .feedback [style*="#0b2632"]{background:#e0f2f1!importa
 .btn:focus-visible,.orb:focus-visible,.option:focus-visible,.v3-nav button:focus-visible{outline:3px solid var(--mint);outline-offset:3px}
 @media(max-width:600px){
  .top{position:relative}
- .hud{gap:6px}
+ .hud{gap:6px;min-width:0}
+ .store,.panel-grid{grid-template-columns:minmax(0,1fr)}
+ .storeitem,.storeitem .btn,.screen,.card,.catalog-group{min-width:0;max-width:100%;overflow-wrap:anywhere}
+ .card.pad{padding:16px}
+ .pill,.tag{overflow-wrap:anywhere}
+ .brand .tag{display:inline-block;max-width:100%}
  .hud .btn{min-height:44px}
  .v3-nav{position:fixed;bottom:0;left:7px;right:7px;margin:0}
  .v3-nav button{font-size:12px;padding:6px 3px;min-width:0}
