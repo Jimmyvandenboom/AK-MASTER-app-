@@ -24,7 +24,7 @@ try{
  browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||undefined});
  const page=await browser.newPage({viewport:{width:1365,height:900}});
  const problems=[];page.on('pageerror',e=>problems.push(e.message));page.on('dialog',d=>d.accept());
- const token='a'.repeat(48);let attempts=[],xp=0,coins=0;
+ const token='a'.repeat(48);let attempts=[],xp=0,coins=100,avatar='explorer',cosmetics=null;const purchases=[];
  const quiz=[
  {id:'n1',chapter:'H7',skill:'begrip',type:'choice',text:'Wat is een delta?',options:['Een vertakte monding','Een droogmakerij','Een gletsjer','Een krib']},
  {id:'h7_open_01',chapter:'H7',skill:'verklaren',type:'open',text:'Leg uit hoe een rivierdelta ontstaat.',options:null},
@@ -34,13 +34,16 @@ try{
   const body=JSON.parse(route.request().postData()||'{}');let response;
   switch(body.action){
    case 'join':response={token,student:{id:'test',first_name:'Sam',xp:0,coins:0,avatar:'explorer',active_seconds:0}};break;
-   case 'me':response={student:{id:'test',first_name:'Sam',xp,coins,avatar:'explorer',active_seconds:60},attempts:[...attempts].reverse(),purchases:[]};break;
+   case 'me':response={student:{id:'test',first_name:'Sam',xp,coins,avatar,active_seconds:60,cosmetics},attempts:[...attempts].reverse(),purchases};break;
    case 'questions':response={questions:quiz};break;
    case 'answer':{const ok=body.questionId==='n1'&&body.response==='0';
      attempts.push({question_id:body.questionId,is_correct:body.questionId==='n1'?ok:null,awarded_xp:ok?60:0,created_at:new Date().toISOString()});
      if(ok){xp+=60;coins+=12}
      response={correct:body.questionId==='n1'?ok:null,awarded:ok?60:0,explanation:'De monding is vertakt.',correctOption:0,selfCheck:body.questionId!=='n1'};break;
    }
+   case 'buy':purchases.push(body.item);coins-=24;response={ok:true};break;
+   case 'avatar':avatar=body.avatar;response={ok:true};break;
+   case 'cosmetics':cosmetics={...cosmetics,...body.patch};response={cosmetics};break;
    case 'heartbeat':response={ok:true};break;
    default:response={error:'Test stub has no action '+body.action};break;
   }
@@ -51,7 +54,7 @@ try{
  await page.locator('input[name="name"]').fill('Sam');await page.locator('input[name="code"]').fill('12345678');
  await page.getByRole('button',{name:/Start mijn avontuur/}).click();
  await page.locator('#quest-globe').waitFor();
- await page.getByText('THE WORLD').waitFor();
+ await page.getByRole('heading',{name:/THE WORLD IS YOURS/}).waitFor();
  assert.ok(await page.locator('#quest-globe').evaluate(el=>el.width>200),'Interactive canvas failed');
  await page.locator('button[data-action="chapter"][data-ch="H7"]').first().click();
  await page.locator('.quest-map-shell').waitFor();
@@ -67,7 +70,34 @@ try{
  await page.reload({waitUntil:'domcontentloaded'});
  await page.getByText('THE WORLD').waitFor();
  assert.equal(await page.locator('canvas#quest-globe').count(),1);
+ await page.locator('#theme-toggle').click();
+ assert.equal(await page.locator('html').getAttribute('data-theme'),'light');
+ await page.reload({waitUntil:'domcontentloaded'});
+ await page.locator('#quest-globe').waitFor();
+ assert.equal(await page.locator('html').getAttribute('data-theme'),'light');
  await page.setViewportSize({width:390,height:844});
+ await page.locator('.v3-nav [data-action="store"]').click();
+ await page.getByRole('heading',{name:'Catalogus · 45 items'}).waitFor();
+ assert.equal(await page.locator('.catalog-group [data-action="buy"]').count(),45);
+ await page.locator('.catalog-group summary').filter({hasText:'Achtergrond'}).click();
+ await page.locator('.catalog-group [data-id="bg_1"]').click();
+ await page.locator('.v3-nav [data-action="studio-v3"]').click();
+ await page.locator('[data-action="bg-v3"][data-id="bg_1"]').click();
+ await page.waitForFunction(()=>document.documentElement.dataset.questBackdrop==='bg_1');
+ await page.locator('[data-action="avatar"][data-avatar="diver"]').click();
+ await page.waitForFunction(()=>document.querySelector('[data-avatar="diver"]').getAttribute('aria-pressed')==='true');
+ await page.locator('.v3-nav [data-action="pass-v3"]').click();
+ await page.getByRole('heading',{name:'Battle Pass'}).waitFor();
+ assert.equal(await page.locator('.storeitem').count(),10);
+ assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth),390);
+ await page.locator('.v3-nav [data-action="store"]').click();
+ await page.getByText('Pirate Token',{exact:true}).waitFor();
+ await page.getByRole('button',{name:/Speel Waterroute/}).click();
+ await page.getByRole('dialog',{name:'Waterroute'}).waitFor();
+ await page.locator('[data-action="route-pick"][data-id="H7"]').click();
+ await page.getByText('Goed gevonden!',{exact:true}).waitFor();
+ await page.locator('[data-action="route-close"]').click();
+ await page.locator('.v3-nav [data-action="home"]').click();
  await page.locator('#quest-globe').waitFor();
  assert.ok(await page.locator('#quest-globe').evaluate(el=>el.clientWidth>200),'Mobile globe missing');
  assert.deepEqual(problems,[],'JavaScript errors in quest');
