@@ -9,10 +9,11 @@ test('Water Wars is a stand-alone, valid browser entrypoint', () => {
   assert.ok(file.includes('<html lang="nl">'));
   assert.ok(file.includes('GFR EXAM QUEST'));
   assert.ok(file.includes('Mission Control'));
+  assert.match(file, /id="quest-globe"/);
+  assert.match(file, /data-action="theme"/);
   assert.ok(file.includes('H7') && file.includes('H8') && file.includes('H9'));
   assert.ok(inline);
-  const code = inline.replace(/import\s*\{createClient\}\s*from\s*['"][^'"]+['"];?/, '');
-  new Script(code, { filename: 'quest-inline.js' });
+  new Script(inline, { filename: 'quest-inline.js' });
 });
 test('No secret Supabase key is included in the client', () => {
   assert.ok(!file.includes('service_role'));
