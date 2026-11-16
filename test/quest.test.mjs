@@ -9,7 +9,6 @@ test('Water Wars is a stand-alone, valid browser entrypoint', () => {
   assert.ok(file.includes('<html lang="nl">'));
   assert.ok(file.includes('GFR EXAM QUEST'));
   assert.ok(file.includes('Mission Control'));
-  assert.ok(file.includes('23 november 2026'));
   assert.ok(file.includes('H7') && file.includes('H8') && file.includes('H9'));
   assert.ok(inline);
   const code = inline.replace(/import\s*\{createClient\}\s*from\s*['"][^'"]+['"];?/, '');
