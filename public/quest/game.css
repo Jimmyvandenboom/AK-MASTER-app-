@@ -70,3 +70,16 @@
 @media (max-width: 360px) {
   .store { grid-template-columns: minmax(0, 1fr); }
 }
+
+.top .shop-shortcut {
+  background: #ffdc79;
+  color: #231803;
+  border: 1px solid #fff0b7;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.top .shop-shortcut:hover,
+.top .shop-shortcut:focus-visible {
+  background: #fff0b7;
+}
