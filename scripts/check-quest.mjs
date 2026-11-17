@@ -6,7 +6,7 @@ import {chromium,devices} from 'playwright';
 
 const root=resolve('dist');
 const base='/AK-MASTER-app-/';
-const files=['quest/index.html','quest/globe.js','quest/globe.css','quest/levelmap.css','quest/catalog.js','quest/game.css'];
+const files=['quest/index.html','quest/globe.js','quest/globe.css','quest/levelmap.css','quest/catalog.js','quest/game.css','quest/theory.js','quest/collection.js','quest/audio/yes.mp3','quest/audio/no.mp3'];
 for(const file of files)assert.ok((await readFile(resolve(root,file))).length>300,'Missing asset '+file);
 const mime={'.html':'text/html','.js':'application/javascript','.css':'text/css','.svg':'image/svg+xml'};
 const server=createServer(async(req,res)=>{
@@ -57,6 +57,10 @@ try{
  assert.ok(await page.locator('#quest-globe').evaluate(el=>el.width>200),'Interactive canvas failed');
  await page.locator('button[data-action="chapter"][data-ch="H7"]').first().click();
  await page.locator('.quest-map-shell').waitFor();
+ await page.locator('.quest-theory summary').click();
+ await page.getByRole('heading',{name:'Water in Nederland',exact:true}).waitFor();
+ await page.getByRole('heading',{name:'Uitgewerkt voorbeeld'}).waitFor();
+ await page.locator('.quest-theory summary').click();
  assert.equal(await page.locator('.zone-switcher button').count(),3);
  await page.locator('button[data-action="question"][data-id="n1"]').click();
  await page.getByText('Wat is een delta?').waitFor();
@@ -88,10 +92,16 @@ try{
  assert.ok(await mobilePage.locator('#quest-globe').evaluate(el=>el.clientWidth>200),'Mobile globe missing');
  const fits=()=>mobilePage.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth);
  assert.ok(await fits(),'Mobile globe overflows');
+ await mobilePage.locator('button[data-action="chapter"][data-ch="H8"]').first().tap();
+ await mobilePage.locator('.quest-theory summary').tap();
+ await mobilePage.getByRole('heading',{name:'Water in China',exact:true}).waitFor();
+ assert.ok(await fits(),'Mobile theory overflows');
  await mobilePage.getByRole('navigation').getByRole('button',{name:/Shop/}).tap();
  await mobilePage.getByRole('heading',{name:'Daily Shop'}).waitFor();
  assert.equal(await mobilePage.locator('.daily-selection [data-action="buy"]').count(),8);
  assert.ok(await fits(),'Mobile shop overflows');
+ assert.equal(await mobilePage.locator('.rare-badge').count(),3);
+ await mobilePage.getByRole('heading',{name:'Pirate Token'}).waitFor();
  await mobilePage.getByRole('navigation').getByRole('button',{name:/Avatar/}).tap();
  assert.equal(await mobilePage.locator('[data-avatar]').count(),15);
  assert.equal(await mobilePage.getByRole('button',{name:'Aantrekken'}).count(),1,'First Pass reward should be equippable');

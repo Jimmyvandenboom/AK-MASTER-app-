@@ -83,3 +83,72 @@
 .top .shop-shortcut:focus-visible {
   background: #fff0b7;
 }
+
+.quest-theory {
+  margin: 0 0 18px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--panel2);
+}
+
+.quest-theory > summary {
+  min-height: 48px;
+  padding: 13px 16px;
+  cursor: pointer;
+  font-weight: 800;
+  color: var(--mint);
+}
+
+.quest-theory[open] > summary {
+  border-bottom: 1px solid var(--line);
+}
+
+.theory-content {
+  max-width: 76ch;
+  padding: 16px;
+}
+
+.theory-content h2,
+.theory-content h3 {
+  margin: 0 0 6px;
+}
+
+.theory-content p,
+.theory-terms dd {
+  margin: 0;
+  line-height: 1.55;
+}
+
+.theory-topics,
+.theory-terms {
+  display: grid;
+  gap: 14px;
+  margin: 12px 0 20px;
+}
+
+.theory-terms {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+}
+
+.theory-terms dt {
+  font-weight: 750;
+}
+
+.theory-example {
+  padding: 12px;
+  margin-bottom: 12px;
+  border-inline-start: 3px solid var(--mint);
+}
+
+.theory-example p + p {
+  margin-top: 6px;
+}
+
+.rare-collection {
+  margin-top: 24px;
+}
+
+.rare-badge progress {
+  width: 100%;
+  accent-color: #d596fe;
+}
