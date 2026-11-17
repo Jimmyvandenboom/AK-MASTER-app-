@@ -39,8 +39,13 @@ try{
    case 'answer':{const ok=body.questionId==='n1'&&body.response==='0';
      attempts.push({question_id:body.questionId,is_correct:body.questionId==='n1'?ok:null,awarded_xp:ok?60:0,created_at:new Date().toISOString()});
      if(ok){xp+=60;coins+=12}
-     response={correct:body.questionId==='n1'?ok:null,awarded:ok?60:0,explanation:'De monding is vertakt.',correctOption:0,selfCheck:body.questionId!=='n1'};break;
+     response={correct:body.questionId==='n1'?ok:null,awarded:ok?60:0,explanation:'De monding is vertakt.',correctOption:0,selfCheck:body.questionId!=='n1',aiReviewAvailable:body.questionId!=='n1'};break;
    }
+   case 'open-review':
+     assert.equal(body.questionId,'h7_open_01');
+     assert.equal(body.response,'Zand en klei blijven achter.');
+     response={review:{points:1,maxPoints:2,feedback:'Je noemt afzetting.',nextStep:'Leg uit waarom het water afremt.'}};
+     break;
    case 'heartbeat':response={ok:true};break;
    default:response={error:'Test stub has no action '+body.action};break;
   }
@@ -67,6 +72,15 @@ try{
  await page.locator('button[data-action="choose"][data-val="0"]').click();
  await page.getByRole('button',{name:/Controleer antwoord/}).click();
  await page.getByText(/Goed! \+60 XP/).waitFor();
+ await page.getByRole('button',{name:/Volgende missie/}).click();
+ await page.locator('#openResponse').fill('Zand en klei blijven achter.');
+ await page.locator('.quest-theory summary').click();
+ assert.equal(await page.locator('#openResponse').inputValue(),'Zand en klei blijven achter.');
+ await page.locator('.quest-theory summary').click();
+ await page.getByRole('button',{name:/Controleer antwoord/}).click();
+ await page.getByRole('button',{name:'Laat AI nakijken'}).click();
+ await page.getByText('AI-oefenscore · 1 / 2',{exact:true}).waitFor();
+ await page.getByText('Leg uit waarom het water afremt.').waitFor();
  await page.getByRole('button',{name:/Terug naar kaart/}).click();
  await page.locator('button[data-action="zone"][data-zone="1"]').first().click();
  assert.ok(await page.locator('.quest-map-shell').isVisible(),'Stage switching broke');

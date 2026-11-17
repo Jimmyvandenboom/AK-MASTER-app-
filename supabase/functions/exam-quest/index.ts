@@ -1,6 +1,8 @@
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.49.1";
 import { items, avatars, pass, avatarColors, legacyBackdrops, pirateRoll } from "./catalog.js";
 import CE from "./ce.json" with { type: "json" };
+import { gradeOpenAnswer } from "./open-review.js";
+const reviewKey = Deno.env.get("OPENAI_API_KEY");
 const URL= Deno.env.get("SUPABASE_URL")!;
 const KEY= Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 const db=createClient(URL,KEY,{auth:{persistSession:false}});
@@ -35,18 +37,55 @@ const token=random();const x=await db.from("quest_students").insert({class_id:cl
 if(x.error)return output({error:"Account kon niet worden aangemaakt."},500);
 return output({token,student:x.data,className:cl.data.label});
 }
-if(action==="me"||action==="questions"||action==="answer"||action==="heartbeat"||action==="avatar"||action==="buy"||action==="profile"||action==="cosmetics"||action==="game-badge"||action==="game-start"){
+if(action==="me"||action==="questions"||action==="answer"||action==="heartbeat"||action==="avatar"||action==="buy"||action==="profile"||action==="cosmetics"||action==="game-badge"||action==="game-start"||action==="open-review"){
 const s=await student(String(body.token||""));if(!s)return output({error:"Sessie onbekend. Gebruik je persoonlijke herstelcode."},401);
+if(action==="open-review"){
+  if(!reviewKey)return output({error:"AI-nakijken is nog niet beschikbaar."},503);
+  const question=Q.find(row=>row[0]===body.questionId&&!row[4]);
+  if(!question)return output({error:"Kies een open vraag."},400);
+  const answer=String(body.response??"").trim().slice(0,1400);
+  if(!answer)return output({error:"Vul eerst een antwoord in."},400);
+  const attempt=await db.from("quest_attempts").select("id,response")
+    .eq("student_id",s.id).eq("question_id",question[0]).eq("response",answer)
+    .is("is_correct",null).order("id",{ascending:false}).limit(1).maybeSingle();
+  if(attempt.error)return output({error:"Antwoord kon niet worden opgehaald."},503);
+  if(!attempt.data)return output({error:"Stuur je antwoord eerst in."},404);
+
+  const slot=await db.rpc("quest_reserve_ai_review",{p_student:s.id,p_attempt:attempt.data.id});
+  if(slot.error)return output({error:"AI-nakijken is tijdelijk niet beschikbaar."},503);
+  if(slot.data?.status==="existing"&&slot.data.review)return output({review:slot.data.review});
+  if(slot.data?.status==="limit")return output({error:"De limiet voor AI-feedback is bereikt. Probeer morgen opnieuw."},429);
+  if(slot.data?.status!=="reserved")return output({error:"Dit antwoord is al aangeboden ter beoordeling."},409);
+
+  try{
+    const maxPoints=Number(question[7]?.points)||2;
+    const review=await gradeOpenAnswer({
+      key:reviewKey,question:question[3],rubric:question[6],answer:attempt.data.response,maxPoints
+    });
+    const saved=await db.from("quest_ai_reviews").update({review}).eq("attempt_id",attempt.data.id).eq("student_id",s.id);
+    if(saved.error)throw new Error("Review could not be saved");
+    return output({review});
+  }catch{
+    return output({error:"AI kon dit antwoord niet nakijken. Je antwoord is opgeslagen."},503);
+  }
+}
 if(action==="questions")return output({questions:Q.map(publicQ)});
 if(action==="me"){
-const [a,p,r]=await Promise.all([
+const [a,p,r,grades]=await Promise.all([
   db.from("quest_attempts").select("question_id,is_correct,awarded_xp,created_at").eq("student_id",s.id).order("created_at",{ascending:false}).order("id",{ascending:false}).limit(600),
   db.from("quest_purchases").select("item_id").eq("student_id",s.id),
-  db.from("quest_rewards").select("question_id").eq("student_id",s.id)
+  db.from("quest_rewards").select("question_id").eq("student_id",s.id),
+  reviewKey ? db.from("quest_ai_reviews").select("review,quest_attempts(question_id)")
+    .eq("student_id",s.id).not("review","is",null).order("attempt_id",{ascending:false}).limit(240) : null
 ]);
 if(a.error||p.error||r.error)return output({error:"Voortgang kon niet worden geladen."},503);
 const solved=r.data.map(x=>x.question_id);
-return output({student:{id:s.id,first_name:s.first_name,avatar:s.avatar,xp:s.xp,coins:s.coins,active_seconds:s.active_seconds,cosmetics:{...(s.cosmetics||{}),...(s.quest_profile||{})}},attempts:a.data,purchases:p.data.map(x=>x.item_id),profile:{...(s.cosmetics||{}),...(s.quest_profile||{})},solved,pirate:solved.some(id=>pirateRoll(s.id,id))});
+const reviews=Object.create(null);
+for(const grade of grades?.data||[]){
+  const questionId=grade.quest_attempts?.question_id;
+  if(questionId&&!(questionId in reviews))reviews[questionId]=grade.review;
+}
+return output({student:{id:s.id,first_name:s.first_name,avatar:s.avatar,xp:s.xp,coins:s.coins,active_seconds:s.active_seconds,cosmetics:{...(s.cosmetics||{}),...(s.quest_profile||{})}},attempts:a.data,purchases:p.data.map(x=>x.item_id),profile:{...(s.cosmetics||{}),...(s.quest_profile||{})},solved,reviews,pirate:solved.some(id=>pirateRoll(s.id,id))});
 }
 if(action==="heartbeat"){
 const now=Date.now(),before=s.last_heartbeat?new Date(s.last_heartbeat).getTime():0;
@@ -131,7 +170,7 @@ const correct=q[4] ? /^[0-5]$/.test(response)&&Number(response)===q[5] : null;
 const saved=await db.rpc("quest_record_answer",{p_student:s.id,p_question:id,p_topic:q[1],p_skill:q[2],p_response:response,p_correct:correct});
 if(saved.error)return output({error:"Opslaan niet gelukt"},500);
 if(saved.data===-1)return output({error:"Wacht even en probeer opnieuw."},429);
-return output({correct,awarded:saved.data,explanation:q[6],correctOption:q[5],selfCheck:!q[4]});
+return output({correct,awarded:saved.data,explanation:q[6],correctOption:q[5],selfCheck:!q[4],aiReviewAvailable:!q[4]&&Boolean(reviewKey)});
 }}
 if(action==="teacher"){
 const auth=String(req.headers.get("authorization")||"").replace(/^Bearer /i,"");
