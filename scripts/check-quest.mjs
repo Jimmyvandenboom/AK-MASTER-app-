@@ -36,6 +36,7 @@ try{
  const quiz=[
  {id:'n1',chapter:'H7',skill:'begrip',type:'choice',text:'Wat is een delta?',options:['Een vertakte monding','Een droogmakerij','Een gletsjer','Een krib']},
  {id:'h7_open_01',chapter:'H7',skill:'verklaren',type:'open',text:'Leg uit hoe een rivierdelta ontstaat.',options:null},
+ {id:'ce-demo',chapter:'H8',type:'open',skill:'bronvaardigheid',text:'Welke rivier zie je?',source:{year:2026,period:1,number:12,points:1,pages:[],url:'https://example.test/examen',correction:'https://example.test/model'}},
  ...['H8','H9'].map((chapter,i)=>({id:chapter+'_test',chapter,skill:'verklaren',type:'open',text:'Leg uit wat debiet is. '+i,options:null}))
  ];
  const handleApi = async route=>{
@@ -147,6 +148,12 @@ try{
  await recoveryPage.getByRole('button',{name:'Gebruik mijn herstelcode'}).click();
  await recoveryPage.getByRole('heading',{name:/Welkom terug, Sam/}).waitFor();
  assert.equal(await recoveryPage.getByRole('progressbar').getAttribute('aria-valuenow'),'1');
+ await recoveryPage.getByRole('button',{name:/Examentrainer/}).click();
+ await recoveryPage.getByText('2026 · tijdvak 1 · 0/1 gemaakt').click();
+ await recoveryPage.getByRole('button',{name:'Vraag 12 · 1 pt'}).click();
+ await recoveryPage.getByRole('heading',{name:'Welke rivier zie je?'}).waitFor();
+ await recoveryPage.getByRole('button',{name:/Terug naar examentrainer/}).click();
+ await recoveryPage.getByRole('heading',{name:'Examentrainer Water'}).waitFor();
  await recovered.close();
 
  const teacher=await browser.newContext();
@@ -160,6 +167,7 @@ try{
  await dashboard.locator('#teacherForm input[name=password]').fill('fictieve-testwaarde');
  await dashboard.getByRole('button',{name:'Open docentendashboard'}).click();
  const sam=dashboard.getByRole('row').filter({hasText:'Sam'});
+ await sam.waitFor();
  assert.deepEqual((await sam.getByRole('cell').allTextContents()).slice(0,6),['Sam','1','0','0','60','1 min']);
  await dashboard.getByText('50%',{exact:true}).waitFor();
  await dashboard.getByText('Sam · H7 · h7_open_01').click();

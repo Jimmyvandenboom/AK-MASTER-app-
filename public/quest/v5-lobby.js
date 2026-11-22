@@ -81,6 +81,7 @@ export function quest5Home(state, chapters, avatar, done, esc) {
           <div class="q5-overline">JOUW GAME HUB</div>
           <button data-action="store">⚡ Power-ups en outfits <span>→</span></button>
           <button data-action="studio-v3">🎭 Avatar aanpassen <span>→</span></button>
+          <button data-action="exam-trainer">📖 Examentrainer <span>→</span></button>
           <button data-action="daily">🧠 Kennisboost <span>→</span></button>
         </div>
       </aside>
