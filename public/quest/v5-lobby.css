@@ -18,3 +18,11 @@ html[data-theme="light"] .q5-home{--q5-ink:#203b37;color:var(--q5-ink)}html[data
 @media(max-width:1000px){.q5-layout{grid-template-columns:1fr}.q5-sidebar{grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:none}.q5-camp{min-height:450px}.q5-header{align-items:start;flex-direction:column}.q5-score{justify-content:start}}
 @media(max-width:690px){.q5-camp{min-height:400px}.q5-header h1{font-size:34px}.q5-sidebar{grid-template-columns:1fr}.q5-region-grid{grid-template-columns:1fr}.q5-camp-actions{left:10px;right:10px;bottom:11px}.q5-maincta{width:100%;flex-basis:100%;min-width:0}.q5-softcta{flex:1;padding:11px;font-size:12px!important}.q5-camper{font-size:43px;bottom:33%}.q5-camp-caption{padding:10px;top:12px;left:12px}.q5-camp-caption strong{font-size:17px}.q5-tent{left:32%;bottom:40%}.q5-prop.p3{left:73%}.q5-sectionhead>span{display:none}.q5-header p{font-size:14px}}
 @media(prefers-reduced-motion:reduce){.q5-home *{animation:none!important;transition:none!important}}
+
+/* Quest 5 terrain atlas: real vector landforms, no network or image dependency. */
+.q5-mapart{display:grid;place-items:center;isolation:isolate}
+.q5-terrain-svg{position:relative;z-index:2;width:min(100%,350px);height:100%;max-height:175px;filter:drop-shadow(0 13px 8px #0d393b77);transition:transform .25s ease}
+.q5-region:hover .q5-terrain-svg,.q5-region:focus-visible .q5-terrain-svg{transform:translateY(-5px) scale(1.04)}
+.q5-region-sun{pointer-events:none;z-index:1}
+@media (max-width:690px){.q5-mapart{height:190px}.q5-terrain-svg{max-height:185px}}
+@media (prefers-reduced-motion:reduce){.q5-terrain-svg{transition:none!important}}
