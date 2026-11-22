@@ -94,3 +94,10 @@ In Mission Control kan de docent per leerling foutclusters op basis van opgeslag
 De fictieve leerlingtest koopt een Kompas en Dijkvos, kiest de metgezel, start opnieuw in een verse browsersessie en controleert dat de voortgang en het dier terugkomen. De docenttest controleert de eigen analyse van Sam, een klaswissel, verversen en uitloggen. Chromium en mobiel WebKit (375, 390 en 430 px) zijn groen in [workflow 45040196363](https://github.com/Jimmyvandenboom/AK-MASTER-app-/actions/runs/45040196363). De tests gebruiken nagebootste API-antwoorden; echte leerlingrecords en Supabase-voortgang zijn niet gewijzigd.
 
 De resterende grote onderdelen blijven: complete examendekking en bronverzameling, Social Adventure met veilige opt-in, verder uitgewerkte gamewerelden, pincode-login naast herstelcodes en uitgebreide toegankelijkheidstests. Dit is een ontwikkelbranch en geen release van de live omgeving.
+
+
+## 22 november: volledige beschikbare waterbank in de examentrainer
+
+Quest laadt nu alle 245 bronvragen uit de bestaande waterbank, met antwoordmodel, punten, links naar examen en correctievoorschrift en 169 lokale bronafbeeldingen. De extra vraagbanktests vergelijken iedere import met de oorspronkelijke brondata, controleren de antwoordindexen en bestaan van de afbeeldingen. De bestaande 24 handmatig samengestelde items zijn vervangen door deze volledige vraagbank.
+
+De hoofdstukkaart toont examenmissies in pagina's van acht checkpoints, zodat lange examensets binnen de kaart passen. De examentrainer groepeert iedere vraag op jaar en tijdvak. De beschikbare bank bevat 2018, 2019 en 2021–2026. 2017 en 2020 ontbreken nog in de bronbestanden; complete jaardekking is dus nog niet bereikt.
