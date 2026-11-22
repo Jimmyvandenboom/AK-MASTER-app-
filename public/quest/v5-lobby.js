@@ -1,3 +1,4 @@
+import {renderQuestTerrain} from './v5-terrain.js';
 /**
  * GFR Exam Quest 5 — visual preview foundation.
  * Pure HTML renderer; reads existing state, never changes player data.
@@ -64,7 +65,7 @@ export function quest5Home(state, chapters, avatar, done, esc) {
       <div class="q5-sectionhead"><div><div class="q5-overline">EXPLORER'S ATLAS</div><h2>Ontdek de wereld</h2></div><span>Alle leergebieden blijven toegankelijk</span></div>
       <div class="q5-region-grid">
       ${entries.map(([id,ch],i)=>`<button class="q5-region region-${i}" data-action="chapter" data-ch="${esc(id)}">
-        <div class="q5-mapart"><span class="q5-region-sun">☀</span><span class="q5-region-ridge"></span><span class="q5-region-terrain">${ch.emoji}</span><span class="q5-region-building">${i===0?'🌷':i===1?'🏯':'🌴'}</span></div>
+        <div class="q5-mapart"><span class="q5-region-sun" aria-hidden="true">☀</span>${renderQuestTerrain(id, ch.sub)}</div>
         <div class="q5-region-info"><span>REGIO 0${i+1} · ${esc(id)}</span><strong>${esc(ch.title)}</strong><small>${esc(ch.sub)}</small><span class="q5-region-go">VERKENNEN ↗</span></div>
       </button>`).join('')}
       </div>
