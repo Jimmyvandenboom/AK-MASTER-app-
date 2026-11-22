@@ -26,3 +26,44 @@ html[data-theme="light"] .q5-home{--q5-ink:#203b37;color:var(--q5-ink)}html[data
 .q5-region-sun{pointer-events:none;z-index:1}
 @media (max-width:690px){.q5-mapart{height:190px}.q5-terrain-svg{max-height:185px}}
 @media (prefers-reduced-motion:reduce){.q5-terrain-svg{transition:none!important}}
+
+/* Keep keyboard focus and region links readable against both themes. */
+.q5-home {
+  --q5-focus: #a1efcc;
+}
+
+html[data-theme="light"] .q5-home {
+  --q5-focus: #245f53;
+}
+
+.q5-home button:focus-visible {
+  outline: 3px solid var(--q5-focus);
+  outline-offset: 3px;
+}
+
+.q5-camp button:focus-visible {
+  outline-color: #fff3bc;
+}
+
+html[data-theme="light"] .q5-region-go {
+  color: #2c6244;
+}
+
+.q5-arcade button {
+  min-height: 44px;
+}
+
+@media (max-width: 690px) {
+  .q5-softcta {
+    min-height: 44px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .q5-region:hover,
+  .q5-region:focus-visible,
+  .q5-region:hover .q5-terrain-svg,
+  .q5-region:focus-visible .q5-terrain-svg {
+    transform: none;
+  }
+}
