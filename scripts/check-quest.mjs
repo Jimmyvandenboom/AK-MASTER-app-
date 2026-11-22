@@ -27,11 +27,12 @@ const server=createServer(async(req,res)=>{
 });
 await new Promise(r=>server.listen(0,'127.0.0.1',r));
 let browser, mobileBrowser;
+const problems=[];
 try{
  browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||undefined});
  const studentContext=await browser.newContext({viewport:{width:1365,height:900}});
  let page=await studentContext.newPage();
- const problems=[];page.on('pageerror',e=>problems.push(e.message));page.on('dialog',d=>{problems.push('dialog: '+d.message());d.accept()});
+ page.on('pageerror',e=>problems.push(e.message));page.on('dialog',d=>{problems.push('dialog: '+d.message());d.accept()});
  const token='a'.repeat(48);let attempts=[],xp=0,coins=100,purchases=[],profile={};
  const quiz=[
  {id:'n1',chapter:'H7',skill:'begrip',type:'choice',text:'Wat is een delta?',options:['Een vertakte monding','Een droogmakerij','Een gletsjer','Een krib']},
