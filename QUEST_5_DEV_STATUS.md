@@ -39,3 +39,10 @@
 `quest_students`: 31; `quest_attempts`: 529; `quest_purchases`: 18; `quest_rewards`: 207.
 
 These counts are an **inventory**, not a database backup. A real backup/export remains required before any migration.
+
+## Development increment: vector atlas (22 Nov 2026)
+- Added `public/quest/v5-terrain.js` with three self-contained SVG isometric geography miniatures: Dutch polder/dikes, Chinese river/mountains/dam, Middle East arid land/oasis.
+- Connected the miniatures to existing clickable geography regions in `v5-lobby.js`; updated mobile styling and unit/browser test assertions.
+- Ran eight direct runtime checks of atlas markup/navigation, progress immutability, labels and escaping — **8/8 passed**.
+- This is **not a claim of Playwright success**. CI status was not returned by the GitHub status API; full build/browser verification remains a release blocker.
+- Production Pages remains on `main`, no database writes occurred.
