@@ -23,6 +23,11 @@ test('Quest 5 camp scales with XP and keeps progress data read-only',()=>{
  assert.match(quest5Home(player(700),chapters,()=>'',()=>0,esc),/RIVER STATION/);
  assert.match(quest5Home(player(2500),chapters,()=>'',()=>0,esc),/EXPEDITION HQ/);
 });
+test('camp names the next visible reward up to the final level', () => {
+  for (const [xp, expected] of [[349,'Nog 1 XP tot het kampvuur'],[350,'Nog 350 XP tot de veldhut'],[1400,'Je expeditiekamp is volledig uitgebouwd']]) {
+    assert.ok(quest5Home(player(xp), chapters, () => '', () => 0, esc).includes(expected));
+  }
+});
 test('Quest 5 escapes student supplied names',()=>{
  const state=player(1);state.student.first_name='<img src=x onerror=alert(1)>';
  const html=quest5Home(state,chapters,()=>'',()=>0,esc);

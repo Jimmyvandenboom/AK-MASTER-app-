@@ -7,6 +7,9 @@ export function quest5Home(state, chapters, avatar, done, esc) {
   const xp=Math.max(0,Number(state.student?.xp)||0);
   const coins=Math.max(0,Number(state.student?.coins)||0);
   const stage=Math.min(5,1+Math.floor(xp/350));
+  const remainingXp = stage < 5 ? stage * 350 - xp : 0;
+  const nextCampFeature = ['', 'het kampvuur', 'de veldhut', 'de sterrenkijker', 'het hoofdkwartier'];
+  const campProgress = remainingXp ? `Nog ${remainingXp} XP tot ${nextCampFeature[stage]}` : 'Je expeditiekamp is volledig uitgebouwd';
   const attempts=state.attempts?.length||0;
   const current=Object.entries(chapters).find(([key])=>state.chapter===key)||Object.entries(chapters)[0];
   const entries=Object.entries(chapters);
@@ -40,7 +43,7 @@ export function quest5Home(state, chapters, avatar, done, esc) {
           ${stage>=5?'<span class="q5-prop p7">🏰</span>':''}
         </div>
         <div class="q5-camper" aria-label="Je avatar">${avatar()}</div>
-        <div class="q5-camp-caption"><span class="q5-overline">JOUW BASISKAMP</span><strong>${stageNames[stage]}</strong><span>Automatisch gegroeid met jouw XP</span></div>
+        <div class="q5-camp-caption"><span class="q5-overline">JOUW BASISKAMP</span><strong>${stageNames[stage]}</strong><span>${campProgress}</span></div>
         <div class="q5-camp-actions">
           <button class="q5-maincta" data-action="chapter" data-ch="${esc(current[0])}">🧭 OP AVONTUUR <span>→</span></button>
           <button class="q5-softcta" data-action="studio-v3">🧑‍🚀 Mijn avatar</button>
