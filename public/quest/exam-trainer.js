@@ -1,3 +1,15 @@
+const archivedExams = [
+  {
+    year: 2017, period: 1,
+    paper: 'https://static.alleexamens.nl/VMBO-GL%20en%20TL/Aardrijkskunde/2017/I/Aardrijkskunde/Aardrijkskunde%202017%20I_opgaven.pdf',
+    correction: 'https://static.alleexamens.nl/VMBO-GL%20en%20TL/Aardrijkskunde/2017/I/Aardrijkskunde/Aardrijkskunde%202017%20I_correctievoorschrift.pdf'
+  },
+  {
+    year: 2017, period: 2,
+    paper: 'https://static.alleexamens.nl/VMBO-GL%20en%20TL/Aardrijkskunde/2017/II/Aardrijkskunde/Aardrijkskunde%202017%20II_opgaven.pdf',
+    correction: 'https://static.alleexamens.nl/VMBO-GL%20en%20TL/Aardrijkskunde/2017/II/Aardrijkskunde/Aardrijkskunde%202017%20II_correctievoorschrift.pdf'
+  }
+];
 export function examTrainer(questions, attempts, esc) {
   const papers = new Map();
   for (const q of questions.filter(q => q.source)) {
@@ -10,6 +22,10 @@ export function examTrainer(questions, attempts, esc) {
   const cards = [...papers.values()].sort((a,b) => b[0].source.year - a[0].source.year || a[0].source.period - b[0].source.period);
   return `<section class="screen card pad"><h1>Examentrainer Water</h1>
     <p>Kies een tijdvak. Oefen de watervragen met de bijbehorende bronnen, of open het volledige examen.</p>
+    <details class="exam-source"><summary>Archiefexamens 2017 · volledige pdf’s</summary>
+      <p>De opgaven en correctievoorschriften openen als PDF. Deze examens zijn nog niet per vraag in de interactieve oefenbank opgenomen.</p>
+      ${archivedExams.map(exam => `<p><strong>2017 · tijdvak ${exam.period}</strong> · <a href="${esc(exam.paper)}" target="_blank" rel="noopener">Opgaven</a> · <a href="${esc(exam.correction)}" target="_blank" rel="noopener">Correctievoorschrift</a></p>`).join('')}
+    </details>
     ${cards.map(group => {
       group.sort((a,b) => a.source.number - b.source.number);
       const source = group[0].source;
