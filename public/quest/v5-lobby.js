@@ -11,7 +11,15 @@ export function quest5Home(state, chapters, avatar, done, esc) {
   const current=Object.entries(chapters).find(([key])=>state.chapter===key)||Object.entries(chapters)[0];
   const entries=Object.entries(chapters);
   const stageNames=['','BASECAMP','EXPLORER CAMP','RIVER STATION','GEO OUTPOST','EXPEDITION HQ'];
-  const tree='🌲', water='🌊';
+  const tree='🌲';
+  const missionQuestions = (state.questions ?? []).filter(question => (
+    question.chapter === current[0] && question.type === 'choice'
+  ));
+  const missionTotal = missionQuestions.length;
+  const missionDone = state.solved
+    ? missionQuestions.filter(question => state.solved.includes(question.id)).length
+    : Math.max(0, Math.min(missionTotal, done(current[0])));
+  const missionPercent = missionTotal ? Math.round(missionDone / missionTotal * 100) : 0;
   return `<div class="q5-home">
     <div class="q5-banner" role="status"><span class="q5-beacon"></span> GFR 5.0 · EXPEDITIEKAART <span class="q5-beta">ONTWIKKELPREVIEW</span></div>
     <div class="q5-header">
@@ -32,7 +40,7 @@ export function quest5Home(state, chapters, avatar, done, esc) {
           ${stage>=5?'<span class="q5-prop p7">🏰</span>':''}
         </div>
         <div class="q5-camper" aria-label="Je avatar">${avatar()}</div>
-        <div class="q5-camp-caption"><span class="q5-overline">YOUR HOME BASE</span><strong>${stageNames[stage]}</strong><span>Automatisch gegroeid met jouw XP</span></div>
+        <div class="q5-camp-caption"><span class="q5-overline">JOUW BASISKAMP</span><strong>${stageNames[stage]}</strong><span>Automatisch gegroeid met jouw XP</span></div>
         <div class="q5-camp-actions">
           <button class="q5-maincta" data-action="chapter" data-ch="${esc(current[0])}">🧭 OP AVONTUUR <span>→</span></button>
           <button class="q5-softcta" data-action="studio-v3">🧑‍🚀 Mijn avatar</button>
@@ -43,8 +51,8 @@ export function quest5Home(state, chapters, avatar, done, esc) {
         <div class="q5-module">
           <div class="q5-overline">JOUW VOLGENDE MISSIE</div>
           <h2>${esc(current[1].title)}</h2><p>${esc(current[1].sub)}</p>
-          <div class="q5-microbar"><i style="width:${Math.max(0,Math.min(100,Math.round(done(current[0])/10*100)))}%"></i></div>
-          <span class="q5-muted">${done(current[0])} kennismissies goed beantwoord</span>
+          ${missionTotal ? `<div class="q5-microbar" role="progressbar" aria-label="Gesloten kennismissies goed beantwoord" aria-valuemin="0" aria-valuemax="${missionTotal}" aria-valuenow="${missionDone}"><i style="width:${missionPercent}%"></i></div>
+          <span class="q5-muted">${missionDone} van ${missionTotal} gesloten kennismissies goed beantwoord</span>` : ''}
           <button class="q5-link" data-action="chapter" data-ch="${esc(current[0])}">Ga naar mijn missie →</button>
         </div>
         <div class="q5-module q5-side-stats">
@@ -62,7 +70,7 @@ export function quest5Home(state, chapters, avatar, done, esc) {
       </aside>
     </div>
     <section class="q5-regions" aria-label="Kies je geografische wereld">
-      <div class="q5-sectionhead"><div><div class="q5-overline">EXPLORER'S ATLAS</div><h2>Ontdek de wereld</h2></div><span>Alle leergebieden blijven toegankelijk</span></div>
+      <div class="q5-sectionhead"><div><div class="q5-overline">EXPEDITIEATLAS</div><h2>Ontdek de wereld</h2></div><span>Alle leergebieden blijven toegankelijk</span></div>
       <div class="q5-region-grid">
       ${entries.map(([id,ch],i)=>`<button class="q5-region region-${i}" data-action="chapter" data-ch="${esc(id)}">
         <div class="q5-mapart"><span class="q5-region-sun" aria-hidden="true">☀</span>${renderQuestTerrain(id, ch.sub)}</div>
@@ -70,6 +78,5 @@ export function quest5Home(state, chapters, avatar, done, esc) {
       </button>`).join('')}
       </div>
     </section>
-    <div class="q5-design-note">GFR 5.0 DESIGN PREVIEW · bestaande missies, vragen, aankopen en leerlinggegevens blijven gekoppeld aan de huidige game.</div>
   </div>`;
 }
