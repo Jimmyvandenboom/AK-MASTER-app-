@@ -6,7 +6,7 @@ import {examTrainer} from '../public/quest/exam-trainer.js';
 const source=JSON.parse(await readFile('src/water/questions.json','utf8'));
 const imported=JSON.parse(await readFile('supabase/functions/exam-quest/ce.json','utf8'));
 const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-test('Quest serves the complete existing water exam bank with answer keys and source links',()=>{
+test('Quest serves the complete existing water exam bank with answer keys and source links',async()=>{
   assert.equal(imported.length,source.length);
   assert.deepEqual(imported.map(row=>row[0]).sort(),source.map(row=>row.id).sort());
   for(const q of source){
@@ -31,6 +31,7 @@ test('Quest serves the complete existing water exam bank with answer keys and so
     }
   }
   assert.deepEqual([...new Set(imported.map(row=>row[7].year))],[2018,2019,2021,2022,2023,2024,2025,2026]);
+  for(const src of new Set(imported.flatMap(row=>row[7].pages.map(page=>page.src))))await readFile('public/water/'+src);
 });
 test('exam trainer groups every imported question by year and timevak',()=>{
   const playerQuestions=imported.map(row=>({id:row[0],chapter:row[1],skill:row[2],text:row[3],options:row[4],type:row[4]?'choice':'open',source:row[7]}));
