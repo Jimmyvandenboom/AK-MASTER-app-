@@ -100,7 +100,7 @@ De resterende grote onderdelen blijven: complete examendekking en bronverzamelin
 
 Quest laadt nu alle 245 bronvragen uit de bestaande waterbank, met antwoordmodel, punten, links naar examen en correctievoorschrift en 169 lokale bronafbeeldingen. De extra vraagbanktests vergelijken iedere import met de oorspronkelijke brondata, controleren de antwoordindexen en bestaan van de afbeeldingen. De bestaande 24 handmatig samengestelde items zijn vervangen door deze volledige vraagbank.
 
-De hoofdstukkaart toont examenmissies in pagina's van acht checkpoints, zodat lange examensets binnen de kaart passen. De examentrainer groepeert iedere vraag op jaar en tijdvak. De beschikbare bank bevat 2018, 2019 en 2021–2026. De 2017-examens zijn terug te vinden in het archief dat Examenblad noemt; de GL/TL-opgaven en correctievoorschriften van tijdvak I en II zijn ook gevonden. Ze zijn nog niet verwerkt in de interactieve vraagbank en bronbeelden. In 2020 is wegens corona geen centraal examen afgenomen, dus voor dat jaar bestaat geen CE-vraagbank om toe te voegen. Bron: [Examenblad over oude examens](https://www.examenblad.nl/2025/veelgestelde-vragen) en [Examenblad over 2020](https://www.examenblad.nl/2020/onderwerpen/errata-cse1).
+De hoofdstukkaart toont examenmissies in pagina's van acht checkpoints, zodat lange examensets binnen de kaart passen. De examentrainer groepeert iedere vraag op jaar en tijdvak. De beschikbare bank bevat 2018, 2019 en 2021–2026. De volledige examens van 2017, tijdvak I en II, zijn nu in de Examentrainer als PDF te openen, inclusief correctievoorschriften. Deze archiefkopieën zijn nog niet per vraag in de interactieve vraagbank opgenomen en hebben geen lokale bronbeelden. In 2020 is wegens corona geen centraal examen afgenomen, dus voor dat jaar bestaat geen CE-vraagbank om toe te voegen. Bron: [Examenblad over oude examens](https://www.examenblad.nl/2025/veelgestelde-vragen) en [Examenblad over 2020](https://www.examenblad.nl/2020/onderwerpen/errata-cse1).
 
 
 ## Laatste groene controle — 22 november 2026
@@ -108,3 +108,12 @@ De hoofdstukkaart toont examenmissies in pagina's van acht checkpoints, zodat la
 [Workflow 45041748931](https://github.com/Jimmyvandenboom/AK-MASTER-app-/actions/runs/45041748931) is groen op commit `8b960ff`. Alle stappen zijn geslaagd: npm-tests, productiebuild zonder publiceren, pagina-smoketest en de Chromium/WebKit-browsertests. Die browsertests controleren op desktop en 375, 390 en 430 px onder meer de testleerling, docentweergave, bewaren en hervatten van voortgang, shopaankoop, metgezelkeuze, examencheckpoints en laden van een echte lokale examenbronafbeelding. De nieuwste controle bevestigt ook dat het Kompas na gebruik bij dezelfde vraag niet opnieuw beschikbaar komt na opnieuw openen.
 
 De leerlingen- en docentflow gebruikt fictieve accounts en nagebootste API-antwoorden. Er zijn geen echte leerlingrecords, docentaccounts of Supabase-voortgang gewijzigd. De run controleert de ontwikkelbranch; dit is geen handmatige review of vrijgave van Quest 5.0.
+
+
+## HUD-streaks en archiefexamens — 22 november 2026
+
+De lobby toont nu opeenvolgende oefendagen en goede gesloten antwoorden achter elkaar, berekend uit de al opgeslagen poginggeschiedenis. Oefendagen volgen de Amsterdamse kalenderdatum; een open antwoord telt niet als een goed gesloten antwoord. Er is geen nieuw opslagveld of SQL-wijziging nodig. De unit-tests controleren een reeks over meerdere dagen, reset na een gemiste dag en de behandeling van open antwoorden. De Playwright-proef controleert dat oefendag en antwoordreeks na opnieuw aanmelden in een verse browsersessie zichtbaar blijven.
+
+De Examentrainer bevat daarnaast directe PDF-links naar 2017 tijdvak I en II en hun correctievoorschriften. Die volledige examens zijn beschikbaar naast de interactieve vraagbank; hun losse vragen en bronbeelden zijn nog niet geïmporteerd.
+
+[Groene workflow 45042932040](https://github.com/Jimmyvandenboom/AK-MASTER-app-/actions/runs/45042932040) is geslaagd op commit `757692b`: unit-tests, productiebuild zonder publiceren, pagina-smoketest, desktop-Chromium en mobiele WebKit op 375, 390 en 430 px. De browsertests gebruiken fictieve leerling- en docentaccounts met gesimuleerde API-antwoorden; echte Supabase-data is niet gewijzigd.
