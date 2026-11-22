@@ -31,7 +31,8 @@ test('Quest serves the complete existing water exam bank with answer keys and so
       assert.equal(row[5],null);
     }
   }
-  assert.deepEqual([...new Set(imported.map(row=>row[7].year))],[2018,2019,2021,2022,2023,2024,2025,2026]);
+  assert.deepEqual([...new Set(imported.map(row=>row[7].year))].sort(),[2017,2018,2019,2021,2022,2023,2024,2025,2026]);
+  assert.deepEqual(imported.filter(row=>row[7].year===2017).map(row=>row[0]),['2017-1-16','2017-1-17','2017-1-22','2017-2-16','2017-2-17','2017-2-19','2017-2-22','2017-2-23']);
   for(const src of new Set(imported.flatMap(row=>row[7].pages.map(page=>page.src))))await readFile('public/water/'+src);
 });
 test('exam trainer groups every imported question by year and timevak',()=>{
@@ -43,7 +44,9 @@ test('exam trainer groups every imported question by year and timevak',()=>{
   assert.match(html,/Archiefexamens 2017/);
   assert.match(html,/2017%20I_opgaven\.pdf/);
   assert.match(html,/2017%20II_correctievoorschrift\.pdf/);
-  assert.match(html,/nog niet per vraag in de interactieve oefenbank opgenomen/);
+  assert.match(html,/Oefen de geselecteerde vragen interactief/);
+  assert.match(html,/2017 · tijdvak 1 · 0\/3 gemaakt/);
+  assert.match(html,/2017 · tijdvak 2 · 0\/5 gemaakt/);
   assert.match(html,/Vraag 32 · 1 pt/);
 });
 test('long CE checkpoint lists have page controls and are limited to eight map nodes',async()=>{
