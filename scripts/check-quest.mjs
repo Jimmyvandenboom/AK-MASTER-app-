@@ -6,7 +6,7 @@ import {chromium,devices} from 'playwright';
 
 const root=resolve('dist');
 const base='/AK-MASTER-app-/';
-const files=['quest/index.html','quest/globe.js','quest/globe.css','quest/levelmap.css','quest/catalog.js','quest/game.css','quest/theory.js','quest/collection.js','quest/audio/yes.mp3','quest/audio/no.mp3'];
+const files=['quest/index.html','quest/globe.js','quest/globe.css','quest/levelmap.css','quest/catalog.js','quest/game.css','quest/theory.js','quest/collection.js','quest/audio/yes.mp3','quest/audio/no.mp3','quest/v5-lobby.js','quest/v5-lobby.css'];
 for(const file of files)assert.ok((await readFile(resolve(root,file))).length>300,'Missing asset '+file);
 const mime={'.html':'text/html','.js':'application/javascript','.css':'text/css','.svg':'image/svg+xml'};
 const server=createServer(async(req,res)=>{
@@ -57,9 +57,10 @@ try{
  assert.equal(await page.locator('html').getAttribute('data-theme'),'light');
  await page.locator('input[name="name"]').fill('Sam');await page.locator('input[name="code"]').fill('12345678');
  await page.getByRole('button',{name:/Start mijn avontuur/}).click();
- await page.locator('#quest-globe').waitFor();
- await page.getByText('THE WORLD').waitFor();
- assert.ok(await page.locator('#quest-globe').evaluate(el=>el.width>200),'Interactive canvas failed');
+ await page.getByRole('heading',{name:/Welkom terug, Sam/}).waitFor();
+ await page.getByRole('region',{name:'Jouw groeiende expeditiekamp'}).waitFor();
+ assert.equal(await page.locator('.q5-region').count(),3,'New atlas must show three regions');
+ assert.ok(await page.getByRole('button',{name:/OP AVONTUUR/}).isVisible(),'Primary adventure action missing');
  await page.locator('button[data-action="chapter"][data-ch="H7"]').first().click();
  await page.locator('.quest-map-shell').waitFor();
  await page.locator('.quest-theory summary').click();
@@ -85,8 +86,8 @@ try{
  await page.locator('button[data-action="zone"][data-zone="1"]').first().click();
  assert.ok(await page.locator('.quest-map-shell').isVisible(),'Stage switching broke');
  await page.reload({waitUntil:'domcontentloaded'});
- await page.getByText('THE WORLD').waitFor();
- assert.equal(await page.locator('canvas#quest-globe').count(),1);
+ await page.getByRole('heading',{name:/Welkom terug, Sam/}).waitFor();
+ assert.equal(await page.locator('.q5-camp').count(),1,'Personal camp missing after reload');
  assert.equal(await page.locator('html').getAttribute('data-theme'),'light','Theme must survive reload');
  await page.getByRole('button',{name:'Schakel donkere modus in'}).click();
  for (const [button,heading] of [['Shop','Daily Shop'],['Avatar','Avatar Studio'],['Pass','Battle Pass']]) {
@@ -102,10 +103,10 @@ try{
  });
  await mobilePage.addInitScript(recoveryCode=>localStorage.setItem('gfrq_token',recoveryCode),token);
  await mobilePage.goto('http://127.0.0.1:'+server.address().port+base+'quest/');
- await mobilePage.locator('#quest-globe').waitFor();
- assert.ok(await mobilePage.locator('#quest-globe').evaluate(el=>el.clientWidth>200),'Mobile globe missing');
+ await mobilePage.locator('.q5-camp').waitFor();
+ assert.equal(await mobilePage.locator('.q5-region').count(),3,'Mobile atlas incomplete');
  const fits=()=>mobilePage.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth);
- assert.ok(await fits(),'Mobile globe overflows');
+ assert.ok(await fits(),'Mobile camp or atlas overflows');
  await mobilePage.locator('button[data-action="chapter"][data-ch="H8"]').first().tap();
  await mobilePage.locator('.quest-theory summary').tap();
  await mobilePage.getByRole('heading',{name:'Water in China',exact:true}).waitFor();
@@ -125,6 +126,6 @@ try{
  assert.ok(await fits(),'Mobile Pass overflows');
  await mobile.close();
  assert.deepEqual(problems,[],'JavaScript errors in quest');
- console.log('Water Wars: student join, rotating globe, checkpoint, answer, saved session, map acts and mobile smoke tests OK');
+ console.log('Quest 5: student join, personal camp, three region atlas, checkpoint, answer, saved session, map acts and mobile smoke tests OK');
 }catch(e){console.error(e);process.exitCode=1}
 finally{if(browser)await browser.close();await new Promise(r=>server.close(r))}
