@@ -4,6 +4,40 @@ import {renderQuestTerrain} from './v5-terrain.js';
  * GFR Exam Quest 5 — visual preview foundation.
  * Pure HTML renderer; reads existing state, never changes player data.
  */
+function dateKey(value) {
+  const parts = new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Europe/Amsterdam', year: 'numeric', month: '2-digit', day: '2-digit'
+  }).formatToParts(new Date(value));
+  const part = type => parts.find(item => item.type === type)?.value || '';
+  return part('year') + '-' + part('month') + '-' + part('day');
+}
+
+function dateNumber(key) {
+  const [year, month, day] = key.split('-').map(Number);
+  return Date.UTC(year, month - 1, day);
+}
+
+export function questStreaks(history = [], now = new Date()) {
+  const attempts = [...history]
+    .filter(attempt => attempt.created_at && !Number.isNaN(Date.parse(attempt.created_at)))
+    .sort((a, b) => Date.parse(b.created_at) - Date.parse(a.created_at));
+  const days = new Set(attempts.map(attempt => dateKey(attempt.created_at)));
+  const today = dateKey(now);
+  const yesterday = new Date(dateNumber(today) - 86400000).toISOString().slice(0, 10);
+  let dayCursor = days.has(today) ? today : (days.has(yesterday) ? yesterday : '');
+  let daily = 0;
+  while (dayCursor && days.has(dayCursor)) {
+    daily += 1;
+    dayCursor = new Date(dateNumber(dayCursor) - 86400000).toISOString().slice(0, 10);
+  }
+  let answers = 0;
+  for (const attempt of attempts) {
+    if (attempt.is_correct !== true) break;
+    answers += 1;
+  }
+  return {daily, answers};
+}
+
 export function quest5Home(state, chapters, avatar, done, esc) {
   const xp=Math.max(0,Number(state.student?.xp)||0);
   const coins=Math.max(0,Number(state.student?.coins)||0);
@@ -13,6 +47,7 @@ export function quest5Home(state, chapters, avatar, done, esc) {
   const campProgress = remainingXp ? `Nog ${remainingXp} XP tot ${nextCampFeature[stage]}` : 'Je expeditiekamp is volledig uitgebouwd';
   const history=state.attempts ?? [];
   const attempts=history.length;
+  const streaks=questStreaks(history);
   const questions=state.questions ?? [];
   const previous=history.length && questions.find(q=>q.id===history[0].question_id);
   const completed=new Set(history.filter(a=>a.is_correct!==false).map(a=>a.question_id));
@@ -39,7 +74,7 @@ export function quest5Home(state, chapters, avatar, done, esc) {
     <div class="q5-banner" role="status"><span class="q5-beacon"></span> GFR 5.0 · EXPEDITIEKAART <span class="q5-beta">ONTWIKKELPREVIEW</span></div>
     <div class="q5-header">
       <div><div class="q5-overline">JOUW PERSOONLIJKE EXPEDITIE</div><h1>Welkom terug, <span>${esc(state.student?.first_name||'ontdekkingsreiziger')}.</span></h1><p>Jouw volgende ontdekking begint hier. Hoe meer je leert, hoe groter je kamp wordt.</p></div>
-      <div class="q5-score"><span>✦ ${xp.toLocaleString('nl-NL')} XP</span><span>◈ ${coins.toLocaleString('nl-NL')} GEO COINS</span><span>🏕️ LEVEL ${stage}</span></div>
+      <div class="q5-score"><span>✦ ${xp.toLocaleString('nl-NL')} XP</span><span>◈ ${coins.toLocaleString('nl-NL')} GEO COINS</span><span>🏕️ LEVEL ${stage}</span><span aria-label="${streaks.daily} opeenvolgende oefendagen">🔥 ${streaks.daily} oefendagen</span><span aria-label="${streaks.answers} goede antwoorden achter elkaar">🎯 ${streaks.answers} op rij</span></div>
     </div>
     <div class="q5-layout">
       <section class="q5-camp" aria-label="Jouw groeiende expeditiekamp">
