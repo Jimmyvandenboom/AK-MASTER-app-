@@ -117,43 +117,49 @@ try{
   await page.getByRole('heading',{name:heading}).waitFor();
  }
  mobileBrowser=process.env.QUEST_MOBILE_WEBKIT === '1' ? await webkit.launch() : browser;
- const mobile=await mobileBrowser.newContext({...devices['iPhone 13']});
- const mobilePage=await mobile.newPage();
- await mobilePage.route('**/functions/v1/exam-quest',route=>{
-  const body=JSON.parse(route.request().postData());
-  const result=body.action==='questions'?{questions:quiz}:{student:{id:'mobile',first_name:'Sam',xp:180,coins:0,avatar:'explorer'},attempts:[],purchases:[]};
-  return route.fulfill({json:result});
- });
- await mobilePage.addInitScript(recoveryCode=>localStorage.setItem('gfrq_token',recoveryCode),token);
- await mobilePage.goto('http://127.0.0.1:'+server.address().port+base+'quest/');
- await mobilePage.locator('.q5-camp').waitFor();
- assert.equal(await mobilePage.locator('.q5-region').count(),3,'Mobile atlas incomplete');
- assert.equal(await mobilePage.locator('.q5-terrain-svg').count(),3,'Mobile terrain diagrams absent');
- await capture(mobilePage,'.q5-globe-panel','mobile-earth.png');
- await capture(mobilePage,'.q5-camp','mobile-camp.png');
- const discovery = mobilePage.locator('.q5-discovery').nth(1);
- await discovery.locator('summary').first().tap();
- await discovery.getByText('Waarom kan ontbossing stroomopwaarts het overstromingsgevaar stroomafwaarts vergroten?').waitFor();
- await discovery.getByText('Bekijk de verklaring').tap();
- assert.ok(await discovery.getByText(/Met minder bos wordt/).isVisible());
- const fits=()=>mobilePage.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth);
- assert.ok(await fits(),'Mobile camp or atlas overflows');
- await mobilePage.locator('button[data-action="chapter"][data-ch="H8"]').first().tap();
- await mobilePage.locator('.quest-theory summary').tap();
- await mobilePage.getByRole('heading',{name:'Water in China',exact:true}).waitFor();
- assert.ok(await fits(),'Mobile theory overflows');
- await mobilePage.getByRole('navigation').getByRole('button',{name:/Shop/}).tap();
- await mobilePage.getByRole('heading',{name:'Daily Shop'}).waitFor();
- assert.equal(await mobilePage.locator('.daily-selection [data-action="buy"]').count(),8);
- assert.ok(await fits(),'Mobile shop overflows');
- assert.equal(await mobilePage.locator('.rare-badge').count(),3);
- await mobilePage.getByRole('heading',{name:'Pirate Token'}).waitFor();
- await mobilePage.getByRole('navigation').getByRole('button',{name:/Avatar/}).tap();
- assert.equal(await mobilePage.locator('[data-avatar]').count(),15);
- assert.equal(await mobilePage.getByRole('button',{name:'Aantrekken'}).count(),1,'First Pass reward should be equippable');
- assert.ok(await fits(),'Mobile Avatar Studio overflows');
- assert.equal(await mobilePage.getByRole('navigation').getByRole('button',{name:/Pass/}).count(),0,'Pass postponed for Quest 5');
- await mobile.close();
+ for (const width of [375, 390, 430]) {
+  const phone = devices['iPhone 13'];
+  const mobile=await mobileBrowser.newContext({...phone,viewport:{...phone.viewport,width},screen:{...phone.screen,width}});
+  const mobilePage=await mobile.newPage();
+  mobilePage.on('pageerror', error => problems.push(`${width}px: ${error.message}`));
+  await mobilePage.route('**/functions/v1/exam-quest',route=>{
+   const body=JSON.parse(route.request().postData());
+   const result=body.action==='questions'?{questions:quiz}:{student:{id:'mobile',first_name:'Sam',xp:180,coins:0,avatar:'explorer'},attempts:[],purchases:[]};
+   return route.fulfill({json:result});
+  });
+  await mobilePage.addInitScript(recoveryCode=>localStorage.setItem('gfrq_token',recoveryCode),token);
+  await mobilePage.goto('http://127.0.0.1:'+server.address().port+base+'quest/');
+  await mobilePage.locator('.q5-camp').waitFor();
+  assert.equal(await mobilePage.locator('.q5-region').count(),3,'Mobile atlas incomplete');
+  assert.equal(await mobilePage.locator('.q5-terrain-svg').count(),3,'Mobile terrain diagrams absent');
+  if (width === 390) {
+   await capture(mobilePage,'.q5-globe-panel','mobile-earth.png');
+   await capture(mobilePage,'.q5-camp','mobile-camp.png');
+  }
+  const discovery = mobilePage.locator('.q5-discovery').nth(1);
+  await discovery.locator('summary').first().tap();
+  await discovery.getByText('Waarom kan ontbossing stroomopwaarts het overstromingsgevaar stroomafwaarts vergroten?').waitFor();
+  await discovery.getByText('Bekijk de verklaring').tap();
+  assert.ok(await discovery.getByText(/Met minder bos wordt/).isVisible());
+  const fits=()=>mobilePage.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth);
+  assert.ok(await fits(),`Mobile camp or atlas overflows at ${width}px`);
+  await mobilePage.locator('button[data-action="chapter"][data-ch="H8"]').first().tap();
+  await mobilePage.locator('.quest-theory summary').tap();
+  await mobilePage.getByRole('heading',{name:'Water in China',exact:true}).waitFor();
+  assert.ok(await fits(),`Mobile theory overflows at ${width}px`);
+  await mobilePage.getByRole('navigation').getByRole('button',{name:/Shop/}).tap();
+  await mobilePage.getByRole('heading',{name:'Daily Shop'}).waitFor();
+  assert.equal(await mobilePage.locator('.daily-selection [data-action="buy"]').count(),8);
+  assert.ok(await fits(),`Mobile shop overflows at ${width}px`);
+  assert.equal(await mobilePage.locator('.rare-badge').count(),3);
+  await mobilePage.getByRole('heading',{name:'Pirate Token'}).waitFor();
+  await mobilePage.getByRole('navigation').getByRole('button',{name:/Avatar/}).tap();
+  assert.equal(await mobilePage.locator('[data-avatar]').count(),15);
+  assert.equal(await mobilePage.getByRole('button',{name:'Aantrekken'}).count(),1,'First Pass reward should be equippable');
+  assert.ok(await fits(),`Mobile Avatar Studio overflows at ${width}px`);
+  assert.equal(await mobilePage.getByRole('navigation').getByRole('button',{name:/Pass/}).count(),0,'Pass postponed for Quest 5');
+  await mobile.close();
+ }
  assert.deepEqual(problems,[],'JavaScript errors in quest');
  console.log('Quest 5: student join, personal camp, three region atlas, checkpoint, answer, saved session, map acts and mobile smoke tests OK');
 }catch(e){console.error(e);process.exitCode=1}
