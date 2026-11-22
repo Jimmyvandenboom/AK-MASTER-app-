@@ -47,7 +47,7 @@ export function quest5Home(state, chapters, avatar, done, esc) {
   const campProgress = remainingXp ? `Nog ${remainingXp} XP tot ${nextCampFeature[stage]}` : 'Je expeditiekamp is volledig uitgebouwd';
   const history=state.attempts ?? [];
   const attempts=history.length;
-  const streaks=questStreaks(history);
+  const streaks=questStreaks(history);\n  const dayNoun=streaks.daily===1?'oefendag':'oefendagen';
   const questions=state.questions ?? [];
   const previous=history.length && questions.find(q=>q.id===history[0].question_id);
   const completed=new Set(history.filter(a=>a.is_correct!==false).map(a=>a.question_id));
@@ -74,7 +74,7 @@ export function quest5Home(state, chapters, avatar, done, esc) {
     <div class="q5-banner" role="status"><span class="q5-beacon"></span> GFR 5.0 · EXPEDITIEKAART <span class="q5-beta">ONTWIKKELPREVIEW</span></div>
     <div class="q5-header">
       <div><div class="q5-overline">JOUW PERSOONLIJKE EXPEDITIE</div><h1>Welkom terug, <span>${esc(state.student?.first_name||'ontdekkingsreiziger')}.</span></h1><p>Jouw volgende ontdekking begint hier. Hoe meer je leert, hoe groter je kamp wordt.</p></div>
-      <div class="q5-score"><span>✦ ${xp.toLocaleString('nl-NL')} XP</span><span>◈ ${coins.toLocaleString('nl-NL')} GEO COINS</span><span>🏕️ LEVEL ${stage}</span><span aria-label="${streaks.daily} opeenvolgende oefendagen">🔥 ${streaks.daily} oefendagen</span><span aria-label="${streaks.answers} goede antwoorden achter elkaar">🎯 ${streaks.answers} op rij</span></div>
+      <div class="q5-score"><span>✦ ${xp.toLocaleString('nl-NL')} XP</span><span>◈ ${coins.toLocaleString('nl-NL')} GEO COINS</span><span>🏕️ LEVEL ${stage}</span><span aria-label="${streaks.daily} opeenvolgende ${dayNoun}">🔥 ${streaks.daily} ${dayNoun}</span><span aria-label="${streaks.answers} goede antwoorden achter elkaar">🎯 ${streaks.answers} op rij</span></div>
     </div>
     <div class="q5-layout">
       <section class="q5-camp" aria-label="Jouw groeiende expeditiekamp">
