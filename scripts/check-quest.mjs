@@ -266,6 +266,7 @@ try{
   assert.ok(await fits(),`Exam checkpoint paging overflows at ${width}px`);
   await mobilePage.getByRole('button',{name:/Vorige vragen/}).tap();
   await mobilePage.getByRole('button',{name:/Terug naar de globe/}).tap();
+  await mobilePage.locator('.q5-region[data-ch="H7"]').tap();
   await mobilePage.locator('button[data-action="question"][data-id="n1"]').tap();
   await mobilePage.locator('button[data-action="choose"][data-val="0"]').tap();
   await mobilePage.getByRole('button',{name:/Controleer antwoord/}).tap();
