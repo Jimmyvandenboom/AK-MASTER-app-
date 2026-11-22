@@ -121,6 +121,6 @@ De Examentrainer bevat daarnaast directe PDF-links naar 2017 tijdvak I en II en 
 
 ## Game Hub — 22 november 2026
 
-De nieuwe HUD toont nu ook directe ingangen naar de bestaande Chapter Boss en Memory Quest. Een unit-test controleert dat beide spelroutes bereikbaar zijn vanuit de Game Hub. De bestaande vraag- en voortgangslogica is hergebruikt.
+De nieuwe HUD toont nu ook directe ingangen naar de bestaande Chapter Boss en Memory Quest. Unit-tests en Playwright controleren dat beide knoppen in de Game Hub staan en zichtbaar zijn in de leerlingomgeving. De bestaande vraag- en voortgangslogica is hergebruikt.
 
-[Groene workflow 45043350488](https://github.com/Jimmyvandenboom/AK-MASTER-app-/actions/runs/45043350488) is geslaagd op commit `dcc4c44`: unit-tests, productiebuild zonder publiceren, pagina-smoketest, desktop-Chromium en mobiele WebKit op 375, 390 en 430 px. De browsertests gebruiken fictieve leerlingen/docenten en gesimuleerde API-antwoorden.
+[Groene workflow 45043766782](https://github.com/Jimmyvandenboom/AK-MASTER-app-/actions/runs/45043766782) is geslaagd op commit `ac3f784`: unit-tests, productiebuild zonder publiceren, pagina-smoketest, desktop-Chromium en mobiele WebKit op 375, 390 en 430 px. De browsertests gebruiken fictieve leerlingen/docenten en gesimuleerde API-antwoorden.
