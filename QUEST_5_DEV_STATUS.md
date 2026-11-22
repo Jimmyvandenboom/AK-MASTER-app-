@@ -101,3 +101,10 @@ De resterende grote onderdelen blijven: complete examendekking en bronverzamelin
 Quest laadt nu alle 245 bronvragen uit de bestaande waterbank, met antwoordmodel, punten, links naar examen en correctievoorschrift en 169 lokale bronafbeeldingen. De extra vraagbanktests vergelijken iedere import met de oorspronkelijke brondata, controleren de antwoordindexen en bestaan van de afbeeldingen. De bestaande 24 handmatig samengestelde items zijn vervangen door deze volledige vraagbank.
 
 De hoofdstukkaart toont examenmissies in pagina's van acht checkpoints, zodat lange examensets binnen de kaart passen. De examentrainer groepeert iedere vraag op jaar en tijdvak. De beschikbare bank bevat 2018, 2019 en 2021–2026. 2017 en 2020 ontbreken nog in de bronbestanden; complete jaardekking is dus nog niet bereikt.
+
+
+## Laatste groene controle — 22 november 2026
+
+[Workflow 45041748931](https://github.com/Jimmyvandenboom/AK-MASTER-app-/actions/runs/45041748931) is groen op commit `8b960ff`. Alle stappen zijn geslaagd: npm-tests, productiebuild zonder publiceren, pagina-smoketest en de Chromium/WebKit-browsertests. Die browsertests controleren op desktop en 375, 390 en 430 px onder meer de testleerling, docentweergave, bewaren en hervatten van voortgang, shopaankoop, metgezelkeuze, examencheckpoints en laden van een echte lokale examenbronafbeelding. De nieuwste controle bevestigt ook dat het Kompas na gebruik bij dezelfde vraag niet opnieuw beschikbaar komt na opnieuw openen.
+
+De leerlingen- en docentflow gebruikt fictieve accounts en nagebootste API-antwoorden. Er zijn geen echte leerlingrecords, docentaccounts of Supabase-voortgang gewijzigd. De run controleert de ontwikkelbranch; dit is geen handmatige review of vrijgave van Quest 5.0.
