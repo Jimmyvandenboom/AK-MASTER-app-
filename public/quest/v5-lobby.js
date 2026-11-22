@@ -47,7 +47,8 @@ export function quest5Home(state, chapters, avatar, done, esc) {
   const campProgress = remainingXp ? `Nog ${remainingXp} XP tot ${nextCampFeature[stage]}` : 'Je expeditiekamp is volledig uitgebouwd';
   const history=state.attempts ?? [];
   const attempts=history.length;
-  const streaks=questStreaks(history);\n  const dayNoun=streaks.daily===1?'oefendag':'oefendagen';
+  const streaks=questStreaks(history);
+  const dayNoun=streaks.daily===1?'oefendag':'oefendagen';
   const questions=state.questions ?? [];
   const previous=history.length && questions.find(q=>q.id===history[0].question_id);
   const completed=new Set(history.filter(a=>a.is_correct!==false).map(a=>a.question_id));
