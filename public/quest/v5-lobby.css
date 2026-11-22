@@ -87,3 +87,11 @@ html[data-theme="light"] .q5-region-go {
   color: #d3eee7;
   text-align: center;
 }
+
+.q5-region-stop { min-width: 0; }
+.q5-region-stop > button { width: 100%; }
+.q5-discovery { padding: 0 12px; color: var(--q5-ink); }
+.q5-discovery summary { cursor: pointer; min-height: 44px; align-content: center; }
+.q5-discovery summary:focus-visible { outline: 3px solid var(--q5-focus); }
+.q5-discovery p { margin: 4px 0 12px; line-height: 1.5; }
+.q5-discovery details { border-left: 2px solid currentColor; padding-left: 12px; }

@@ -46,3 +46,16 @@ These counts are an **inventory**, not a database backup. A real backup/export r
 - Ran eight direct runtime checks of atlas markup/navigation, progress immutability, labels and escaping — **8/8 passed**.
 - This is **not a claim of Playwright success**. CI status was not returned by the GitHub status API; full build/browser verification remains a release blocker.
 - Production Pages remains on `main`, no database writes occurred.
+
+## Ontwerpkeuzes voor GFR Exam Quest 5.0
+
+De 29 keuzes van 22 november vormen het ontwerp voor de volledige game. Fase 1–2 richt zich op lobby, wereldkaart en HUD.
+
+- Wereld en kamp (1–6, 17–19) — Geo Adventure 3D, een interactieve wereldkaart op een miniatuuraarde, een levende wereld met geheimen, een persoonlijke lobby en een eenvoudige avatar-editor met een spectaculaire uitstraling. Het expeditiekamp groeit automatisch. De vragen krijgen een rustige presentatie en de beloningen mogen uitbundig zijn.
+- Voorwerpen en samenspel (7–8, 13–16) — power-ups met effect op het spel, avataritems, uiteenlopende beloningen, arcade- en geografische minigames en een verzameling met zeldzame vondsten. Klasgenoten kunnen met veilige schermnamen hun avatar, huisdieren, vondsten en prestaties laten zien. Klassementen en uitdagingen horen bij Social Adventure. Openbare chat valt buiten het ontwerp. De Battle Pass is uitgesteld.
+- Examentraining (9–12, 22–26) — Complete Exam Adventure, Adventure Mode en Exam Mode, een adaptieve kennisboost, persoonlijke leerroutes en een Exam Boss. Leerlingen kunnen bij open vragen met deelpunten zowel AI-feedback als het correctiemodel gebruiken. De examentrainer omvat onderwerpen, oude examens, samengestelde toetsen en passende weergave van bronnen. De moeilijkheid van het spel past zich aan.
+- Begeleiding en afwerking (20–21, 27–29) — een docent ziet voortgang, moeilijke onderwerpen en veelgemaakte fouten. De beoogde toegang gebruikt spelersnaam en pincode. Geluid, een feedbackknop voor leerlingtesters en een evenwicht tussen leren en spelen horen bij de volledige vernieuwing.
+
+## Gecontroleerd in fase 1–2
+
+De draaibare aarde gebruikt kustgegevens van Natural Earth. Regiokaarten openen de bestaande missies. Het kamp toont de volgende zichtbare verbetering en de benodigde XP. De desktoptest gebruikt Chromium, de mobiele ontwikkeltest gebruikt WebKit met een iPhone 13-profiel. Beide gebruiken fictieve spelers en gesimuleerde API-antwoorden. De [geslaagde run met screenshots](https://github.com/Jimmyvandenboom/AK-MASTER-app-/actions/runs/45016917412) bevat de productiebuild, de tests en vier beelden van de lobby en atlas. Een test op een fysieke iPhone en een volledige beoordeling van de 3D-uitwerking staan nog open.

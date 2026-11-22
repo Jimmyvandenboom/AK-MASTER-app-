@@ -128,6 +128,11 @@ try{
  assert.equal(await mobilePage.locator('.q5-terrain-svg').count(),3,'Mobile terrain diagrams absent');
  await capture(mobilePage,'.q5-globe-panel','mobile-earth.png');
  await capture(mobilePage,'.q5-camp','mobile-camp.png');
+ const discovery = mobilePage.locator('.q5-discovery').nth(1);
+ await discovery.locator('summary').first().tap();
+ await discovery.getByText('Waarom kan ontbossing stroomopwaarts het overstromingsgevaar stroomafwaarts vergroten?').waitFor();
+ await discovery.getByText('Bekijk de verklaring').tap();
+ assert.ok(await discovery.getByText(/Met minder bos wordt/).isVisible());
  const fits=()=>mobilePage.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth);
  assert.ok(await fits(),'Mobile camp or atlas overflows');
  await mobilePage.locator('button[data-action="chapter"][data-ch="H8"]').first().tap();

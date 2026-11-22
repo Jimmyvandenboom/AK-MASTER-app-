@@ -1,3 +1,4 @@
+import {waterTheory} from './theory.js';
 import {renderQuestTerrain} from './v5-terrain.js';
 /**
  * GFR Exam Quest 5 — visual preview foundation.
@@ -14,6 +15,11 @@ export function quest5Home(state, chapters, avatar, done, esc) {
   const current=Object.entries(chapters).find(([key])=>state.chapter===key)||Object.entries(chapters)[0];
   const entries=Object.entries(chapters);
   const stageNames=['','BASECAMP','EXPLORER CAMP','RIVER STATION','GEO OUTPOST','EXPEDITION HQ'];
+  const fieldSites = {
+    H7: 'De oeverwal',
+    H8: 'De berghelling',
+    H9: 'Het irrigatieveld'
+  };
   const tree='🌲';
   const missionQuestions = (state.questions ?? []).filter(question => (
     question.chapter === current[0] && question.type === 'choice'
@@ -76,10 +82,15 @@ export function quest5Home(state, chapters, avatar, done, esc) {
       <div class="q5-sectionhead"><div><div class="q5-overline">EXPEDITIEATLAS</div><h2>Ontdek de wereld</h2></div><span>Alle leergebieden blijven toegankelijk</span></div>
       <div class="q5-globe-panel"><canvas id="quest-globe" role="img" aria-label="Draaibare aarde met Nederland, China en het Midden-Oosten"></canvas><p>Draai de aarde en tik op een bestemming, of kies hieronder je regio.</p></div>
       <div class="q5-region-grid">
-      ${entries.map(([id,ch],i)=>`<button class="q5-region region-${i}" data-action="chapter" data-ch="${esc(id)}">
+      ${entries.map(([id,ch],i)=>`<div class="q5-region-stop"><button class="q5-region region-${i}" data-action="chapter" data-ch="${esc(id)}">
         <div class="q5-mapart"><span class="q5-region-sun" aria-hidden="true">☀</span>${renderQuestTerrain(id, ch.sub)}</div>
         <div class="q5-region-info"><span>REGIO 0${i+1} · ${esc(id)}</span><strong>${esc(ch.title)}</strong><small>${esc(ch.sub)}</small><span class="q5-region-go">VERKENNEN ↗</span></div>
-      </button>`).join('')}
+      </button>
+      ${fieldSites[id] && waterTheory[id] ? `<details class="q5-discovery"><summary>Onderzoek: ${esc(fieldSites[id])}</summary>
+        <p>${esc(waterTheory[id].example[0])}</p>
+        <details><summary>Bekijk de verklaring</summary><p>${esc(waterTheory[id].example[1])}</p></details>
+      </details>` : ''}
+      </div>`).join('')}
       </div>
     </section>
   </div>`;
