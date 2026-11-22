@@ -124,6 +124,11 @@ try{
   mobilePage.on('pageerror', error => problems.push(`${width}px: ${error.message}`));
   await mobilePage.route('**/functions/v1/exam-quest',route=>{
    const body=JSON.parse(route.request().postData());
+   if (body.action === 'answer') {
+    assert.equal(body.questionId, 'n1');
+    assert.equal(body.response, '0');
+    return route.fulfill({json:{correct:true,awarded:60,explanation:'De monding is vertakt.',correctOption:0}});
+   }
    const result=body.action==='questions'?{questions:quiz}:{student:{id:'mobile',first_name:'Sam',xp:180,coins:0,avatar:'explorer'},attempts:[],purchases:[]};
    return route.fulfill({json:result});
   });
@@ -143,6 +148,14 @@ try{
   assert.ok(await discovery.getByText(/Met minder bos wordt/).isVisible());
   const fits=()=>mobilePage.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth);
   assert.ok(await fits(),`Mobile camp or atlas overflows at ${width}px`);
+  await mobilePage.locator('.q5-region[data-ch="H7"]').tap();
+  await mobilePage.locator('button[data-action="question"][data-id="n1"]').tap();
+  await mobilePage.locator('button[data-action="choose"][data-val="0"]').tap();
+  await mobilePage.getByRole('button',{name:/Controleer antwoord/}).tap();
+  await mobilePage.getByText(/Goed! \+60 XP/).waitFor();
+  assert.ok(await fits(),`Mobile question feedback overflows at ${width}px`);
+  await mobilePage.reload({waitUntil:'domcontentloaded'});
+  await mobilePage.locator('.q5-camp').waitFor();
   await mobilePage.locator('button[data-action="chapter"][data-ch="H8"]').first().tap();
   await mobilePage.locator('.quest-theory summary').tap();
   await mobilePage.getByRole('heading',{name:'Water in China',exact:true}).waitFor();
