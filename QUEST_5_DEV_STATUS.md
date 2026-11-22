@@ -100,7 +100,7 @@ De resterende grote onderdelen blijven: complete examendekking en bronverzamelin
 
 Quest laadt nu alle 245 bronvragen uit de bestaande waterbank, met antwoordmodel, punten, links naar examen en correctievoorschrift en 169 lokale bronafbeeldingen. De extra vraagbanktests vergelijken iedere import met de oorspronkelijke brondata, controleren de antwoordindexen en bestaan van de afbeeldingen. De bestaande 24 handmatig samengestelde items zijn vervangen door deze volledige vraagbank.
 
-De hoofdstukkaart toont examenmissies in pagina's van acht checkpoints, zodat lange examensets binnen de kaart passen. De examentrainer groepeert iedere vraag op jaar en tijdvak. De beschikbare bank bevat 2018, 2019 en 2021–2026. 2017 en 2020 ontbreken nog in de bronbestanden; complete jaardekking is dus nog niet bereikt.
+De hoofdstukkaart toont examenmissies in pagina's van acht checkpoints, zodat lange examensets binnen de kaart passen. De examentrainer groepeert iedere vraag op jaar en tijdvak. De beschikbare bank bevat 2018, 2019 en 2021–2026. De 2017-examens zijn terug te vinden in het archief dat Examenblad noemt; de GL/TL-opgaven en correctievoorschriften van tijdvak I en II zijn ook gevonden. Ze zijn nog niet verwerkt in de interactieve vraagbank en bronbeelden. In 2020 is wegens corona geen centraal examen afgenomen, dus voor dat jaar bestaat geen CE-vraagbank om toe te voegen. Bron: [Examenblad over oude examens](https://www.examenblad.nl/2025/veelgestelde-vragen) en [Examenblad over 2020](https://www.examenblad.nl/2020/onderwerpen/errata-cse1).
 
 
 ## Laatste groene controle — 22 november 2026
