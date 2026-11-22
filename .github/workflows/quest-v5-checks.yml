@@ -1,0 +1,28 @@
+name: Quest 5 development checks
+on:
+  push:
+    branches:
+      - feature/gfr-quest-5-foundation
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Unit tests (including Quest 5)
+        run: npm test
+      - name: Production build (no publishing)
+        run: npm run build
+      - name: Browser test dependencies
+        run: npx playwright install --with-deps chromium
+      - name: Site smoke tests
+        run: npm run test:pages
+      - name: Quest desktop and mobile smoke tests
+        run: node scripts/check-quest.mjs
