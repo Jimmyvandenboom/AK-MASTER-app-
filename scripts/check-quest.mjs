@@ -32,7 +32,7 @@ try{
  const studentContext=await browser.newContext({viewport:{width:1365,height:900}});
  let page=await studentContext.newPage();
  const problems=[];page.on('pageerror',e=>problems.push(e.message));page.on('dialog',d=>d.accept());
- const token='a'.repeat(48);let attempts=[],xp=0,coins=0;
+ const token='a'.repeat(48);let attempts=[],xp=0,coins=100,purchases=[],profile={};
  const quiz=[
  {id:'n1',chapter:'H7',skill:'begrip',type:'choice',text:'Wat is een delta?',options:['Een vertakte monding','Een droogmakerij','Een gletsjer','Een krib']},
  {id:'h7_open_01',chapter:'H7',skill:'verklaren',type:'open',text:'Leg uit hoe een rivierdelta ontstaat.',options:null},
@@ -41,11 +41,19 @@ try{
  ];
  const handleApi = async route=>{
   const body=JSON.parse(route.request().postData()||'{}');let response;
-  if (['me','questions','answer','open-review'].includes(body.action) && body.token!==token) return route.fulfill({status:401,json:{error:'Ongeldige herstelcode'}});
+  if (['me','questions','answer','open-review','buy','powerup'].includes(body.action) && body.token!==token) return route.fulfill({status:401,json:{error:'Ongeldige herstelcode'}});
   switch(body.action){
    case 'join':response={token,student:{id:'test',first_name:'Sam',xp:0,coins:0,avatar:'explorer',active_seconds:0}};break;
-   case 'me':response={student:{id:'test',first_name:'Sam',xp,coins,avatar:'explorer',active_seconds:60},attempts:[...attempts].reverse(),purchases:[]};break;
+   case 'me':response={student:{id:'test',first_name:'Sam',xp,coins,avatar:'explorer',active_seconds:60},attempts:[...attempts].reverse(),purchases:[...purchases],profile};break;
    case 'questions':response={questions:quiz};break;
+   case 'buy':
+    assert.equal(body.item,'compass_hint');
+    purchases.push(body.item);coins-=80;response={ok:true};break;
+   case 'powerup':
+    assert.equal(body.questionId,'n1');
+    assert.ok(purchases.includes('compass_hint'));
+    profile={...profile,usedHints:['n1']};
+    response={removedIndex:1,profile};break;
    case 'answer':{const ok=body.questionId==='n1'&&body.response==='0';
      attempts.push({student_id:'test',topic:'H7',skill:quiz.find(q=>q.id===body.questionId).skill,response:body.response,question_id:body.questionId,is_correct:body.questionId==='n1'?ok:null,awarded_xp:ok?60:0,created_at:new Date().toISOString()});
      if(ok){xp+=60;coins+=12}
@@ -95,6 +103,12 @@ try{
  await page.getByRole('heading',{name:'Uitgewerkt voorbeeld'}).waitFor();
  await page.locator('.quest-theory summary').click();
  assert.equal(await page.locator('.zone-switcher button').count(),3);
+ await page.getByRole('navigation').getByRole('button',{name:/Shop/}).click();
+ await page.locator('.shop-catalog summary').click();
+ await page.locator('button[data-action="buy"][data-id="compass_hint"]').click();
+ await page.getByRole('button',{name:/In je collectie/}).waitFor();
+ await page.getByRole('navigation').getByRole('button',{name:/Wereld/}).click();
+ await page.locator('button[data-action="chapter"][data-ch="H7"]').first().click();
  await page.locator('button[data-action="question"][data-id="n1"]').click();
  await page.getByText('Wat is een delta?').waitFor();
  await page.locator('button[data-action="choose"][data-val="1"]').click();
@@ -103,6 +117,9 @@ try{
  await page.getByRole('navigation').getByRole('button',{name:/Wereld/}).click();
  await page.getByRole('button',{name:/Kennisboost/}).click();
  await page.getByText('Wat is een delta?').waitFor();
+ await page.getByRole('button',{name:'🧭 Gebruik Kompas van inzicht'}).click();
+ assert.equal(await page.locator('button[data-action="choose"][data-val="1"]').isDisabled(),true);
+ await page.getByText(/afgevallen met je hint/).waitFor();
  await page.locator('button[data-action="choose"][data-val="0"]').click();
  await page.getByRole('button',{name:/Controleer antwoord/}).click();
  await page.getByText(/Goed! \+60 XP/).waitFor();

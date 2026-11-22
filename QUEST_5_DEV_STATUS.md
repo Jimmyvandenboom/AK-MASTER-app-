@@ -78,3 +78,8 @@ Dezelfde nagebootste klas gaf de docent één testleerling, diens voortgang, XP,
 De eerste Examentrainer Water is toegevoegd. Leerlingen kunnen beschikbare examenvragen per jaar en tijdvak openen, met links naar de volledige opgave en het correctievoorschrift. De browserproef opent een voorbeeldvraag en keert terug naar de lijst. Een complete examendekking 2017–2026 en de grotere 5.0-onderdelen uit het ontwerp zijn nog niet klaar.
 
 [Groene testworkflow](https://github.com/Jimmyvandenboom/AK-MASTER-app-/actions/runs/45032098868) omvat npm-tests, productiebuild, pagina-smoketest en de leerling-, docent- en mobiele browsertests. De screenshots staan als workflow-artifact klaar. Geen echte account- of leerlingrecords zijn voor deze browsertest gebruikt.
+
+
+## Shopartikel met een effect op oefenen
+
+De shop bevat nu het Kompas van inzicht. Na aankoop kan een leerling per meerkeuzevraag één fout antwoord laten wegstrepen. Het gebruik wordt in het bestaande Quest-profiel opgeslagen, zodat dezelfde hint bij hervatten niet opnieuw gebruikt kan worden. De Avatar Studio toont dit artikel bij de game-upgrades en laat het niet als draagbaar kledingstuk behandelen. De browsertest koopt het kompas met fictieve coins en test het effect in de meerkeuzevraag.

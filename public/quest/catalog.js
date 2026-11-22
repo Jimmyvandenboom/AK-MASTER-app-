@@ -1,4 +1,5 @@
 export const items = {
+  "compass_hint": {"icon":"🧭","name":"Kompas van inzicht","price":80,"slot":"powerup","description":"Verwijder één fout antwoord per vraag."},
   "boots": {"icon":"👟","name":"Expeditielaarzen","price":90,"slot":"footwear"},
   "backpack": {"icon":"🎒","name":"Geo-rugzak","price":160,"slot":"bag"},
   "cap": {"icon":"🧢","name":"Onderzoekerspet","price":210,"slot":"head"},
