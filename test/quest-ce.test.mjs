@@ -40,6 +40,10 @@ test('exam trainer groups every imported question by year and timevak',()=>{
   assert.match(html,/2018 · tijdvak 1/);
   assert.match(html,/2026 · tijdvak 2/);
   assert.equal((html.match(/data-action="exam-question"/g)||[]).length,source.length);
+  assert.match(html,/Archiefexamens 2017/);
+  assert.match(html,/2017%20I_opgaven\.pdf/);
+  assert.match(html,/2017%20II_correctievoorschrift\.pdf/);
+  assert.match(html,/nog niet per vraag in de interactieve oefenbank opgenomen/);
   assert.match(html,/Vraag 32 · 1 pt/);
 });
 test('long CE checkpoint lists have page controls and are limited to eight map nodes',async()=>{
