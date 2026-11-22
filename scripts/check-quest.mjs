@@ -218,6 +218,7 @@ try{
  await dashboard.locator('#teacherForm').waitFor();
  assert.equal(await dashboard.locator('.teacher-table').count(),0);
  await teacher.close();
+ const mobileQuiz=[...quiz,...Array.from({length:10},(_,i)=>({id:'ce-mobile-'+i,chapter:'H7',skill:'bronvaardigheid',type:'choice',text:'Mobiele examenkaart '+(i+1),options:['A','B','C','D'],source:{year:2025,period:1,number:i+1,points:1,title:'Proefvraag '+(i+1),pages:[],url:'https://example.test/examen',correction:'https://example.test/model'}}))];
  mobileBrowser=process.env.QUEST_MOBILE_WEBKIT === '1' ? await webkit.launch() : browser;
  for (const width of [375, 390, 430]) {
   const phone = devices['iPhone 13'];
@@ -231,7 +232,7 @@ try{
     assert.equal(body.response, '0');
     return route.fulfill({json:{correct:true,awarded:60,explanation:'De monding is vertakt.',correctOption:0}});
    }
-   const result=body.action==='questions'?{questions:quiz}:{student:{id:'mobile',first_name:'Sam',xp:180,coins:0,avatar:'explorer'},attempts:[],purchases:[]};
+   const result=body.action==='questions'?{questions:mobileQuiz}:{student:{id:'mobile',first_name:'Sam',xp:180,coins:0,avatar:'explorer'},attempts:[],purchases:[]};
    return route.fulfill({json:result});
   });
   await mobilePage.addInitScript(recoveryCode=>localStorage.setItem('gfrq_token',recoveryCode),token);
@@ -256,6 +257,15 @@ try{
   const fits=()=>mobilePage.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth);
   assert.ok(await fits(),`Mobile camp or atlas overflows at ${width}px`);
   await mobilePage.locator('.q5-region[data-ch="H7"]').tap();
+  await mobilePage.locator('button[data-action="zone"][data-zone="3"]').tap();
+  await mobilePage.getByText('Pagina 1 van 2').waitFor();
+  assert.equal(await mobilePage.locator('.quest-map-checkpoints .map-point').count(),8,'The exam map must fit eight checkpoints per page');
+  await mobilePage.getByRole('button',{name:/Volgende vragen/}).tap();
+  await mobilePage.getByText('Pagina 2 van 2').waitFor();
+  assert.equal(await mobilePage.locator('.quest-map-checkpoints .map-point').count(),2);
+  assert.ok(await fits(),`Exam checkpoint paging overflows at ${width}px`);
+  await mobilePage.getByRole('button',{name:/Vorige vragen/}).tap();
+  await mobilePage.getByRole('button',{name:/Terug naar de globe/}).tap();
   await mobilePage.locator('button[data-action="question"][data-id="n1"]').tap();
   await mobilePage.locator('button[data-action="choose"][data-val="0"]').tap();
   await mobilePage.getByRole('button',{name:/Controleer antwoord/}).tap();
