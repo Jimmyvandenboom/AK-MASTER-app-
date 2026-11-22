@@ -90,7 +90,7 @@ try{
  assert.equal(await page.locator('.q5-camp').count(),1,'Personal camp missing after reload');
  assert.equal(await page.locator('html').getAttribute('data-theme'),'light','Theme must survive reload');
  await page.getByRole('button',{name:'Schakel donkere modus in'}).click();
- for (const [button,heading] of [['Shop','Daily Shop'],['Avatar','Avatar Studio'],['Pass','Battle Pass']]) {
+ for (const [button,heading] of [['Shop','Daily Shop'],['Avatar','Avatar Studio']]) {
   await page.getByRole('navigation').getByRole('button',{name:new RegExp(button)}).click();
   await page.getByRole('heading',{name:heading}).waitFor();
  }
@@ -121,9 +121,7 @@ try{
  assert.equal(await mobilePage.locator('[data-avatar]').count(),15);
  assert.equal(await mobilePage.getByRole('button',{name:'Aantrekken'}).count(),1,'First Pass reward should be equippable');
  assert.ok(await fits(),'Mobile Avatar Studio overflows');
- await mobilePage.getByRole('navigation').getByRole('button',{name:/Pass/}).tap();
- assert.equal(await mobilePage.locator('.storeitem').count(),10);
- assert.ok(await fits(),'Mobile Pass overflows');
+ assert.equal(await mobilePage.getByRole('navigation').getByRole('button',{name:/Pass/}).count(),0,'Pass postponed for Quest 5');
  await mobile.close();
  assert.deepEqual(problems,[],'JavaScript errors in quest');
  console.log('Quest 5: student join, personal camp, three region atlas, checkpoint, answer, saved session, map acts and mobile smoke tests OK');
