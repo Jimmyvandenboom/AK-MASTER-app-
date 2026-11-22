@@ -21,7 +21,7 @@ jobs:
       - name: Production build (no publishing)
         run: npm run build
       - name: Browser test dependencies
-        run: npx playwright install --with-deps chromium
+        run: npx playwright install --with-deps chromium webkit
       - name: Site smoke tests
         run: npm run test:pages
       - name: Quest desktop and mobile smoke tests

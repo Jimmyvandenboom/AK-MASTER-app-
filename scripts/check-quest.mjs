@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import {createServer} from 'node:http';
 import {readFile} from 'node:fs/promises';
 import {resolve,extname,sep} from 'node:path';
-import {chromium,devices} from 'playwright';
+import {chromium,webkit,devices} from 'playwright';
 
 const root=resolve('dist');
 const base='/AK-MASTER-app-/';
@@ -19,7 +19,7 @@ const server=createServer(async(req,res)=>{
   catch{res.writeHead(404).end()}
 });
 await new Promise(r=>server.listen(0,'127.0.0.1',r));
-let browser;
+let browser, mobileBrowser;
 try{
  browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||undefined});
  const page=await browser.newPage({viewport:{width:1365,height:900}});
@@ -104,7 +104,8 @@ try{
   await page.getByRole('navigation').getByRole('button',{name:new RegExp(button)}).click();
   await page.getByRole('heading',{name:heading}).waitFor();
  }
- const mobile=await browser.newContext({...devices['iPhone 13'],defaultBrowserType:undefined});
+ mobileBrowser=await webkit.launch();
+ const mobile=await mobileBrowser.newContext({...devices['iPhone 13']});
  const mobilePage=await mobile.newPage();
  await mobilePage.route('**/functions/v1/exam-quest',route=>{
   const body=JSON.parse(route.request().postData());
@@ -137,4 +138,4 @@ try{
  assert.deepEqual(problems,[],'JavaScript errors in quest');
  console.log('Quest 5: student join, personal camp, three region atlas, checkpoint, answer, saved session, map acts and mobile smoke tests OK');
 }catch(e){console.error(e);process.exitCode=1}
-finally{if(browser)await browser.close();await new Promise(r=>server.close(r))}
+finally{if(mobileBrowser)await mobileBrowser.close();if(browser)await browser.close();await new Promise(r=>server.close(r))}
