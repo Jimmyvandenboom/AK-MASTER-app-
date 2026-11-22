@@ -107,6 +107,9 @@ try{
  await page.reload({waitUntil:'domcontentloaded'});
  await page.getByRole('heading',{name:/Welkom terug, Sam/}).waitFor();
  assert.equal(await page.locator('.q5-camp').count(),1,'Personal camp missing after reload');
+ const progress = page.getByRole('progressbar', {name:'Gesloten kennismissies goed beantwoord'});
+ assert.equal(await progress.getAttribute('aria-valuemax'), '1', 'Only the closed question counts towards the mission total');
+ assert.equal(await progress.getAttribute('aria-valuenow'), '1', 'Correct answer must survive reload');
  assert.equal(await page.locator('html').getAttribute('data-theme'),'light','Theme must survive reload');
  await page.getByRole('button',{name:'Schakel donkere modus in'}).click();
  for (const [button,heading] of [['Shop','Daily Shop'],['Avatar','Avatar Studio']]) {
