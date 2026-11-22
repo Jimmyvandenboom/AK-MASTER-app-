@@ -123,8 +123,8 @@ try{
  await page.getByRole('button',{name:/Kennisboost/}).click();
  await page.getByText('Wat is een delta?').waitFor();
  await page.getByRole('button',{name:'🧭 Gebruik Kompas van inzicht'}).click();
- assert.equal(await page.locator('button[data-action="choose"][data-val="1"]').isDisabled(),true);
  await page.getByText(/afgevallen met je hint/).waitFor();
+ assert.equal(await page.locator('button[data-action="choose"][data-val="1"]').isDisabled(),true);
  await page.locator('button[data-action="choose"][data-val="0"]').click();
  await page.getByRole('button',{name:/Controleer antwoord/}).click();
  await page.getByText(/Goed! \+60 XP/).waitFor();
