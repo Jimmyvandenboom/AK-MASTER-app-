@@ -147,6 +147,8 @@ try{
  page.on('pageerror',e=>problems.push(e.message));
  await page.goto(startUrl);
  await page.getByRole('heading',{name:/Welkom terug, Sam/}).waitFor();
+ assert.ok(await page.getByText('1 oefendagen',{exact:true}).count()===1,'Practice-day streak should be derived from saved answers after resume');
+ assert.ok(await page.getByText('0 op rij',{exact:true}).count()===1,'Open responses must not inflate the closed-answer streak');
  assert.equal(await page.getByRole('progressbar').getAttribute('aria-valuenow'),'1');
  assert.ok(await page.locator('.character .pet').count()>0,'Equipped companion should persist after restart');
  await page.locator('.q5-region[data-ch="H7"]').click();
