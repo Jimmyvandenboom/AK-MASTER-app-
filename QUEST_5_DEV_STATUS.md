@@ -124,3 +124,19 @@ De Examentrainer bevat daarnaast directe PDF-links naar 2017 tijdvak I en II en 
 De nieuwe HUD toont nu ook directe ingangen naar de bestaande Chapter Boss en Memory Quest. Unit-tests en Playwright controleren dat beide knoppen in de Game Hub staan en zichtbaar zijn in de leerlingomgeving. De bestaande vraag- en voortgangslogica is hergebruikt.
 
 [Groene workflow 45043766782](https://github.com/Jimmyvandenboom/AK-MASTER-app-/actions/runs/45043766782) is geslaagd op commit `ac3f784`: unit-tests, productiebuild zonder publiceren, pagina-smoketest, desktop-Chromium en mobiele WebKit op 375, 390 en 430 px. De browsertests gebruiken fictieve leerlingen/docenten en gesimuleerde API-antwoorden.
+
+
+## Laatste controle voor de leerlingpreview — 22 november 2026
+
+[Workflow 45076120640](https://github.com/Jimmyvandenboom/AK-MASTER-app-/actions/runs/45076120640) is groen op commit `078577224a2598e0e973b59a7bf1aca6ecc3913a`. Unit-tests, productiebuild zonder publiceren, pagina-smoketest en de Quest-browsertests voor desktop en mobiel zijn geslaagd. De checks omvatten een fictieve testleerling, docentresultaten, antwoorden, opslaan en hervatten in een nieuwe sessie, shop/hint, metgezel, examentrainer en lokale examenbronnen. Mobiel WebKit test 375, 390 en 430 px; desktop gebruikt Chromium.
+
+De interactieve waterbank is uitgebreid van 245 naar 253 vraagrecords. Daarvan zijn acht meerkeuzevragen uit 2017 tijdvak I en II toegevoegd met antwoordmodel, uitleg en lokale bronbeelden. De overige vragen uit de volledige 2017-PDF's zijn nog niet per vraag interactief.
+
+### Feedbackcontrole
+
+- De PR heeft op 22 november geen review-, inline- of discussieopmerkingen.
+- De 29 vastgelegde ontwerpkeuzes zijn gecontroleerd tegen de status hierboven. Lobby/wereldkaart, shopitems, minigames-ingangen, adaptief oefenen, examentrainer, docentfocus, feedbackmogelijkheid als ontwerpkeuze en een aantal toegankelijkheidsmaatregelen zijn beschreven of deels gebouwd.
+- De volgende ontwerpkeuzes zijn nog niet volledig uitgevoerd: Social Adventure en veilige opt-in, rijkere wereld/game-uitwerking, naam-en-pincode-login naast bestaande herstelcodes, brede toegankelijkheidscontrole en volledige interactieve examendekking. Battle Pass blijft uitgesteld zoals in de ontwerpkeuzes staat.
+- Er zijn geen losse leerlingfeedbackreacties of feedbackknopinzendingen aan deze branch of PR beschikbaar om individueel af te vinken. Daarom is “alle feedback verwerkt” niet aangetoond; de openstaande punten staan expliciet hierboven.
+
+De workflow gebruikt nagebootste leerling- en docent-API-antwoorden. Geen live Pages-publicatie, echte accounttest of wijziging aan Supabase-leerlingrecords is uitgevoerd.
