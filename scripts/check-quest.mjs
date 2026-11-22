@@ -1,8 +1,15 @@
 import assert from 'node:assert/strict';
 import {createServer} from 'node:http';
-import {readFile} from 'node:fs/promises';
+import {mkdir,readFile} from 'node:fs/promises';
 import {resolve,extname,sep} from 'node:path';
 import {chromium,webkit,devices} from 'playwright';
+
+const captureDirectory = process.env.QUEST_SCREENSHOTS;
+async function capture(view, selector, filename) {
+ if (!captureDirectory) return;
+ await mkdir(captureDirectory, {recursive:true});
+ await view.locator(selector).screenshot({path:resolve(captureDirectory,filename), animations:'disabled'});
+}
 
 const root=resolve('dist');
 const base='/AK-MASTER-app-/';
@@ -65,6 +72,8 @@ try{
  const globe = page.locator('#quest-globe');
  await globe.scrollIntoViewIfNeeded();
  await page.waitForFunction(() => document.querySelector('#quest-globe').width > 300);
+ await capture(page,'.q5-globe-panel','desktop-earth.png');
+ await capture(page,'.q5-layout','desktop-camp.png');
  const bounds = await globe.boundingBox();
  const radius = Math.min(bounds.width * .38, bounds.height * .43, 254);
  const rad = angle => angle * Math.PI / 180;
@@ -104,7 +113,7 @@ try{
   await page.getByRole('navigation').getByRole('button',{name:new RegExp(button)}).click();
   await page.getByRole('heading',{name:heading}).waitFor();
  }
- mobileBrowser=await webkit.launch();
+ mobileBrowser=process.env.QUEST_MOBILE_WEBKIT === '1' ? await webkit.launch() : browser;
  const mobile=await mobileBrowser.newContext({...devices['iPhone 13']});
  const mobilePage=await mobile.newPage();
  await mobilePage.route('**/functions/v1/exam-quest',route=>{
@@ -117,6 +126,8 @@ try{
  await mobilePage.locator('.q5-camp').waitFor();
  assert.equal(await mobilePage.locator('.q5-region').count(),3,'Mobile atlas incomplete');
  assert.equal(await mobilePage.locator('.q5-terrain-svg').count(),3,'Mobile terrain diagrams absent');
+ await capture(mobilePage,'.q5-globe-panel','mobile-earth.png');
+ await capture(mobilePage,'.q5-camp','mobile-camp.png');
  const fits=()=>mobilePage.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth);
  assert.ok(await fits(),'Mobile camp or atlas overflows');
  await mobilePage.locator('button[data-action="chapter"][data-ch="H8"]').first().tap();
@@ -138,4 +149,4 @@ try{
  assert.deepEqual(problems,[],'JavaScript errors in quest');
  console.log('Quest 5: student join, personal camp, three region atlas, checkpoint, answer, saved session, map acts and mobile smoke tests OK');
 }catch(e){console.error(e);process.exitCode=1}
-finally{if(mobileBrowser)await mobileBrowser.close();if(browser)await browser.close();await new Promise(r=>server.close(r))}
+finally{if(mobileBrowser && mobileBrowser!==browser)await mobileBrowser.close();if(browser)await browser.close();await new Promise(r=>server.close(r))}
