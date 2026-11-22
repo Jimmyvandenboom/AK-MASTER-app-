@@ -6,7 +6,7 @@ import { grade, canSubmit, readWaterProgress, recordResult, getStats, selectSess
 const questions = JSON.parse(readFileSync(new URL('./questions.json', import.meta.url)));
 const pageReferences = JSON.parse(readFileSync(new URL('../../research/water/question-pages.json', import.meta.url)));
 const find = id => questions.find(q => q.id === id);
-test('alle 245 vragen hebben een unieke bron, sleutel en eigen toelichting', () => {
+test('alle geïmporteerde vragen hebben een unieke bron, sleutel en eigen toelichting', () => {
   assert.equal(questions.length, 245); assert.equal(new Set(questions.map(q => q.id)).size, 245);
   assert.equal(questions.reduce((n,q) => n + q.maxPoints, 0), 316);
   for (const q of questions) {
@@ -53,7 +53,7 @@ test('herhaling telt niet dubbel en zelfbeoordeling blijft apart', () => {
   let p=readWaterProgress({getItem:()=>null},questions);
   const q=find('2026-2-18'); p=recordResult(p,q,'A',grade(q,'A')); p=recordResult(p,q,'B',grade(q,'B'));
   p=recordResult(p,find('2026-1-22'),'Een wadi',{points:1,method:'self'});
-  const stats=getStats(questions,p.records); assert.deepEqual(stats,{total:244,reviewed:2,retry:0,automatic:1,self:1});
+  const stats=getStats(questions,p.records); assert.deepEqual(stats,{total:252,reviewed:2,retry:0,automatic:1,self:1});
   assert.equal(p.records[q.id].attempts,2);
   assert.deepEqual(readWaterProgress({getItem:()=>JSON.stringify(p)},questions),p);
   assert.ok(!selectSession(questions,p.records,245).includes('2019-1-18'));
