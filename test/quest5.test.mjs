@@ -53,3 +53,24 @@ test('personal atlas includes three vector geographical miniatures',()=>{
  const markup=quest5Home(player(0),chapters,()=>'',()=>0,esc);
  assert.equal((markup.match(/class="q5-terrain-svg"/g)||[]).length,3);
 });
+
+test('lobby progress counts only closed questions in the current region', () => {
+  const state = {
+    ...player(350),
+    questions: [
+      {id:'delta-a', chapter:'H7', type:'choice'},
+      {id:'delta-b', chapter:'H7', type:'choice'},
+      {id:'delta-open', chapter:'H7', type:'open'},
+      {id:'china-a', chapter:'H8', type:'choice'}
+    ],
+    solved: ['delta-a', 'delta-open', 'china-a']
+  };
+  const html = quest5Home(state, chapters, () => '', () => 2, esc);
+  assert.match(html, /aria-valuemax="2" aria-valuenow="1"/);
+  assert.match(html, /width:50%/);
+  assert.match(html, /1 van 2 gesloten kennismissies/);
+  assert.doesNotMatch(
+    quest5Home({...state, questions: []}, chapters, () => '', () => 0, esc),
+    /role="progressbar"/
+  );
+});
