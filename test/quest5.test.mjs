@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {quest5Home} from '../public/quest/v5-lobby.js';
+import {quest5Home, questStreaks} from '../public/quest/v5-lobby.js';
 import {renderQuestTerrain} from '../public/quest/v5-terrain.js';
 const chapters={
  H7:{title:'Delta Defender',sub:'Water in Nederland',emoji:'🏡'},
@@ -78,4 +78,19 @@ test('lobby progress counts only closed questions in the current region', () => 
     quest5Home({...state, questions: []}, chapters, () => '', () => 0, esc),
     /role="progressbar"/
   );
+});
+
+
+test('saved practice streaks use Amsterdam calendar days and latest correct answers', () => {
+  const history = [
+    {created_at:'2026-11-20T12:00:00Z', is_correct:true},
+    {created_at:'2026-11-21T08:00:00Z', is_correct:true},
+    {created_at:'2026-11-22T12:00:00Z', is_correct:true}
+  ];
+  assert.deepEqual(questStreaks(history, new Date('2026-11-22T12:30:00Z')), {daily:3, answers:3});
+  assert.deepEqual(questStreaks(history, new Date('2026-11-24T12:30:00Z')), {daily:0, answers:3});
+  assert.deepEqual(questStreaks([
+    ...history,
+    {created_at:'2026-11-22T12:05:00Z', is_correct:null}
+  ], new Date('2026-11-22T12:30:00Z')), {daily:3, answers:0});
 });
