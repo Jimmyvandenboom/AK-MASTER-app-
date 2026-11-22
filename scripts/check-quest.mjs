@@ -149,6 +149,10 @@ try{
  await page.getByRole('heading',{name:/Welkom terug, Sam/}).waitFor();
  assert.equal(await page.getByRole('progressbar').getAttribute('aria-valuenow'),'1');
  assert.ok(await page.locator('.character .pet').count()>0,'Equipped companion should persist after restart');
+ await page.locator('.q5-region[data-ch="H7"]').click();
+ await page.locator('button[data-action="question"][data-id="n1"]').click();
+ assert.equal(await page.locator('button[data-action="powerup-hint"]').count(),0,'A used compass hint must stay used after resume');
+ await page.getByRole('navigation').getByRole('button',{name:/Wereld/}).click();
  await page.getByRole('button',{name:/Verder oefenen/}).click();
  await page.locator('#openResponse').fill('Zand en klei blijven achter.');
  await page.locator('.quest-theory summary').click();
