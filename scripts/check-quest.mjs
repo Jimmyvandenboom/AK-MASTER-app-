@@ -137,6 +137,11 @@ try{
   await mobilePage.locator('.q5-camp').waitFor();
   assert.equal(await mobilePage.locator('.q5-region').count(),3,'Mobile atlas incomplete');
   assert.equal(await mobilePage.locator('.q5-terrain-svg').count(),3,'Mobile terrain diagrams absent');
+  await mobilePage.locator('#quest-globe').scrollIntoViewIfNeeded();
+  await mobilePage.waitForFunction(() => {
+   const globe = document.querySelector('#quest-globe');
+   return globe.getContext('2d').getImageData(globe.width / 2, globe.height / 2, 1, 1).data[3] === 255;
+  });
   if (width === 390) {
    await capture(mobilePage,'.q5-globe-panel','mobile-earth.png');
    await capture(mobilePage,'.q5-camp','mobile-camp.png');
