@@ -59,3 +59,11 @@ De 29 keuzes van 22 november vormen het ontwerp voor de volledige game. Fase 1â€
 ## Gecontroleerd in fase 1â€“2
 
 De draaibare aarde gebruikt kustgegevens van Natural Earth. Regiokaarten openen de bestaande missies. Het kamp toont de volgende zichtbare verbetering en de benodigde XP. De desktoptest gebruikt Chromium, de mobiele ontwikkeltest gebruikt WebKit met een iPhone 13-profiel. Beide gebruiken fictieve spelers en gesimuleerde API-antwoorden. De [geslaagde run met screenshots](https://github.com/Jimmyvandenboom/AK-MASTER-app-/actions/runs/45016917412) bevat de productiebuild, de tests en vier beelden van de lobby en atlas. Een test op een fysieke iPhone en een volledige beoordeling van de 3D-uitwerking staan nog open.
+
+## Voortgang, toegankelijkheid en gegevenscontrole
+
+- De lobby toont het aantal goed beantwoorde gesloten vragen ten opzichte van het werkelijke aanbod in de gekozen regio. De balk heeft een naam en waarde voor schermlezers en verdwijnt als er voor die regio geen gesloten vragen beschikbaar zijn.
+- De regioknoppen hebben duidelijkere toetsenbordfocus en de actietekst in het lichte thema heeft een gemeten contrast van 7,08:1. Bij verminderde beweging vervalt ook de verschuiving van kaartillustraties. De kleinere lobbyknoppen hebben een minimaal tikgebied van 44 px.
+- Zeven renderertests zijn rechtstreeks uitgevoerd, inclusief de regressietest voor de nieuwe voortgangsbalk. De Playwright-test bevat nu een controle dat die balk de gesimuleerde voortgang na herladen opnieuw toont. De eerder bevestigde groene workflowrun hoort bij commit `89bbc56`. De uitkomst voor de nieuwe Playwright-controle staat nog open.
+- Een nieuwe controle van Supabase leverde dezelfde totaaltellingen op als de eerdere inventarisatie. RLS is actief op alle zes Quest-tabellen en er zijn geen directe RLS-policies voor deze tabellen. De controle las uitsluitend tabelmetadata en totaaltellingen. Er is geen migratie of databasewijziging uitgevoerd.
+- Toegang gebruikt momenteel een willekeurige herstelcode waarvan de server een hash opslaat. Naam met persoonlijke pincode en begrenzing van aanmeldpogingen moeten nog worden uitgewerkt en getest op een aparte testomgeving. Bestaande herstelcodes moeten bruikbaar blijven.
