@@ -6,7 +6,7 @@ import {chromium,devices} from 'playwright';
 
 const root=resolve('dist');
 const base='/AK-MASTER-app-/';
-const files=['quest/index.html','quest/globe.js','quest/globe.css','quest/levelmap.css','quest/catalog.js','quest/game.css','quest/theory.js','quest/collection.js','quest/audio/yes.mp3','quest/audio/no.mp3','quest/v5-lobby.js','quest/v5-lobby.css'];
+const files=['quest/index.html','quest/globe.js','quest/globe.css','quest/levelmap.css','quest/catalog.js','quest/game.css','quest/theory.js','quest/collection.js','quest/audio/yes.mp3','quest/audio/no.mp3','quest/v5-lobby.js','quest/v5-lobby.css','quest/v5-terrain.js'];
 for(const file of files)assert.ok((await readFile(resolve(root,file))).length>300,'Missing asset '+file);
 const mime={'.html':'text/html','.js':'application/javascript','.css':'text/css','.svg':'image/svg+xml'};
 const server=createServer(async(req,res)=>{
@@ -60,6 +60,7 @@ try{
  await page.getByRole('heading',{name:/Welkom terug, Sam/}).waitFor();
  await page.getByRole('region',{name:'Jouw groeiende expeditiekamp'}).waitFor();
  assert.equal(await page.locator('.q5-region').count(),3,'New atlas must show three regions');
+ assert.equal(await page.locator('.q5-terrain-svg').count(),3,'Isometric terrain diagrams not rendered');
  assert.ok(await page.getByRole('button',{name:/OP AVONTUUR/}).isVisible(),'Primary adventure action missing');
  await page.locator('button[data-action="chapter"][data-ch="H7"]').first().click();
  await page.locator('.quest-map-shell').waitFor();
@@ -105,6 +106,7 @@ try{
  await mobilePage.goto('http://127.0.0.1:'+server.address().port+base+'quest/');
  await mobilePage.locator('.q5-camp').waitFor();
  assert.equal(await mobilePage.locator('.q5-region').count(),3,'Mobile atlas incomplete');
+ assert.equal(await mobilePage.locator('.q5-terrain-svg').count(),3,'Mobile terrain diagrams absent');
  const fits=()=>mobilePage.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth);
  assert.ok(await fits(),'Mobile camp or atlas overflows');
  await mobilePage.locator('button[data-action="chapter"][data-ch="H8"]').first().tap();
