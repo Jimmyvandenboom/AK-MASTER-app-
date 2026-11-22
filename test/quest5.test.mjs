@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {quest5Home} from '../public/quest/v5-lobby.js';
+import {renderQuestTerrain} from '../public/quest/v5-terrain.js';
 const chapters={
  H7:{title:'Delta Defender',sub:'Water in Nederland',emoji:'🏡'},
  H8:{title:'Dragon River',sub:'Water in China',emoji:'🐉'},
@@ -27,4 +28,28 @@ test('Quest 5 escapes student supplied names',()=>{
  const html=quest5Home(state,chapters,()=>'',()=>0,esc);
  assert.ok(!html.includes('<img src=x'));
  assert.match(html,/&lt;img src=x/);
+});
+
+test('geographic terrains render self-contained isometric SVGs',()=>{
+  const map={
+    H7:['Nederlands rivierenlandschap','#d2bd8a'],
+    H8:['Chinees rivierenlandschap','#225c78'],
+    H9:['Droog landschap met oase','#6ec6b5']
+  };
+  for(const [id,[label,color]] of Object.entries(map)){
+    const svg=renderQuestTerrain(id);
+    assert.match(svg,/<svg[^>]+role="img"/);
+    assert.ok(svg.includes(label),id+' accessible label');
+    assert.ok(svg.includes(color),id+' geographical visual');
+    assert.ok(!svg.includes('<image'),id+' should not rely on network');
+  }
+});
+test('terrain descriptions are escaped',()=>{
+  const svg=renderQuestTerrain('H7','<img src=x onerror=alert(1)>');
+  assert.ok(!svg.includes('<img'));
+  assert.ok(svg.includes('&lt;img'));
+});
+test('personal atlas includes three vector geographical miniatures',()=>{
+ const markup=quest5Home(player(0),chapters,()=>'',()=>0,esc);
+ assert.equal((markup.match(/class="q5-terrain-svg"/g)||[]).length,3);
 });
