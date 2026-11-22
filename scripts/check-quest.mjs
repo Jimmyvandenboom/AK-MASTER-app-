@@ -132,7 +132,7 @@ try{
  const startUrl=page.url();
  await page.getByRole('navigation').getByRole('button',{name:/Shop/}).click();
  await page.locator('.shop-catalog summary').click();
- await page.locator('button[data-action="buy"][data-id="pet_dikefox"]').click();
+ await page.locator('button[data-action="buy"][data-id="pet_dikefox"]').first().click();
  await page.waitForFunction(() => document.querySelector('button[data-action="buy"][data-id="pet_dikefox"]')?.textContent.trim()==='In je collectie');
  await page.getByRole('navigation').getByRole('button',{name:/Avatar/}).click();
  await page.getByRole('heading',{name:'Avatar Studio'}).waitFor();
