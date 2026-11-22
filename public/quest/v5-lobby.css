@@ -67,3 +67,23 @@ html[data-theme="light"] .q5-region-go {
     transform: none;
   }
 }
+
+.q5-globe-panel {
+  background: radial-gradient(ellipse at 50% 40%, #183d50, #091d30 68%);
+  border: 1px solid #426378;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+.q5-globe-panel #quest-globe {
+  width: 100%;
+  height: clamp(270px, 43vw, 460px);
+  display: block;
+  touch-action: pan-y;
+}
+.q5-globe-panel p {
+  margin: 0;
+  padding: 0 16px 16px;
+  color: #d3eee7;
+  text-align: center;
+}

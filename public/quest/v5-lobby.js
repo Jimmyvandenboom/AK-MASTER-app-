@@ -71,6 +71,7 @@ export function quest5Home(state, chapters, avatar, done, esc) {
     </div>
     <section class="q5-regions" aria-label="Kies je geografische wereld">
       <div class="q5-sectionhead"><div><div class="q5-overline">EXPEDITIEATLAS</div><h2>Ontdek de wereld</h2></div><span>Alle leergebieden blijven toegankelijk</span></div>
+      <div class="q5-globe-panel"><canvas id="quest-globe" role="img" aria-label="Draaibare aarde met Nederland, China en het Midden-Oosten"></canvas><p>Draai de aarde en tik op een bestemming, of kies hieronder je regio.</p></div>
       <div class="q5-region-grid">
       ${entries.map(([id,ch],i)=>`<button class="q5-region region-${i}" data-action="chapter" data-ch="${esc(id)}">
         <div class="q5-mapart"><span class="q5-region-sun" aria-hidden="true">☀</span>${renderQuestTerrain(id, ch.sub)}</div>

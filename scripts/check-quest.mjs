@@ -62,7 +62,16 @@ try{
  assert.equal(await page.locator('.q5-region').count(),3,'New atlas must show three regions');
  assert.equal(await page.locator('.q5-terrain-svg').count(),3,'Isometric terrain diagrams not rendered');
  assert.ok(await page.getByRole('button',{name:/OP AVONTUUR/}).isVisible(),'Primary adventure action missing');
- await page.locator('button[data-action="chapter"][data-ch="H7"]').first().click();
+ const globe = page.locator('#quest-globe');
+ await globe.scrollIntoViewIfNeeded();
+ await page.waitForFunction(() => document.querySelector('#quest-globe').width > 300);
+ const bounds = await globe.boundingBox();
+ const radius = Math.min(bounds.width * .38, bounds.height * .43, 254);
+ const rad = angle => angle * Math.PI / 180;
+ const lon = rad(5.3 - 40), lat = rad(52.1), tilt = rad(24);
+ const x = bounds.width / 2 + radius * Math.cos(lat) * Math.sin(lon);
+ const y = bounds.height * .53 - radius * (Math.cos(tilt) * Math.sin(lat) - Math.sin(tilt) * Math.cos(lat) * Math.cos(lon));
+ await globe.click({position:{x,y}});
  await page.locator('.quest-map-shell').waitFor();
  await page.locator('.quest-theory summary').click();
  await page.getByRole('heading',{name:'Water in Nederland',exact:true}).waitFor();
