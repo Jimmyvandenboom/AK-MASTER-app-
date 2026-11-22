@@ -230,7 +230,11 @@ const DEG=Math.PI/180;const rad=d=>d*DEG;
 function mountQuestGlobe(onTravel,avatar='🧑‍🚀'){
  const canvas=document.getElementById('quest-globe');if(!canvas)return()=>{};
  const cx=canvas.getContext('2d'),parent=canvas.parentElement;let w=0,h=0,center=40,target=40,tilt=24,angle=0,last=performance.now(),drag=false,dragging=false,startX=0,dragCenter=0,hover=null,travel=null,disposed=false,frameId=null,pointers=[];
- function resize(){const rect=canvas.getBoundingClientRect();w=Math.max(200,rect.width);h=Math.max(250,rect.height);const dpr=Math.min(window.devicePixelRatio||1,2);canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);cx.setTransform(dpr,0,0,dpr,0,0)}
+ let inViewport = true;
+ function queueDraw() {
+  if (!disposed && !document.hidden && (inViewport || travel) && frameId === null) frameId = requestAnimationFrame(draw);
+ }
+ function resize(){const rect=canvas.getBoundingClientRect();w=Math.max(200,rect.width);h=Math.max(250,rect.height);const dpr=Math.min(window.devicePixelRatio||1,2);canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);cx.setTransform(dpr,0,0,dpr,0,0);queueDraw()}
  function project(lon,lat){
  const dx=rad(((lon-center+540)%360)-180),la=rad(lat),ph=rad(tilt),co=Math.cos(la),depth=Math.sin(ph)*Math.sin(la)+Math.cos(ph)*co*Math.cos(dx);
  const radius=Math.min(w*.38,h*.43,254);
@@ -251,7 +255,9 @@ function mountQuestGlobe(onTravel,avatar='🧑‍🚀'){
  }
  function feature(lon,lat,text,scale=1){let p=project(lon,lat);if(p.z<.05)return;cx.save();cx.globalAlpha=Math.min(.9,p.z+.1);cx.font=(Math.max(15,23*p.z)*scale)+'px serif';cx.fillText(text,p.x-12,p.y+10);cx.restore()}
  function draw(t){
- const dt=Math.min(36,t-last);last=t;if(!motion.matches)angle+=dt*.00024;center+=(target-center)*Math.min(.10,dt*.012);
+ frameId=null;
+ if(disposed || document.hidden || (!inViewport && !travel))return;
+ const dt=Math.min(36,t-last);last=t;if(!motion.matches)angle+=dt*.00024;center=motion.matches ? target : center+(target-center)*Math.min(.10,dt*.012);
  if(Math.abs(target-center)<.02)target=center;
  cx.clearRect(0,0,w,h);
  const p0=project(center,tilt),r=p0.r,x=w*.5,y=h*.53;
@@ -286,7 +292,7 @@ function mountQuestGlobe(onTravel,avatar='🧑‍🚀'){
    if(p.z>0){cx.font='38px serif';cx.fillText(avatar,p.x+11,p.y-10)}
    if(t-travel.started>1150){let chosen=travel.id;travel=null;onTravel(chosen);return}
  }
- frameId=requestAnimationFrame(draw);
+ if (!motion.matches || travel) queueDraw();
  }
  function clickTravel(id){if(travel)return;if(motion.matches){onTravel(id);return;}const city=cities.find(x=>x.id===id);if(!city)return;
   const diff=((city.lon-center+540)%360)-180;target=center+diff*.84;travel={id,city,started:performance.now()};
@@ -294,14 +300,21 @@ function mountQuestGlobe(onTravel,avatar='🧑‍🚀'){
  }
  function cancelDrag(){drag=false;dragging=false}
  function onMouseDown(e){drag=true;dragging=false;startX=e.clientX;dragCenter=center;canvas.setPointerCapture?.(e.pointerId)}
- function onMouseMove(e){if(!drag)return;const delta=e.clientX-startX;if(Math.abs(delta)>5)dragging=true;target=dragCenter-delta*.45}
+ function onMouseMove(e){if(!drag)return;const delta=e.clientX-startX;if(Math.abs(delta)>5)dragging=true;target=dragCenter-delta*.45;queueDraw()}
  function onMouseUp(e){if(drag&&!dragging){const rect=canvas.getBoundingClientRect(),px=e.clientX-rect.left,py=e.clientY-rect.top;let clicked=pointers.find(o=>Math.hypot(px-o.p.x,py-o.p.y)<20 || (Math.abs(px-o.p.x)<o.labelWidth/2 && py>=o.above-8 && py<=o.above+17));if(clicked)clickTravel(clicked.city.id)}drag=false}
  canvas.addEventListener('pointerdown',onMouseDown);canvas.addEventListener('pointermove',onMouseMove);canvas.addEventListener('pointerup',onMouseUp);
  canvas.addEventListener('pointercancel',cancelDrag);
  const controls=parent.querySelectorAll('[data-globe-ch]');const events=[];
  controls.forEach(el=>{let fn=()=>clickTravel(el.dataset.globeCh);el.addEventListener('click',fn);events.push([el,fn])});
- const observer=new ResizeObserver(resize);observer.observe(canvas);resize();frameId=requestAnimationFrame(draw);
- return ()=>{disposed=true;canvas.removeEventListener('pointercancel',cancelDrag);cancelAnimationFrame(frameId);observer.disconnect();canvas.removeEventListener('pointerdown',onMouseDown);canvas.removeEventListener('pointermove',onMouseMove);canvas.removeEventListener('pointerup',onMouseUp);events.forEach(([el,fn])=>el.removeEventListener('click',fn))};
+ const visibility = new IntersectionObserver(([entry]) => {
+  inViewport = entry.isIntersecting;
+  if (inViewport) queueDraw();
+ });
+ visibility.observe(canvas);
+ document.addEventListener('visibilitychange',queueDraw);
+ motion.addEventListener('change',queueDraw);
+ const observer=new ResizeObserver(resize);observer.observe(canvas);resize();
+ return ()=>{disposed=true;visibility.disconnect();document.removeEventListener('visibilitychange',queueDraw);motion.removeEventListener('change',queueDraw);canvas.removeEventListener('pointercancel',cancelDrag);cancelAnimationFrame(frameId);observer.disconnect();canvas.removeEventListener('pointerdown',onMouseDown);canvas.removeEventListener('pointermove',onMouseMove);canvas.removeEventListener('pointerup',onMouseUp);events.forEach(([el,fn])=>el.removeEventListener('click',fn))};
 }
 window.mountQuestGlobe=mountQuestGlobe;
 })();
