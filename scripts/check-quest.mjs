@@ -31,7 +31,7 @@ try{
  browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||undefined});
  const studentContext=await browser.newContext({viewport:{width:1365,height:900}});
  let page=await studentContext.newPage();
- const problems=[];page.on('pageerror',e=>problems.push(e.message));page.on('dialog',d=>d.accept());
+ const problems=[];page.on('pageerror',e=>problems.push(e.message));page.on('dialog',d=>{problems.push('dialog: '+d.message());d.accept()});
  const token='a'.repeat(48);let attempts=[],xp=0,coins=100,purchases=[],profile={};
  const quiz=[
  {id:'n1',chapter:'H7',skill:'begrip',type:'choice',text:'Wat is een delta?',options:['Een vertakte monding','Een droogmakerij','Een gletsjer','Een krib']},
@@ -106,7 +106,11 @@ try{
  await page.getByRole('navigation').getByRole('button',{name:/Shop/}).click();
  await page.locator('.shop-catalog summary').click();
  await page.locator('button[data-action="buy"][data-id="compass_hint"]').click();
- await page.getByRole('button',{name:/In je collectie/}).waitFor();
+ await page.waitForFunction(() => {
+  const button=document.querySelector('button[data-action="buy"][data-id="compass_hint"]');
+  return button?.textContent.trim()==='In je collectie';
+ },{timeout:10000});
+ assert.ok(purchases.includes('compass_hint'),'Test server did not persist the shop purchase. '+JSON.stringify(problems));
  await page.getByRole('navigation').getByRole('button',{name:/Wereld/}).click();
  await page.locator('button[data-action="chapter"][data-ch="H7"]').first().click();
  await page.locator('button[data-action="question"][data-id="n1"]').click();
@@ -263,5 +267,5 @@ try{
  }
  assert.deepEqual(problems,[],'JavaScript errors in quest');
  console.log('Quest 5: student join, personal camp, three region atlas, checkpoint, answer, saved session, map acts and mobile smoke tests OK');
-}catch(e){console.error(e);process.exitCode=1}
+}catch(e){console.error(e,problems);process.exitCode=1}
 finally{if(mobileBrowser && mobileBrowser!==browser)await mobileBrowser.close();if(browser)await browser.close();await new Promise(r=>server.close(r))}
