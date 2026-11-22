@@ -119,6 +119,8 @@ export function quest5Home(state, chapters, avatar, done, esc) {
           <button data-action="studio-v3">🎭 Avatar aanpassen <span>→</span></button>
           <button data-action="exam-trainer">📖 Examentrainer <span>→</span></button>
           <button data-action="daily">🧠 Kennisboost <span>→</span></button>
+          <button data-action="boss">🏆 Chapter Boss <span>→</span></button>
+          <button data-action="repeat">💎 Memory Quest <span>→</span></button>
         </div>
       </aside>
     </div>
