@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {examTrainer} from '../public/quest/exam-trainer.js';
+import {items,dailyItems} from '../public/quest/catalog.js';
 
 const source=JSON.parse(await readFile('src/water/questions.json','utf8'));
 const imported=JSON.parse(await readFile('supabase/functions/exam-quest/ce.json','utf8'));
@@ -46,4 +47,13 @@ test('long CE checkpoint lists have page controls and are limited to eight map n
   assert.match(html,/ceQuestions\.slice\(state\.examPage\*8,\(state\.examPage\+1\)\*8\)/);
   assert.match(html,/data-action="ce-page"/);
   assert.match(html,/examPageCount/);
+});
+
+test('Daily shop stays fresh, offers eight distinct deals and contains at least forty items',()=>{
+  assert.ok(Object.keys(items).length>=40);
+  const today=dailyItems(new Date('2026-11-22T12:00:00+01:00'));
+  assert.equal(today.length,8);
+  assert.equal(new Set(today).size,8);
+  assert.equal(Object.keys(items).filter(id=>items[id].slot==='pet').length,3);
+  assert.equal(items.compass_hint.slot,'powerup');
 });
