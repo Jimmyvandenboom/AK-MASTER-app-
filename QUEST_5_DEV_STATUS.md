@@ -83,3 +83,14 @@ De eerste Examentrainer Water is toegevoegd. Leerlingen kunnen beschikbare exame
 ## Shopartikel met een effect op oefenen
 
 De shop bevat nu het Kompas van inzicht. Na aankoop kan een leerling per meerkeuzevraag één fout antwoord laten wegstrepen. Het gebruik wordt in het bestaande Quest-profiel opgeslagen, zodat dezelfde hint bij hervatten niet opnieuw gebruikt kan worden. De Avatar Studio toont dit artikel bij de game-upgrades en laat het niet als draagbaar kledingstuk behandelen. De browsertest koopt het kompas met fictieve coins en test het effect in de meerkeuzevraag.
+
+
+## 22 november: metgezellen en leerlingfocus
+
+De shop bevat nu drie koopbare dieren met eigen profielvak. In Avatar Studio kiest de leerling één metgezel; het serverprofiel bewaart de keuze en de avatar toont het dier in de HUD en studio. Het Kompas van inzicht blijft een aparte game-upgrade.
+
+In Mission Control kan de docent per leerling recente foutclusters en het aantal nog niet nagekeken open antwoorden uitklappen. De bestaande klasfilter, gemiddelde oefentijd en H7–H9-voortgang blijven beschikbaar.
+
+De fictieve leerlingtest koopt een Kompas en Dijkvos, kiest de metgezel, start opnieuw in een verse browsersessie en controleert dat de voortgang en het dier terugkomen. De docenttest controleert de eigen analyse van Sam, een klaswissel, verversen en uitloggen. Chromium en mobiel WebKit (375, 390 en 430 px) zijn groen in [workflow 45040196363](https://github.com/Jimmyvandenboom/AK-MASTER-app-/actions/runs/45040196363). De tests gebruiken nagebootste API-antwoorden; echte leerlingrecords en Supabase-voortgang zijn niet gewijzigd.
+
+De resterende grote onderdelen blijven: complete examendekking en bronverzameling, Social Adventure met veilige opt-in, verder uitgewerkte gamewerelden, pincode-login naast herstelcodes en uitgebreide toegankelijkheidstests. Dit is een ontwikkelbranch en geen release van de live omgeving.
