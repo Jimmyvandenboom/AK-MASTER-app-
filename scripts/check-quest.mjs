@@ -42,14 +42,15 @@ try{
  ];
  const handleApi = async route=>{
   const body=JSON.parse(route.request().postData()||'{}');let response;
-  if (['me','questions','answer','open-review','buy','powerup'].includes(body.action) && body.token!==token) return route.fulfill({status:401,json:{error:'Ongeldige herstelcode'}});
+  if (['me','questions','answer','open-review','buy','powerup','profile'].includes(body.action) && body.token!==token) return route.fulfill({status:401,json:{error:'Ongeldige herstelcode'}});
   switch(body.action){
    case 'join':response={token,student:{id:'test',first_name:'Sam',xp:0,coins:0,avatar:'explorer',active_seconds:0}};break;
    case 'me':response={student:{id:'test',first_name:'Sam',xp,coins,avatar:'explorer',active_seconds:60},attempts:[...attempts].reverse(),purchases:[...purchases],profile};break;
    case 'questions':response={questions:quiz};break;
    case 'buy':
-    assert.equal(body.item,'compass_hint');
-    purchases.push(body.item);coins-=80;response={ok:true};break;
+    assert.ok(['compass_hint','pet_dikefox'].includes(body.item));
+    purchases.push(body.item);coins-=body.item==='compass_hint'?80:25;response={ok:true};break;
+   case 'profile':profile={...profile,...body.patch};response={profile};break;
    case 'powerup':
     assert.equal(body.questionId,'n1');
     assert.ok(purchases.includes('compass_hint'));
@@ -129,6 +130,15 @@ try{
  await page.getByRole('button',{name:/Controleer antwoord/}).click();
  await page.getByText(/Goed! \+60 XP/).waitFor();
  const startUrl=page.url();
+ await page.getByRole('navigation').getByRole('button',{name:/Shop/}).click();
+ await page.locator('.shop-catalog summary').click();
+ await page.locator('button[data-action="buy"][data-id="pet_dikefox"]').click();
+ await page.waitForFunction(() => document.querySelector('button[data-action="buy"][data-id="pet_dikefox"]')?.textContent.trim()==='In je collectie');
+ await page.getByRole('navigation').getByRole('button',{name:/Avatar/}).click();
+ await page.getByRole('heading',{name:'Avatar Studio'}).waitFor();
+ await page.getByRole('button',{name:'Kies als metgezel'}).click();
+ await page.locator('.character .pet').waitFor();
+ assert.deepEqual(profile.gear,['pet_dikefox'],'Equipped companion should be saved on the learner profile');
  const savedSession=await studentContext.storageState();
  await studentContext.close();
  const resumed=await browser.newContext({storageState:savedSession});
@@ -138,6 +148,7 @@ try{
  await page.goto(startUrl);
  await page.getByRole('heading',{name:/Welkom terug, Sam/}).waitFor();
  assert.equal(await page.getByRole('progressbar').getAttribute('aria-valuenow'),'1');
+ assert.equal(await page.locator('.character .pet').count(),1,'Equipped companion should persist after restart');
  await page.getByRole('button',{name:/Verder oefenen/}).click();
  await page.locator('#openResponse').fill('Zand en klei blijven achter.');
  await page.locator('.quest-theory summary').click();
@@ -192,6 +203,9 @@ try{
  await sam.waitFor();
  assert.deepEqual((await sam.getByRole('cell').allTextContents()).slice(0,6),['Sam','1','0','0','60','1 min']);
  await dashboard.getByText('50%',{exact:true}).waitFor();
+ await sam.locator('details summary').click();
+ await dashboard.getByText('1 fout · 1 open',{exact:true}).waitFor();
+ await dashboard.getByText('H7 · begrip (1)',{exact:true}).waitFor();
  await dashboard.getByText('Sam · H7 · h7_open_01').click();
  await dashboard.getByText('Zand en klei blijven achter.',{exact:true}).waitFor();
  await dashboard.getByLabel('Klas',{exact:true}).selectOption('b');
