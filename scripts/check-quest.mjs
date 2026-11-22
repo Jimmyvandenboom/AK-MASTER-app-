@@ -29,7 +29,8 @@ await new Promise(r=>server.listen(0,'127.0.0.1',r));
 let browser, mobileBrowser;
 try{
  browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||undefined});
- const page=await browser.newPage({viewport:{width:1365,height:900}});
+ const studentContext=await browser.newContext({viewport:{width:1365,height:900}});
+ let page=await studentContext.newPage();
  const problems=[];page.on('pageerror',e=>problems.push(e.message));page.on('dialog',d=>d.accept());
  const token='a'.repeat(48);let attempts=[],xp=0,coins=0;
  const quiz=[
@@ -37,14 +38,15 @@ try{
  {id:'h7_open_01',chapter:'H7',skill:'verklaren',type:'open',text:'Leg uit hoe een rivierdelta ontstaat.',options:null},
  ...['H8','H9'].map((chapter,i)=>({id:chapter+'_test',chapter,skill:'verklaren',type:'open',text:'Leg uit wat debiet is. '+i,options:null}))
  ];
- await page.route('**/functions/v1/exam-quest', async route=>{
+ const handleApi = async route=>{
   const body=JSON.parse(route.request().postData()||'{}');let response;
+  if (['me','questions','answer','open-review'].includes(body.action) && body.token!==token) return route.fulfill({status:401,json:{error:'Ongeldige herstelcode'}});
   switch(body.action){
    case 'join':response={token,student:{id:'test',first_name:'Sam',xp:0,coins:0,avatar:'explorer',active_seconds:0}};break;
    case 'me':response={student:{id:'test',first_name:'Sam',xp,coins,avatar:'explorer',active_seconds:60},attempts:[...attempts].reverse(),purchases:[]};break;
    case 'questions':response={questions:quiz};break;
    case 'answer':{const ok=body.questionId==='n1'&&body.response==='0';
-     attempts.push({question_id:body.questionId,is_correct:body.questionId==='n1'?ok:null,awarded_xp:ok?60:0,created_at:new Date().toISOString()});
+     attempts.push({student_id:'test',topic:'H7',skill:quiz.find(q=>q.id===body.questionId).skill,response:body.response,question_id:body.questionId,is_correct:body.questionId==='n1'?ok:null,awarded_xp:ok?60:0,created_at:new Date().toISOString()});
      if(ok){xp+=60;coins+=12}
      response={correct:body.questionId==='n1'?ok:null,awarded:ok?60:0,explanation:'De monding is vertakt.',correctOption:0,selfCheck:body.questionId!=='n1',aiReviewAvailable:body.questionId!=='n1'};break;
    }
@@ -53,11 +55,16 @@ try{
      assert.equal(body.response,'Zand en klei blijven achter.');
      response={review:{points:1,maxPoints:2,feedback:'Je noemt afzetting.',nextStep:'Leg uit waarom het water afremt.'}};
      break;
+   case 'teacher':
+    if (route.request().headers().authorization !== 'Bearer teacher-fixture') return route.fulfill({status:403,json:{error:'Geen docenttoegang'}});
+    response={classes:[{id:'a',label:'Testklas A',join_code:'12345678'},{id:'b',label:'Testklas B',join_code:'87654321'}],
+     students:[{id:'test',class_id:'a',first_name:'Sam',xp,active_seconds:60,last_seen:new Date().toISOString()}],attempts:[...attempts].reverse()};break;
    case 'heartbeat':response={ok:true};break;
    default:response={error:'Test stub has no action '+body.action};break;
   }
   await route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(response)});
- });
+ };
+ await studentContext.route('**/functions/v1/exam-quest',handleApi);
  await page.goto('http://127.0.0.1:'+server.address().port+base+'quest/',{waitUntil:'domcontentloaded'});
  await page.getByRole('heading',{name:'Welkom, ontdekkingsreiziger!'}).waitFor();
  await page.getByRole('button',{name:'Schakel lichte modus in'}).click();
@@ -89,10 +96,26 @@ try{
  assert.equal(await page.locator('.zone-switcher button').count(),3);
  await page.locator('button[data-action="question"][data-id="n1"]').click();
  await page.getByText('Wat is een delta?').waitFor();
+ await page.locator('button[data-action="choose"][data-val="1"]').click();
+ await page.getByRole('button',{name:/Controleer antwoord/}).click();
+ await page.getByText('Nog niet goed — dit leer je ervan').waitFor();
+ await page.getByRole('navigation').getByRole('button',{name:/Wereld/}).click();
+ await page.getByRole('button',{name:/Kennisboost/}).click();
+ await page.getByText('Wat is een delta?').waitFor();
  await page.locator('button[data-action="choose"][data-val="0"]').click();
  await page.getByRole('button',{name:/Controleer antwoord/}).click();
  await page.getByText(/Goed! \+60 XP/).waitFor();
- await page.getByRole('button',{name:/Volgende missie/}).click();
+ const startUrl=page.url();
+ const savedSession=await studentContext.storageState();
+ await studentContext.close();
+ const resumed=await browser.newContext({storageState:savedSession});
+ await resumed.route('**/functions/v1/exam-quest',handleApi);
+ page=await resumed.newPage();
+ page.on('pageerror',e=>problems.push(e.message));
+ await page.goto(startUrl);
+ await page.getByRole('heading',{name:/Welkom terug, Sam/}).waitFor();
+ assert.equal(await page.getByRole('progressbar').getAttribute('aria-valuenow'),'1');
+ await page.getByRole('button',{name:/Verder oefenen/}).click();
  await page.locator('#openResponse').fill('Zand en klei blijven achter.');
  await page.locator('.quest-theory summary').click();
  assert.equal(await page.locator('#openResponse').inputValue(),'Zand en klei blijven achter.');
@@ -116,6 +139,41 @@ try{
   await page.getByRole('navigation').getByRole('button',{name:new RegExp(button)}).click();
   await page.getByRole('heading',{name:heading}).waitFor();
  }
+ const recovered=await browser.newContext();
+ await recovered.route('**/functions/v1/exam-quest',handleApi);
+ const recoveryPage=await recovered.newPage();
+ await recoveryPage.goto(startUrl);
+ recoveryPage.once('dialog',d=>d.accept(token));
+ await recoveryPage.getByRole('button',{name:'Gebruik mijn herstelcode'}).click();
+ await recoveryPage.getByRole('heading',{name:/Welkom terug, Sam/}).waitFor();
+ assert.equal(await recoveryPage.getByRole('progressbar').getAttribute('aria-valuenow'),'1');
+ await recovered.close();
+
+ const teacher=await browser.newContext();
+ await teacher.route('**/functions/v1/exam-quest',handleApi);
+ await teacher.route('**/auth/v1/token?*',route=>route.fulfill({json:{access_token:'teacher-fixture'}}));
+ const dashboard=await teacher.newPage();
+ dashboard.on('pageerror',e=>problems.push(e.message));
+ await dashboard.goto(startUrl);
+ await dashboard.getByRole('button',{name:/Docent$/}).click();
+ await dashboard.locator('#teacherForm input[name=email]').fill('docent@example.test');
+ await dashboard.locator('#teacherForm input[name=password]').fill('fictieve-testwaarde');
+ await dashboard.getByRole('button',{name:'Open docentendashboard'}).click();
+ const sam=dashboard.getByRole('row').filter({hasText:'Sam'});
+ assert.deepEqual((await sam.getByRole('cell').allTextContents()).slice(0,6),['Sam','1','0','0','60','1 min']);
+ await dashboard.getByText('50%',{exact:true}).waitFor();
+ await dashboard.getByText('Sam · H7 · h7_open_01').click();
+ await dashboard.getByText('Zand en klei blijven achter.',{exact:true}).waitFor();
+ await dashboard.getByLabel('Klas',{exact:true}).selectOption('b');
+ assert.equal(await sam.count(),0);
+ await dashboard.getByRole('button',{name:/Ververs/}).click();
+ await dashboard.getByText('Testklas B · tussentijdse klasresultaten').waitFor();
+ await dashboard.getByLabel('Klas',{exact:true}).selectOption('a');
+ await sam.waitFor();
+ await dashboard.getByRole('button',{name:'Docent uitloggen'}).click();
+ await dashboard.locator('#teacherForm').waitFor();
+ assert.equal(await dashboard.locator('.teacher-table').count(),0);
+ await teacher.close();
  mobileBrowser=process.env.QUEST_MOBILE_WEBKIT === '1' ? await webkit.launch() : browser;
  for (const width of [375, 390, 430]) {
   const phone = devices['iPhone 13'];

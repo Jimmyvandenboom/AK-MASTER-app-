@@ -11,7 +11,13 @@ export function quest5Home(state, chapters, avatar, done, esc) {
   const remainingXp = stage < 5 ? stage * 350 - xp : 0;
   const nextCampFeature = ['', 'het kampvuur', 'de veldhut', 'de sterrenkijker', 'het hoofdkwartier'];
   const campProgress = remainingXp ? `Nog ${remainingXp} XP tot ${nextCampFeature[stage]}` : 'Je expeditiekamp is volledig uitgebouwd';
-  const attempts=state.attempts?.length||0;
+  const history=state.attempts ?? [];
+  const attempts=history.length;
+  const questions=state.questions ?? [];
+  const previous=history.length && questions.find(q=>q.id===history[0].question_id);
+  const completed=new Set(history.filter(a=>a.is_correct!==false).map(a=>a.question_id));
+  const next=previous && (questions.find(q=>q.chapter===previous.chapter && !completed.has(q.id)) ||
+    questions.find(q=>!completed.has(q.id)));
   const current=Object.entries(chapters).find(([key])=>state.chapter===key)||Object.entries(chapters)[0];
   const entries=Object.entries(chapters);
   const stageNames=['','BASECAMP','EXPLORER CAMP','RIVER STATION','GEO OUTPOST','EXPEDITION HQ'];
@@ -63,6 +69,7 @@ export function quest5Home(state, chapters, avatar, done, esc) {
           ${missionTotal ? `<div class="q5-microbar" role="progressbar" aria-label="Gesloten kennismissies goed beantwoord" aria-valuemin="0" aria-valuemax="${missionTotal}" aria-valuenow="${missionDone}"><i style="width:${missionPercent}%"></i></div>
           <span class="q5-muted">${missionDone} van ${missionTotal} gesloten kennismissies goed beantwoord</span>` : ''}
           <button class="q5-link" data-action="chapter" data-ch="${esc(current[0])}">Ga naar mijn missie →</button>
+          ${next ? `<button class="q5-link" data-action="question" data-id="${esc(next.id)}">Verder oefenen · ${esc(next.chapter)} →</button>` : ''}
         </div>
         <div class="q5-module q5-side-stats">
           <div class="q5-overline">EXPEDITIE LOGBOEK</div>
