@@ -117,3 +117,10 @@ De lobby toont nu opeenvolgende oefendagen en goede gesloten antwoorden achter e
 De Examentrainer bevat daarnaast directe PDF-links naar 2017 tijdvak I en II en hun correctievoorschriften. Die volledige examens zijn beschikbaar naast de interactieve vraagbank; hun losse vragen en bronbeelden zijn nog niet geïmporteerd.
 
 [Groene workflow 45042932040](https://github.com/Jimmyvandenboom/AK-MASTER-app-/actions/runs/45042932040) is geslaagd op commit `757692b`: unit-tests, productiebuild zonder publiceren, pagina-smoketest, desktop-Chromium en mobiele WebKit op 375, 390 en 430 px. De browsertests gebruiken fictieve leerling- en docentaccounts met gesimuleerde API-antwoorden; echte Supabase-data is niet gewijzigd.
+
+
+## Game Hub — 22 november 2026
+
+De nieuwe HUD toont nu ook directe ingangen naar de bestaande Chapter Boss en Memory Quest. Een unit-test controleert dat beide spelroutes bereikbaar zijn vanuit de Game Hub. De bestaande vraag- en voortgangslogica is hergebruikt.
+
+[Groene workflow 45043350488](https://github.com/Jimmyvandenboom/AK-MASTER-app-/actions/runs/45043350488) is geslaagd op commit `dcc4c44`: unit-tests, productiebuild zonder publiceren, pagina-smoketest, desktop-Chromium en mobiele WebKit op 375, 390 en 430 px. De browsertests gebruiken fictieve leerlingen/docenten en gesimuleerde API-antwoorden.
