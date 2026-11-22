@@ -23,7 +23,7 @@ export function examTrainer(questions, attempts, esc) {
   return `<section class="screen card pad"><h1>Examentrainer Water</h1>
     <p>Kies een tijdvak. Oefen de watervragen met de bijbehorende bronnen, of open het volledige examen.</p>
     <details class="exam-source"><summary>Archiefexamens 2017 · volledige pdf’s</summary>
-      <p>De opgaven en correctievoorschriften openen als PDF. Deze examens zijn nog niet per vraag in de interactieve oefenbank opgenomen.</p>
+      <p>Oefen de geselecteerde vragen interactief met de originele bronpagina. Open de volledige pdf’s als je het hele examen of correctievoorschrift wilt bekijken.</p>
       ${archivedExams.map(exam => `<p><strong>2017 · tijdvak ${exam.period}</strong> · <a href="${esc(exam.paper)}" target="_blank" rel="noopener">Opgaven</a> · <a href="${esc(exam.correction)}" target="_blank" rel="noopener">Correctievoorschrift</a></p>`).join('')}
     </details>
     ${cards.map(group => {
