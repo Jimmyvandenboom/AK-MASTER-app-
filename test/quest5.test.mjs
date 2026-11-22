@@ -15,6 +15,8 @@ test('Quest 5 renders accessible clickable geographical regions without changing
  assert.match(html,/aria-label="Kies je geografische wereld"/);
  for(const chapter of Object.keys(chapters))assert.ok(html.includes('data-ch="'+chapter+'"'));
  assert.ok(html.includes('data-action="store"'));
+ assert.ok(html.includes('data-action="boss"'),'Chapter Boss should be reachable from the 5.0 game hub');
+ assert.ok(html.includes('data-action="repeat"'),'Memory Quest should be reachable from the 5.0 game hub');
  assert.ok(html.includes('data-action="studio-v3"'));
  assert.equal(JSON.stringify(original),before);
 });
