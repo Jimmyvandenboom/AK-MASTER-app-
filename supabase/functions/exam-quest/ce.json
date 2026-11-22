@@ -7466,5 +7466,281 @@
       "correction": "https://www.examenblad.nl/2026/vmbo-tl/documenten/cse-2/gt-0131-a-26-2-c",
       "source": "https://www.examenblad.nl/2026/vmbo-tl/documenten/cse-2/gt-0131-a-26-2-o"
     }
+  ],
+  [
+    "2017-1-16",
+    "H8",
+    "toepassen",
+    "In bron 20 zijn in de legenda drie begrippen vervangen door de cijfers 1, 2 en 3. Waar staan de cijfers 1, 2 en 3 uit de legenda in bron 20 juist bij de drie begrippen?",
+    [
+      "Stroomgebied: 1 · Stroomstelsel: 2 · Waterscheiding: 3",
+      "Stroomgebied: 1 · Stroomstelsel: 3 · Waterscheiding: 2",
+      "Stroomgebied: 2 · Stroomstelsel: 1 · Waterscheiding: 3",
+      "Stroomgebied: 2 · Stroomstelsel: 3 · Waterscheiding: 1",
+      "Stroomgebied: 3 · Stroomstelsel: 1 · Waterscheiding: 2",
+      "Stroomgebied: 3 · Stroomstelsel: 2 · Waterscheiding: 1"
+    ],
+    2,
+    "De omlijnde buitenrand is de waterscheiding (3). Het gebied binnen die grens is het stroomgebied (2); alle rivierarmen samen vormen het stroomstelsel (1).",
+    {
+      "year": 2017,
+      "period": 1,
+      "number": 16,
+      "points": 1,
+      "title": "Stroomgebied, stelsel en waterscheiding",
+      "pages": [
+        {
+          "src": "gt-0131-a-17-1-p16.webp",
+          "page": 16,
+          "refs": [
+            20
+          ]
+        }
+      ],
+      "url": "https://www.examenblad.nl/2017/vmbo-tl/documenten/cse-1/gt-0131-a-17-1-o",
+      "correction": "https://www.examenblad.nl/2017/vmbo-tl/documenten/cse-1/gt-0131-a-17-1-c",
+      "source": "https://www.examenblad.nl/2017/vmbo-tl/documenten/cse-1/gt-0131-a-17-1-o"
+    }
+  ],
+  [
+    "2017-1-17",
+    "H8",
+    "toepassen",
+    "De stroomsnelheid beïnvloedt hoeveel erosie en sedimentatie er plaatsvindt. Waar staan de juiste letters uit bron 20 bij de grootste erosie en de meeste sedimentatie?",
+    [
+      "Grootste erosie: P · Meeste sedimentatie: R",
+      "Grootste erosie: P · Meeste sedimentatie: S",
+      "Grootste erosie: Q · Meeste sedimentatie: P",
+      "Grootste erosie: Q · Meeste sedimentatie: R",
+      "Grootste erosie: R · Meeste sedimentatie: Q",
+      "Grootste erosie: S · Meeste sedimentatie: P"
+    ],
+    1,
+    "De stroomsnelheid is groot in de bovenloop en neemt af wanneer de rivier het laagland en de monding nadert. Bij de monding (S) is de meeste sedimentatie; in de bovenloop (P) is de erosie het grootst.",
+    {
+      "year": 2017,
+      "period": 1,
+      "number": 17,
+      "points": 1,
+      "title": "Erosie en sedimentatie langs de rivier",
+      "pages": [
+        {
+          "src": "gt-0131-a-17-1-p16.webp",
+          "page": 16,
+          "refs": [
+            20
+          ]
+        }
+      ],
+      "url": "https://www.examenblad.nl/2017/vmbo-tl/documenten/cse-1/gt-0131-a-17-1-o",
+      "correction": "https://www.examenblad.nl/2017/vmbo-tl/documenten/cse-1/gt-0131-a-17-1-c",
+      "source": "https://www.examenblad.nl/2017/vmbo-tl/documenten/cse-1/gt-0131-a-17-1-o"
+    }
+  ],
+  [
+    "2017-1-22",
+    "H7",
+    "toepassen",
+    "Bekijk bron 23. Waardoor hebben polders in West-Nederland veel last van verzilting?",
+    [
+      "Door bemaling van de polders",
+      "Door de infiltratie van oppervlaktewater in de duinen",
+      "Door de toenemende neerslag",
+      "Door opwaartse stroming van zoet water"
+    ],
+    0,
+    "Door bemaling wordt zoet grondwater afgevoerd en kan zouter grondwater omhoog komen. Daardoor neemt de kans op verzilting in de polders toe.",
+    {
+      "year": 2017,
+      "period": 1,
+      "number": 22,
+      "points": 1,
+      "title": "Verzilting in West-Nederland",
+      "pages": [
+        {
+          "src": "gt-0131-a-17-1-p18.webp",
+          "page": 18,
+          "refs": [
+            23
+          ]
+        }
+      ],
+      "url": "https://www.examenblad.nl/2017/vmbo-tl/documenten/cse-1/gt-0131-a-17-1-o",
+      "correction": "https://www.examenblad.nl/2017/vmbo-tl/documenten/cse-1/gt-0131-a-17-1-c",
+      "source": "https://www.examenblad.nl/2017/vmbo-tl/documenten/cse-1/gt-0131-a-17-1-o"
+    }
+  ],
+  [
+    "2017-2-16",
+    "H7",
+    "toepassen",
+    "Bekijk bron 16. Waar staan de cijfers 1, 2 en 3 uit bron 16 juist bij de bronnen van drinkwaterwinning?",
+    [
+      "Duinwater: 1 · Grondwater: 2 · Oppervlaktewater: 3",
+      "Duinwater: 1 · Grondwater: 3 · Oppervlaktewater: 2",
+      "Duinwater: 2 · Grondwater: 1 · Oppervlaktewater: 3",
+      "Duinwater: 2 · Grondwater: 3 · Oppervlaktewater: 1",
+      "Duinwater: 3 · Grondwater: 1 · Oppervlaktewater: 2",
+      "Duinwater: 3 · Grondwater: 2 · Oppervlaktewater: 1"
+    ],
+    4,
+    "In het cirkeldiagram is grondwater de grootste bron. Het aandeel duinwater is kleiner dan grondwater maar groter dan oppervlaktewater; zo koppel je de cijfers aan de drie bronnen.",
+    {
+      "year": 2017,
+      "period": 2,
+      "number": 16,
+      "points": 1,
+      "title": "Bronnen van drinkwater",
+      "pages": [
+        {
+          "src": "gt-0131-a-17-2-p14.webp",
+          "page": 14,
+          "refs": [
+            16
+          ]
+        }
+      ],
+      "url": "https://www.examenblad.nl/2017/vmbo-tl/documenten/cse-2/gt-0131-a-17-2-o",
+      "correction": "https://www.examenblad.nl/2017/vmbo-tl/documenten/cse-2/gt-0131-a-17-2-c",
+      "source": "https://www.examenblad.nl/2017/vmbo-tl/documenten/cse-2/gt-0131-a-17-2-o"
+    }
+  ],
+  [
+    "2017-2-17",
+    "H8",
+    "toepassen",
+    "De cijfers 1 en 2 in bron 17 geven een deel van de rivier weer. Bij 1 is een ander proces overheersend dan bij 2. Waar staan alle begrippen juist?",
+    [
+      "1: benedenloop · 2: bovenloop · overheersend proces bij 1: erosie",
+      "1: benedenloop · 2: bovenloop · overheersend proces bij 1: sedimentatie",
+      "1: bovenloop · 2: benedenloop · overheersend proces bij 1: erosie",
+      "1: bovenloop · 2: benedenloop · overheersend proces bij 1: sedimentatie"
+    ],
+    1,
+    "Punt 1 ligt in de benedenloop; daar is de stroomsnelheid lager en overheerst sedimentatie. Punt 2 ligt in de bovenloop, waar de rivier vooral insnijdt en erosie optreedt.",
+    {
+      "year": 2017,
+      "period": 2,
+      "number": 17,
+      "points": 1,
+      "title": "Bovenloop, benedenloop en erosie",
+      "pages": [
+        {
+          "src": "gt-0131-a-17-2-p15.webp",
+          "page": 15,
+          "refs": [
+            17
+          ]
+        }
+      ],
+      "url": "https://www.examenblad.nl/2017/vmbo-tl/documenten/cse-2/gt-0131-a-17-2-o",
+      "correction": "https://www.examenblad.nl/2017/vmbo-tl/documenten/cse-2/gt-0131-a-17-2-c",
+      "source": "https://www.examenblad.nl/2017/vmbo-tl/documenten/cse-2/gt-0131-a-17-2-o"
+    }
+  ],
+  [
+    "2017-2-19",
+    "H7",
+    "toepassen",
+    "Bekijk bron 19. Het waterschap heeft verschillende taken op het gebied van waterbeheer. Elke foto in bron 19 heeft met één specifieke taak van het waterschap te maken. Waar staan de foto’s 1, 2, 3 en 4 juist bij vier taken van het waterschap?",
+    [
+      "Bevaarbare waterwegen: foto 2 · Veiligheid: foto 1 · Waterkwantiteit: foto 4 · Waterkwaliteit: foto 3",
+      "Bevaarbare waterwegen: foto 2 · Veiligheid: foto 4 · Waterkwantiteit: foto 1 · Waterkwaliteit: foto 3",
+      "Bevaarbare waterwegen: foto 3 · Veiligheid: foto 2 · Waterkwantiteit: foto 4 · Waterkwaliteit: foto 1",
+      "Bevaarbare waterwegen: foto 4 · Veiligheid: foto 2 · Waterkwantiteit: foto 3 · Waterkwaliteit: foto 1",
+      "Bevaarbare waterwegen: foto 4 · Veiligheid: foto 3 · Waterkwantiteit: foto 1 · Waterkwaliteit: foto 2",
+      "Bevaarbare waterwegen: foto 4 · Veiligheid: foto 3 · Waterkwantiteit: foto 2 · Waterkwaliteit: foto 1"
+    ],
+    5,
+    "De taken zijn bevaarbare waterwegen, veiligheid, voldoende water (kwantiteit) en schoon water (kwaliteit). Gebruik de foto’s en herken per foto welk waterbeheer zichtbaar is.",
+    {
+      "year": 2017,
+      "period": 2,
+      "number": 19,
+      "points": 1,
+      "title": "Waterschappen en waterbeheer",
+      "pages": [
+        {
+          "src": "gt-0131-a-17-2-p16.webp",
+          "page": 16,
+          "refs": [
+            19
+          ]
+        }
+      ],
+      "url": "https://www.examenblad.nl/2017/vmbo-tl/documenten/cse-2/gt-0131-a-17-2-o",
+      "correction": "https://www.examenblad.nl/2017/vmbo-tl/documenten/cse-2/gt-0131-a-17-2-c",
+      "source": "https://www.examenblad.nl/2017/vmbo-tl/documenten/cse-2/gt-0131-a-17-2-o"
+    }
+  ],
+  [
+    "2017-2-22",
+    "H7",
+    "toepassen",
+    "Bekijk bron 20. In bron 20 zie je een project dat is uitgevoerd in het kader van ‘Ruimte voor de Rivier’. Welke maatregelen zijn hier uitgevoerd?",
+    [
+      "Aanleggen van een nevengeul en dijkverlegging",
+      "Aanleggen van een nevengeul en uiterwaardvergraving",
+      "Obstakelverwijdering en dijkverlegging",
+      "Obstakelverwijdering en kribverlaging",
+      "Uitbaggeren van de rivierbedding en dijkverlegging",
+      "Uitbaggeren van de rivierbedding en kribverlaging"
+    ],
+    2,
+    "In de nieuwe situatie ligt de dijk verder van de rivier en zijn obstakels uit de uiterwaard verwijderd. Daardoor krijgt de rivier bij hoogwater meer ruimte.",
+    {
+      "year": 2017,
+      "period": 2,
+      "number": 22,
+      "points": 1,
+      "title": "Ruimte voor de Rivier",
+      "pages": [
+        {
+          "src": "gt-0131-a-17-2-p17.webp",
+          "page": 17,
+          "refs": [
+            20
+          ]
+        }
+      ],
+      "url": "https://www.examenblad.nl/2017/vmbo-tl/documenten/cse-2/gt-0131-a-17-2-o",
+      "correction": "https://www.examenblad.nl/2017/vmbo-tl/documenten/cse-2/gt-0131-a-17-2-c",
+      "source": "https://www.examenblad.nl/2017/vmbo-tl/documenten/cse-2/gt-0131-a-17-2-o"
+    }
+  ],
+  [
+    "2017-2-23",
+    "H8",
+    "toepassen",
+    "Lees bron 21. Waar staan de cijfers 1, 2 en 3 van de beschrijvingen uit bron 21 juist bij elke rivier?",
+    [
+      "Chang Jiang: 1 · Huang He: 2 · Xi Jiang: 3",
+      "Chang Jiang: 1 · Huang He: 3 · Xi Jiang: 2",
+      "Chang Jiang: 2 · Huang He: 1 · Xi Jiang: 3",
+      "Chang Jiang: 2 · Huang He: 3 · Xi Jiang: 1",
+      "Chang Jiang: 3 · Huang He: 1 · Xi Jiang: 2",
+      "Chang Jiang: 3 · Huang He: 2 · Xi Jiang: 1"
+    ],
+    0,
+    "De Chang Jiang is de langste rivier en ligt bij de Drie Klovendam; de Huang He is de Gele Rivier; de Xi Jiang mondt uit tussen Macau en Hongkong.",
+    {
+      "year": 2017,
+      "period": 2,
+      "number": 23,
+      "points": 1,
+      "title": "De drie grote rivieren van China",
+      "pages": [
+        {
+          "src": "gt-0131-a-17-2-p18.webp",
+          "page": 18,
+          "refs": [
+            21
+          ]
+        }
+      ],
+      "url": "https://www.examenblad.nl/2017/vmbo-tl/documenten/cse-2/gt-0131-a-17-2-o",
+      "correction": "https://www.examenblad.nl/2017/vmbo-tl/documenten/cse-2/gt-0131-a-17-2-c",
+      "source": "https://www.examenblad.nl/2017/vmbo-tl/documenten/cse-2/gt-0131-a-17-2-o"
+    }
   ]
 ]
