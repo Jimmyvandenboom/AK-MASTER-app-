@@ -87,6 +87,8 @@ try{
  assert.equal(await page.locator('.q5-region').count(),3,'New atlas must show three regions');
  assert.equal(await page.locator('.q5-terrain-svg').count(),3,'Isometric terrain diagrams not rendered');
  assert.ok(await page.getByRole('button',{name:/OP AVONTUUR/}).isVisible(),'Primary adventure action missing');
+ assert.ok(await page.locator('.q5-arcade button[data-action="boss"]').isVisible(),'Chapter Boss must be visible in the learner Game Hub');
+ assert.ok(await page.locator('.q5-arcade button[data-action="repeat"]').isVisible(),'Memory Quest must be visible in the learner Game Hub');
  const globe = page.locator('#quest-globe');
  await globe.scrollIntoViewIfNeeded();
  await page.waitForFunction(() => document.querySelector('#quest-globe').width > 300);
