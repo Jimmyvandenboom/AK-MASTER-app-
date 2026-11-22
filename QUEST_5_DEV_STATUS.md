@@ -67,3 +67,14 @@ De draaibare aarde gebruikt kustgegevens van Natural Earth. Regiokaarten openen 
 - Zeven renderertests zijn rechtstreeks uitgevoerd, inclusief de regressietest voor de nieuwe voortgangsbalk. De Playwright-test bevat nu een controle dat die balk de gesimuleerde voortgang na herladen opnieuw toont. De eerder bevestigde groene workflowrun hoort bij commit `89bbc56`. [Run 45022191126](https://github.com/Jimmyvandenboom/AK-MASTER-app-/actions/runs/45022191126) bevestigt de productiebuild, unit tests en browsertests voor commit `016ea49`. Chromium test de voortgang na herladen. Mobiel WebKit test op 375, 390 en 430 px het beantwoorden van een vraag via aanraking, plus de lobby, regiokaart, theorie, shop en Avatar Studio. De workflow levert vier screenshots op.
 - Een nieuwe controle van Supabase leverde dezelfde totaaltellingen op als de eerdere inventarisatie. RLS is actief op alle zes Quest-tabellen en er zijn geen directe RLS-policies voor deze tabellen. De controle las uitsluitend tabelmetadata en totaaltellingen. Er is geen migratie of databasewijziging uitgevoerd.
 - Toegang gebruikt momenteel een willekeurige herstelcode waarvan de server een hash opslaat. Naam met persoonlijke pincode en begrenzing van aanmeldpogingen moeten nog worden uitgewerkt en getest op een aparte testomgeving. Bestaande herstelcodes moeten bruikbaar blijven.
+
+
+## Leerling- en docentproef
+
+De meest recente groene browserworkflow gebruikte een fictieve leerling en een nagebootste API. De leerling doorliep een meerkeuzevraag met eerst een fout antwoord en daarna het juiste antwoord, leverde een open antwoord in, sloot de browser en ging in een nieuwe browsersessie verder. De herstelcode is ook getest in een lege browsersessie. De proef controleert dat XP, opgeslagen antwoorden, regiovoortgang en de volgende oefenvraag na terugkeer kloppen.
+
+Dezelfde nagebootste klas gaf de docent één testleerling, diens voortgang, XP, actieve oefentijd en opgeslagen open antwoord. De docent wisselde van klas, ververste het overzicht en logde uit. De leerlingtest schreef niet naar de echte Supabase-data en gebruikte geen echt docentaccount.
+
+De eerste Examentrainer Water is toegevoegd. Leerlingen kunnen beschikbare examenvragen per jaar en tijdvak openen, met links naar de volledige opgave en het correctievoorschrift. De browserproef opent een voorbeeldvraag en keert terug naar de lijst. Een complete examendekking 2017–2026 en de grotere 5.0-onderdelen uit het ontwerp zijn nog niet klaar.
+
+[Groene testworkflow](https://github.com/Jimmyvandenboom/AK-MASTER-app-/actions/runs/45032098868) omvat npm-tests, productiebuild, pagina-smoketest en de leerling-, docent- en mobiele browsertests. De screenshots staan als workflow-artifact klaar. Geen echte account- of leerlingrecords zijn voor deze browsertest gebruikt.
