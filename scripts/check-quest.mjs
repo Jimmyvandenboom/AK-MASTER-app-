@@ -37,7 +37,7 @@ try{
  const quiz=[
  {id:'n1',chapter:'H7',skill:'begrip',type:'choice',text:'Wat is een delta?',options:['Een vertakte monding','Een droogmakerij','Een gletsjer','Een krib']},
  {id:'h7_open_01',chapter:'H7',skill:'verklaren',type:'open',text:'Leg uit hoe een rivierdelta ontstaat.',options:null},
- {id:'ce-demo',chapter:'H8',type:'open',skill:'bronvaardigheid',text:'Welke rivier zie je?',source:{year:2026,period:1,number:12,points:1,pages:[],url:'https://example.test/examen',correction:'https://example.test/model'}},
+ {id:'ce-demo',chapter:'H8',type:'open',skill:'bronvaardigheid',text:'Welke rivier zie je?',source:{year:2026,period:1,number:12,points:1,pages:[{src:'gt-0131-a-26-1-p14.webp',page:14,refs:[12]}],url:'https://example.test/examen',correction:'https://example.test/model'}},
  ...['H8','H9'].map((chapter,i)=>({id:chapter+'_test',chapter,skill:'verklaren',type:'open',text:'Leg uit wat debiet is. '+i,options:null}))
  ];
  const handleApi = async route=>{
@@ -185,6 +185,9 @@ try{
  await recoveryPage.getByText('2026 · tijdvak 1 · 0/1 gemaakt').click();
  await recoveryPage.getByRole('button',{name:'Vraag 12 · 1 pt'}).click();
  await recoveryPage.getByRole('heading',{name:'Welke rivier zie je?'}).waitFor();
+ const examSourceImage=recoveryPage.getByRole('img',{name:'Examenbron 12 op pagina 14'});
+ await examSourceImage.waitFor();
+ assert.ok(await examSourceImage.evaluate(img=>img.complete&&img.naturalWidth>0),'The actual exam source image should load');
  await recoveryPage.getByRole('button',{name:/Terug naar examentrainer/}).click();
  await recoveryPage.getByRole('heading',{name:'Examentrainer Water'}).waitFor();
  await recovered.close();
