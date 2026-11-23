@@ -37,7 +37,7 @@ const token=random();const x=await db.from("quest_students").insert({class_id:cl
 if(x.error)return output({error:"Account kon niet worden aangemaakt."},500);
 return output({token,student:x.data,className:cl.data.label});
 }
-if(action==="me"||action==="questions"||action==="answer"||action==="heartbeat"||action==="avatar"||action==="buy"||action==="profile"||action==="cosmetics"||action==="game-badge"||action==="game-start"||action==="open-review"){
+if(action==="me"||action==="questions"||action==="answer"||action==="heartbeat"||action==="avatar"||action==="buy"||action==="profile"||action==="cosmetics"||action==="game-badge"||action==="game-start"||action==="powerup"||action==="open-review"){
 const s=await student(String(body.token||""));if(!s)return output({error:"Sessie onbekend. Gebruik je persoonlijke herstelcode."},401);
 if(action==="open-review"){
   if(!reviewKey)return output({error:"AI-nakijken is nog niet beschikbaar."},503);
@@ -161,6 +161,20 @@ if(action==="game-start"||action==="game-badge"){
   if(run.game!==game||run.until<Date.now()||JSON.stringify(body.answers)!==JSON.stringify(expected))return output({error:"De route klopt niet of de minigame is verlopen."},400);
   const saved=await db.rpc("quest_save_profile",{p_student:s.id,p_patch:{["badge_"+game]:true}});
   return saved.error ? output({error:"Badge kon niet worden opgeslagen."},500) : output({profile:saved.data});
+}
+if(action==="powerup"){
+const question=Q.find(row=>row[0]===String(body.questionId||"")&&Array.isArray(row[4]));
+if(!question)return output({error:"Dit kompas werkt alleen bij een meerkeuzevraag."},400);
+const owned=await db.from("quest_purchases").select("id").eq("student_id",s.id).eq("item_id","compass_hint").maybeSingle();
+if(owned.error)return output({error:"Je collectie kon niet worden gecontroleerd."},503);
+if(!owned.data)return output({error:"Koop eerst het Kompas van inzicht in de shop."},403);
+const used=Array.isArray(s.quest_profile?.usedHints)?s.quest_profile.usedHints:[];
+if(used.includes(question[0]))return output({error:"Je hebt je kompas hint bij deze vraag al gebruikt."},409);
+const removedIndex=question[4].findIndex((_,index)=>index!==question[5]);
+const nextUsed=[...used,question[0]].slice(-600);
+const saved=await db.rpc("quest_save_profile",{p_student:s.id,p_patch:{usedHints:nextUsed}});
+if(saved.error)return output({error:"Je kompas hint kon niet worden opgeslagen."},503);
+return output({removedIndex,profile:{...(s.cosmetics||{}),...(saved.data||{})}});
 }
 if(action==="answer"){
 const id=String(body.questionId||""),q=Q.find(x=>x[0]===id);if(!q)return output({error:"Vraag bestaat niet"},400);

@@ -1,0 +1,39 @@
+name: Quest 5 development checks
+on:
+  push:
+    branches:
+      - feature/gfr-quest-5-foundation
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    if: github.event_name != 'pull_request' || github.head_ref == 'feature/gfr-quest-5-foundation'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Unit tests (including Quest 5)
+        run: npm test
+      - name: Production build (no publishing)
+        run: npm run build
+      - name: Browser test dependencies
+        run: npx playwright install --with-deps chromium webkit
+      - name: Site smoke tests
+        run: npm run test:pages
+      - name: Quest desktop and mobile smoke tests
+        env:
+          QUEST_MOBILE_WEBKIT: '1'
+          QUEST_SCREENSHOTS: quest-review
+        run: node scripts/check-quest.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: quest-visual-review
+          path: quest-review/*.png
+          retention-days: 7

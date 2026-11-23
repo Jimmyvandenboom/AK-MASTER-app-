@@ -11768,5 +11768,505 @@
     "pitfall": "Het antwoord moet het economische belang van Ethiopië uitleggen, niet alleen het nadeel voor Egypte.",
     "statementExplanations": [],
     "rubricNote": "Vergelijk jouw antwoord met het officiële model. Zelfbeoordeling: de app beoordeelt de betekenis van vrije tekst niet automatisch."
+  },
+  {
+    "id": "2017-1-16",
+    "year": 2017,
+    "period": 1,
+    "number": 16,
+    "maxPoints": 1,
+    "kind": "choice",
+    "prompt": "In bron 20 zijn in de legenda drie begrippen vervangen door de cijfers 1, 2 en 3. Waar staan de cijfers 1, 2 en 3 uit de legenda in bron 20 juist bij de drie begrippen?",
+    "options": [
+      {
+        "value": "A",
+        "label": "Stroomgebied: 1 · Stroomstelsel: 2 · Waterscheiding: 3"
+      },
+      {
+        "value": "B",
+        "label": "Stroomgebied: 1 · Stroomstelsel: 3 · Waterscheiding: 2"
+      },
+      {
+        "value": "C",
+        "label": "Stroomgebied: 2 · Stroomstelsel: 1 · Waterscheiding: 3"
+      },
+      {
+        "value": "D",
+        "label": "Stroomgebied: 2 · Stroomstelsel: 3 · Waterscheiding: 1"
+      },
+      {
+        "value": "E",
+        "label": "Stroomgebied: 3 · Stroomstelsel: 1 · Waterscheiding: 2"
+      },
+      {
+        "value": "F",
+        "label": "Stroomgebied: 3 · Stroomstelsel: 2 · Waterscheiding: 1"
+      }
+    ],
+    "table": false,
+    "correct": "C",
+    "expected": {},
+    "officialAnswer": "",
+    "sourcePages": [
+      {
+        "src": "water/gt-0131-a-17-1-p16.webp",
+        "page": 16,
+        "refs": [
+          20
+        ]
+      }
+    ],
+    "questionPage": 16,
+    "sourceUrl": "https://www.examenblad.nl/2017/vmbo-tl/documenten/cse-1/gt-0131-a-17-1-o",
+    "correctionUrl": "https://www.examenblad.nl/2017/vmbo-tl/documenten/cse-1/gt-0131-a-17-1-c",
+    "amendment": null,
+    "theme": "nederland",
+    "title": "Stroomgebied, stelsel en waterscheiding",
+    "explanation": "De omlijnde buitenrand is de waterscheiding (3). Het gebied binnen die grens is het stroomgebied (2); alle rivierarmen samen vormen het stroomstelsel (1).",
+    "pitfall": "Kijk naar wat de lijnen en vlakken in de legenda aanwijzen: grens, afwateringsgebied of riviernetwerk.",
+    "statementExplanations": [],
+    "rubricNote": "Beoordeel je antwoord met het officiële correctievoorschrift.",
+    "distractors": {
+      "A": "Bekijk de bron nog eens en gebruik de uitleg: De omlijnde buitenrand is de waterscheiding (3). Het gebied binnen die grens is het stroomgebied (2); alle rivierarmen samen vormen het stroomstelsel (1).",
+      "B": "Bekijk de bron nog eens en gebruik de uitleg: De omlijnde buitenrand is de waterscheiding (3). Het gebied binnen die grens is het stroomgebied (2); alle rivierarmen samen vormen het stroomstelsel (1).",
+      "D": "Bekijk de bron nog eens en gebruik de uitleg: De omlijnde buitenrand is de waterscheiding (3). Het gebied binnen die grens is het stroomgebied (2); alle rivierarmen samen vormen het stroomstelsel (1).",
+      "E": "Bekijk de bron nog eens en gebruik de uitleg: De omlijnde buitenrand is de waterscheiding (3). Het gebied binnen die grens is het stroomgebied (2); alle rivierarmen samen vormen het stroomstelsel (1).",
+      "F": "Bekijk de bron nog eens en gebruik de uitleg: De omlijnde buitenrand is de waterscheiding (3). Het gebied binnen die grens is het stroomgebied (2); alle rivierarmen samen vormen het stroomstelsel (1)."
+    }
+  },
+  {
+    "id": "2017-1-17",
+    "year": 2017,
+    "period": 1,
+    "number": 17,
+    "maxPoints": 1,
+    "kind": "choice",
+    "prompt": "De stroomsnelheid beïnvloedt hoeveel erosie en sedimentatie er plaatsvindt. Waar staan de juiste letters uit bron 20 bij de grootste erosie en de meeste sedimentatie?",
+    "options": [
+      {
+        "value": "A",
+        "label": "Grootste erosie: P · Meeste sedimentatie: R"
+      },
+      {
+        "value": "B",
+        "label": "Grootste erosie: P · Meeste sedimentatie: S"
+      },
+      {
+        "value": "C",
+        "label": "Grootste erosie: Q · Meeste sedimentatie: P"
+      },
+      {
+        "value": "D",
+        "label": "Grootste erosie: Q · Meeste sedimentatie: R"
+      },
+      {
+        "value": "E",
+        "label": "Grootste erosie: R · Meeste sedimentatie: Q"
+      },
+      {
+        "value": "F",
+        "label": "Grootste erosie: S · Meeste sedimentatie: P"
+      }
+    ],
+    "table": false,
+    "correct": "B",
+    "expected": {},
+    "officialAnswer": "",
+    "sourcePages": [
+      {
+        "src": "water/gt-0131-a-17-1-p16.webp",
+        "page": 16,
+        "refs": [
+          20
+        ]
+      }
+    ],
+    "questionPage": 16,
+    "sourceUrl": "https://www.examenblad.nl/2017/vmbo-tl/documenten/cse-1/gt-0131-a-17-1-o",
+    "correctionUrl": "https://www.examenblad.nl/2017/vmbo-tl/documenten/cse-1/gt-0131-a-17-1-c",
+    "amendment": null,
+    "theme": "nederland",
+    "title": "Erosie en sedimentatie langs de rivier",
+    "explanation": "De stroomsnelheid is groot in de bovenloop en neemt af wanneer de rivier het laagland en de monding nadert. Bij de monding (S) is de meeste sedimentatie; in de bovenloop (P) is de erosie het grootst.",
+    "pitfall": "Erosie is vooral sterk waar water snel stroomt; sedimentatie waar de rivier trager stroomt.",
+    "statementExplanations": [],
+    "rubricNote": "Beoordeel je antwoord met het officiële correctievoorschrift.",
+    "distractors": {
+      "A": "Bekijk de bron nog eens en gebruik de uitleg: De stroomsnelheid is groot in de bovenloop en neemt af wanneer de rivier het laagland en de monding nadert. Bij de monding (S) is de meeste sedimentatie; in de bovenloop (P) is de erosie het grootst.",
+      "C": "Bekijk de bron nog eens en gebruik de uitleg: De stroomsnelheid is groot in de bovenloop en neemt af wanneer de rivier het laagland en de monding nadert. Bij de monding (S) is de meeste sedimentatie; in de bovenloop (P) is de erosie het grootst.",
+      "D": "Bekijk de bron nog eens en gebruik de uitleg: De stroomsnelheid is groot in de bovenloop en neemt af wanneer de rivier het laagland en de monding nadert. Bij de monding (S) is de meeste sedimentatie; in de bovenloop (P) is de erosie het grootst.",
+      "E": "Bekijk de bron nog eens en gebruik de uitleg: De stroomsnelheid is groot in de bovenloop en neemt af wanneer de rivier het laagland en de monding nadert. Bij de monding (S) is de meeste sedimentatie; in de bovenloop (P) is de erosie het grootst.",
+      "F": "Bekijk de bron nog eens en gebruik de uitleg: De stroomsnelheid is groot in de bovenloop en neemt af wanneer de rivier het laagland en de monding nadert. Bij de monding (S) is de meeste sedimentatie; in de bovenloop (P) is de erosie het grootst."
+    }
+  },
+  {
+    "id": "2017-1-22",
+    "year": 2017,
+    "period": 1,
+    "number": 22,
+    "maxPoints": 1,
+    "kind": "choice",
+    "prompt": "Bekijk bron 23. Waardoor hebben polders in West-Nederland veel last van verzilting?",
+    "options": [
+      {
+        "value": "A",
+        "label": "Door bemaling van de polders"
+      },
+      {
+        "value": "B",
+        "label": "Door de infiltratie van oppervlaktewater in de duinen"
+      },
+      {
+        "value": "C",
+        "label": "Door de toenemende neerslag"
+      },
+      {
+        "value": "D",
+        "label": "Door opwaartse stroming van zoet water"
+      }
+    ],
+    "table": false,
+    "correct": "A",
+    "expected": {},
+    "officialAnswer": "",
+    "sourcePages": [
+      {
+        "src": "water/gt-0131-a-17-1-p18.webp",
+        "page": 18,
+        "refs": [
+          23
+        ]
+      }
+    ],
+    "questionPage": 18,
+    "sourceUrl": "https://www.examenblad.nl/2017/vmbo-tl/documenten/cse-1/gt-0131-a-17-1-o",
+    "correctionUrl": "https://www.examenblad.nl/2017/vmbo-tl/documenten/cse-1/gt-0131-a-17-1-c",
+    "amendment": null,
+    "theme": "nederland",
+    "title": "Verzilting in West-Nederland",
+    "explanation": "Door bemaling wordt zoet grondwater afgevoerd en kan zouter grondwater omhoog komen. Daardoor neemt de kans op verzilting in de polders toe.",
+    "pitfall": "Let op het verschil tussen zoet water dat infiltreert in de duinen en zoute kwel in een bemalen polder.",
+    "statementExplanations": [],
+    "rubricNote": "Beoordeel je antwoord met het officiële correctievoorschrift.",
+    "distractors": {
+      "B": "Bekijk de bron nog eens en gebruik de uitleg: Door bemaling wordt zoet grondwater afgevoerd en kan zouter grondwater omhoog komen. Daardoor neemt de kans op verzilting in de polders toe.",
+      "C": "Bekijk de bron nog eens en gebruik de uitleg: Door bemaling wordt zoet grondwater afgevoerd en kan zouter grondwater omhoog komen. Daardoor neemt de kans op verzilting in de polders toe.",
+      "D": "Bekijk de bron nog eens en gebruik de uitleg: Door bemaling wordt zoet grondwater afgevoerd en kan zouter grondwater omhoog komen. Daardoor neemt de kans op verzilting in de polders toe."
+    }
+  },
+  {
+    "id": "2017-2-16",
+    "year": 2017,
+    "period": 2,
+    "number": 16,
+    "maxPoints": 1,
+    "kind": "choice",
+    "prompt": "Bekijk bron 16. Waar staan de cijfers 1, 2 en 3 uit bron 16 juist bij de bronnen van drinkwaterwinning?",
+    "options": [
+      {
+        "value": "A",
+        "label": "Duinwater: 1 · Grondwater: 2 · Oppervlaktewater: 3"
+      },
+      {
+        "value": "B",
+        "label": "Duinwater: 1 · Grondwater: 3 · Oppervlaktewater: 2"
+      },
+      {
+        "value": "C",
+        "label": "Duinwater: 2 · Grondwater: 1 · Oppervlaktewater: 3"
+      },
+      {
+        "value": "D",
+        "label": "Duinwater: 2 · Grondwater: 3 · Oppervlaktewater: 1"
+      },
+      {
+        "value": "E",
+        "label": "Duinwater: 3 · Grondwater: 1 · Oppervlaktewater: 2"
+      },
+      {
+        "value": "F",
+        "label": "Duinwater: 3 · Grondwater: 2 · Oppervlaktewater: 1"
+      }
+    ],
+    "table": false,
+    "correct": "E",
+    "expected": {},
+    "officialAnswer": "",
+    "sourcePages": [
+      {
+        "src": "water/gt-0131-a-17-2-p14.webp",
+        "page": 14,
+        "refs": [
+          16
+        ]
+      }
+    ],
+    "questionPage": 14,
+    "sourceUrl": "https://www.examenblad.nl/2017/vmbo-tl/documenten/cse-2/gt-0131-a-17-2-o",
+    "correctionUrl": "https://www.examenblad.nl/2017/vmbo-tl/documenten/cse-2/gt-0131-a-17-2-c",
+    "amendment": null,
+    "theme": "nederland",
+    "title": "Bronnen van drinkwater",
+    "explanation": "In het cirkeldiagram is grondwater de grootste bron. Het aandeel duinwater is kleiner dan grondwater maar groter dan oppervlaktewater; zo koppel je de cijfers aan de drie bronnen.",
+    "pitfall": "Vergelijk de grootte van de taartpunten en vergeet de categorie ‘overig’ niet.",
+    "statementExplanations": [],
+    "rubricNote": "Beoordeel je antwoord met het officiële correctievoorschrift.",
+    "distractors": {
+      "A": "Bekijk de bron nog eens en gebruik de uitleg: In het cirkeldiagram is grondwater de grootste bron. Het aandeel duinwater is kleiner dan grondwater maar groter dan oppervlaktewater; zo koppel je de cijfers aan de drie bronnen.",
+      "B": "Bekijk de bron nog eens en gebruik de uitleg: In het cirkeldiagram is grondwater de grootste bron. Het aandeel duinwater is kleiner dan grondwater maar groter dan oppervlaktewater; zo koppel je de cijfers aan de drie bronnen.",
+      "C": "Bekijk de bron nog eens en gebruik de uitleg: In het cirkeldiagram is grondwater de grootste bron. Het aandeel duinwater is kleiner dan grondwater maar groter dan oppervlaktewater; zo koppel je de cijfers aan de drie bronnen.",
+      "D": "Bekijk de bron nog eens en gebruik de uitleg: In het cirkeldiagram is grondwater de grootste bron. Het aandeel duinwater is kleiner dan grondwater maar groter dan oppervlaktewater; zo koppel je de cijfers aan de drie bronnen.",
+      "F": "Bekijk de bron nog eens en gebruik de uitleg: In het cirkeldiagram is grondwater de grootste bron. Het aandeel duinwater is kleiner dan grondwater maar groter dan oppervlaktewater; zo koppel je de cijfers aan de drie bronnen."
+    }
+  },
+  {
+    "id": "2017-2-17",
+    "year": 2017,
+    "period": 2,
+    "number": 17,
+    "maxPoints": 1,
+    "kind": "choice",
+    "prompt": "De cijfers 1 en 2 in bron 17 geven een deel van de rivier weer. Bij 1 is een ander proces overheersend dan bij 2. Waar staan alle begrippen juist?",
+    "options": [
+      {
+        "value": "A",
+        "label": "1: benedenloop · 2: bovenloop · overheersend proces bij 1: erosie"
+      },
+      {
+        "value": "B",
+        "label": "1: benedenloop · 2: bovenloop · overheersend proces bij 1: sedimentatie"
+      },
+      {
+        "value": "C",
+        "label": "1: bovenloop · 2: benedenloop · overheersend proces bij 1: erosie"
+      },
+      {
+        "value": "D",
+        "label": "1: bovenloop · 2: benedenloop · overheersend proces bij 1: sedimentatie"
+      }
+    ],
+    "table": false,
+    "correct": "B",
+    "expected": {},
+    "officialAnswer": "",
+    "sourcePages": [
+      {
+        "src": "water/gt-0131-a-17-2-p15.webp",
+        "page": 15,
+        "refs": [
+          17
+        ]
+      }
+    ],
+    "questionPage": 15,
+    "sourceUrl": "https://www.examenblad.nl/2017/vmbo-tl/documenten/cse-2/gt-0131-a-17-2-o",
+    "correctionUrl": "https://www.examenblad.nl/2017/vmbo-tl/documenten/cse-2/gt-0131-a-17-2-c",
+    "amendment": null,
+    "theme": "nederland",
+    "title": "Bovenloop, benedenloop en erosie",
+    "explanation": "Punt 1 ligt in de benedenloop; daar is de stroomsnelheid lager en overheerst sedimentatie. Punt 2 ligt in de bovenloop, waar de rivier vooral insnijdt en erosie optreedt.",
+    "pitfall": "Koppel bovenloop aan sterke erosie en benedenloop aan afnemende stroomsnelheid en sedimentatie.",
+    "statementExplanations": [],
+    "rubricNote": "Beoordeel je antwoord met het officiële correctievoorschrift.",
+    "distractors": {
+      "A": "Bekijk de bron nog eens en gebruik de uitleg: Punt 1 ligt in de benedenloop; daar is de stroomsnelheid lager en overheerst sedimentatie. Punt 2 ligt in de bovenloop, waar de rivier vooral insnijdt en erosie optreedt.",
+      "C": "Bekijk de bron nog eens en gebruik de uitleg: Punt 1 ligt in de benedenloop; daar is de stroomsnelheid lager en overheerst sedimentatie. Punt 2 ligt in de bovenloop, waar de rivier vooral insnijdt en erosie optreedt.",
+      "D": "Bekijk de bron nog eens en gebruik de uitleg: Punt 1 ligt in de benedenloop; daar is de stroomsnelheid lager en overheerst sedimentatie. Punt 2 ligt in de bovenloop, waar de rivier vooral insnijdt en erosie optreedt."
+    }
+  },
+  {
+    "id": "2017-2-19",
+    "year": 2017,
+    "period": 2,
+    "number": 19,
+    "maxPoints": 1,
+    "kind": "choice",
+    "prompt": "Bekijk bron 19. Het waterschap heeft verschillende taken op het gebied van waterbeheer. Elke foto in bron 19 heeft met één specifieke taak van het waterschap te maken. Waar staan de foto’s 1, 2, 3 en 4 juist bij vier taken van het waterschap?",
+    "options": [
+      {
+        "value": "A",
+        "label": "Bevaarbare waterwegen: foto 2 · Veiligheid: foto 1 · Waterkwantiteit: foto 4 · Waterkwaliteit: foto 3"
+      },
+      {
+        "value": "B",
+        "label": "Bevaarbare waterwegen: foto 2 · Veiligheid: foto 4 · Waterkwantiteit: foto 1 · Waterkwaliteit: foto 3"
+      },
+      {
+        "value": "C",
+        "label": "Bevaarbare waterwegen: foto 3 · Veiligheid: foto 2 · Waterkwantiteit: foto 4 · Waterkwaliteit: foto 1"
+      },
+      {
+        "value": "D",
+        "label": "Bevaarbare waterwegen: foto 4 · Veiligheid: foto 2 · Waterkwantiteit: foto 3 · Waterkwaliteit: foto 1"
+      },
+      {
+        "value": "E",
+        "label": "Bevaarbare waterwegen: foto 4 · Veiligheid: foto 3 · Waterkwantiteit: foto 1 · Waterkwaliteit: foto 2"
+      },
+      {
+        "value": "F",
+        "label": "Bevaarbare waterwegen: foto 4 · Veiligheid: foto 3 · Waterkwantiteit: foto 2 · Waterkwaliteit: foto 1"
+      }
+    ],
+    "table": false,
+    "correct": "F",
+    "expected": {},
+    "officialAnswer": "",
+    "sourcePages": [
+      {
+        "src": "water/gt-0131-a-17-2-p16.webp",
+        "page": 16,
+        "refs": [
+          19
+        ]
+      }
+    ],
+    "questionPage": 16,
+    "sourceUrl": "https://www.examenblad.nl/2017/vmbo-tl/documenten/cse-2/gt-0131-a-17-2-o",
+    "correctionUrl": "https://www.examenblad.nl/2017/vmbo-tl/documenten/cse-2/gt-0131-a-17-2-c",
+    "amendment": null,
+    "theme": "nederland",
+    "title": "Waterschappen en waterbeheer",
+    "explanation": "De taken zijn bevaarbare waterwegen, veiligheid, voldoende water (kwantiteit) en schoon water (kwaliteit). Gebruik de foto’s en herken per foto welk waterbeheer zichtbaar is.",
+    "pitfall": "Waterkwantiteit gaat over hoeveel water beschikbaar is; waterkwaliteit gaat over hoe schoon het water is.",
+    "statementExplanations": [],
+    "rubricNote": "Beoordeel je antwoord met het officiële correctievoorschrift.",
+    "distractors": {
+      "A": "Bekijk de bron nog eens en gebruik de uitleg: De taken zijn bevaarbare waterwegen, veiligheid, voldoende water (kwantiteit) en schoon water (kwaliteit). Gebruik de foto’s en herken per foto welk waterbeheer zichtbaar is.",
+      "B": "Bekijk de bron nog eens en gebruik de uitleg: De taken zijn bevaarbare waterwegen, veiligheid, voldoende water (kwantiteit) en schoon water (kwaliteit). Gebruik de foto’s en herken per foto welk waterbeheer zichtbaar is.",
+      "C": "Bekijk de bron nog eens en gebruik de uitleg: De taken zijn bevaarbare waterwegen, veiligheid, voldoende water (kwantiteit) en schoon water (kwaliteit). Gebruik de foto’s en herken per foto welk waterbeheer zichtbaar is.",
+      "D": "Bekijk de bron nog eens en gebruik de uitleg: De taken zijn bevaarbare waterwegen, veiligheid, voldoende water (kwantiteit) en schoon water (kwaliteit). Gebruik de foto’s en herken per foto welk waterbeheer zichtbaar is.",
+      "E": "Bekijk de bron nog eens en gebruik de uitleg: De taken zijn bevaarbare waterwegen, veiligheid, voldoende water (kwantiteit) en schoon water (kwaliteit). Gebruik de foto’s en herken per foto welk waterbeheer zichtbaar is."
+    }
+  },
+  {
+    "id": "2017-2-22",
+    "year": 2017,
+    "period": 2,
+    "number": 22,
+    "maxPoints": 1,
+    "kind": "choice",
+    "prompt": "Bekijk bron 20. In bron 20 zie je een project dat is uitgevoerd in het kader van ‘Ruimte voor de Rivier’. Welke maatregelen zijn hier uitgevoerd?",
+    "options": [
+      {
+        "value": "A",
+        "label": "Aanleggen van een nevengeul en dijkverlegging"
+      },
+      {
+        "value": "B",
+        "label": "Aanleggen van een nevengeul en uiterwaardvergraving"
+      },
+      {
+        "value": "C",
+        "label": "Obstakelverwijdering en dijkverlegging"
+      },
+      {
+        "value": "D",
+        "label": "Obstakelverwijdering en kribverlaging"
+      },
+      {
+        "value": "E",
+        "label": "Uitbaggeren van de rivierbedding en dijkverlegging"
+      },
+      {
+        "value": "F",
+        "label": "Uitbaggeren van de rivierbedding en kribverlaging"
+      }
+    ],
+    "table": false,
+    "correct": "C",
+    "expected": {},
+    "officialAnswer": "",
+    "sourcePages": [
+      {
+        "src": "water/gt-0131-a-17-2-p17.webp",
+        "page": 17,
+        "refs": [
+          20
+        ]
+      }
+    ],
+    "questionPage": 17,
+    "sourceUrl": "https://www.examenblad.nl/2017/vmbo-tl/documenten/cse-2/gt-0131-a-17-2-o",
+    "correctionUrl": "https://www.examenblad.nl/2017/vmbo-tl/documenten/cse-2/gt-0131-a-17-2-c",
+    "amendment": null,
+    "theme": "nederland",
+    "title": "Ruimte voor de Rivier",
+    "explanation": "In de nieuwe situatie ligt de dijk verder van de rivier en zijn obstakels uit de uiterwaard verwijderd. Daardoor krijgt de rivier bij hoogwater meer ruimte.",
+    "pitfall": "Vergelijk de oude en nieuwe situatie en let op de verschoven dijk en het obstakel dat verdwenen is.",
+    "statementExplanations": [],
+    "rubricNote": "Beoordeel je antwoord met het officiële correctievoorschrift.",
+    "distractors": {
+      "A": "Bekijk de bron nog eens en gebruik de uitleg: In de nieuwe situatie ligt de dijk verder van de rivier en zijn obstakels uit de uiterwaard verwijderd. Daardoor krijgt de rivier bij hoogwater meer ruimte.",
+      "B": "Bekijk de bron nog eens en gebruik de uitleg: In de nieuwe situatie ligt de dijk verder van de rivier en zijn obstakels uit de uiterwaard verwijderd. Daardoor krijgt de rivier bij hoogwater meer ruimte.",
+      "D": "Bekijk de bron nog eens en gebruik de uitleg: In de nieuwe situatie ligt de dijk verder van de rivier en zijn obstakels uit de uiterwaard verwijderd. Daardoor krijgt de rivier bij hoogwater meer ruimte.",
+      "E": "Bekijk de bron nog eens en gebruik de uitleg: In de nieuwe situatie ligt de dijk verder van de rivier en zijn obstakels uit de uiterwaard verwijderd. Daardoor krijgt de rivier bij hoogwater meer ruimte.",
+      "F": "Bekijk de bron nog eens en gebruik de uitleg: In de nieuwe situatie ligt de dijk verder van de rivier en zijn obstakels uit de uiterwaard verwijderd. Daardoor krijgt de rivier bij hoogwater meer ruimte."
+    }
+  },
+  {
+    "id": "2017-2-23",
+    "year": 2017,
+    "period": 2,
+    "number": 23,
+    "maxPoints": 1,
+    "kind": "choice",
+    "prompt": "Lees bron 21. Waar staan de cijfers 1, 2 en 3 van de beschrijvingen uit bron 21 juist bij elke rivier?",
+    "options": [
+      {
+        "value": "A",
+        "label": "Chang Jiang: 1 · Huang He: 2 · Xi Jiang: 3"
+      },
+      {
+        "value": "B",
+        "label": "Chang Jiang: 1 · Huang He: 3 · Xi Jiang: 2"
+      },
+      {
+        "value": "C",
+        "label": "Chang Jiang: 2 · Huang He: 1 · Xi Jiang: 3"
+      },
+      {
+        "value": "D",
+        "label": "Chang Jiang: 2 · Huang He: 3 · Xi Jiang: 1"
+      },
+      {
+        "value": "E",
+        "label": "Chang Jiang: 3 · Huang He: 1 · Xi Jiang: 2"
+      },
+      {
+        "value": "F",
+        "label": "Chang Jiang: 3 · Huang He: 2 · Xi Jiang: 1"
+      }
+    ],
+    "table": false,
+    "correct": "A",
+    "expected": {},
+    "officialAnswer": "",
+    "sourcePages": [
+      {
+        "src": "water/gt-0131-a-17-2-p18.webp",
+        "page": 18,
+        "refs": [
+          21
+        ]
+      }
+    ],
+    "questionPage": 18,
+    "sourceUrl": "https://www.examenblad.nl/2017/vmbo-tl/documenten/cse-2/gt-0131-a-17-2-o",
+    "correctionUrl": "https://www.examenblad.nl/2017/vmbo-tl/documenten/cse-2/gt-0131-a-17-2-c",
+    "amendment": null,
+    "theme": "china",
+    "title": "De drie grote rivieren van China",
+    "explanation": "De Chang Jiang is de langste rivier en ligt bij de Drie Klovendam; de Huang He is de Gele Rivier; de Xi Jiang mondt uit tussen Macau en Hongkong.",
+    "pitfall": "Gebruik de herkenningspunten: Drie Klovendam, Lössplateau en de monding tussen Macau en Hongkong.",
+    "statementExplanations": [],
+    "rubricNote": "Beoordeel je antwoord met het officiële correctievoorschrift.",
+    "distractors": {
+      "B": "Bekijk de bron nog eens en gebruik de uitleg: De Chang Jiang is de langste rivier en ligt bij de Drie Klovendam; de Huang He is de Gele Rivier; de Xi Jiang mondt uit tussen Macau en Hongkong.",
+      "C": "Bekijk de bron nog eens en gebruik de uitleg: De Chang Jiang is de langste rivier en ligt bij de Drie Klovendam; de Huang He is de Gele Rivier; de Xi Jiang mondt uit tussen Macau en Hongkong.",
+      "D": "Bekijk de bron nog eens en gebruik de uitleg: De Chang Jiang is de langste rivier en ligt bij de Drie Klovendam; de Huang He is de Gele Rivier; de Xi Jiang mondt uit tussen Macau en Hongkong.",
+      "E": "Bekijk de bron nog eens en gebruik de uitleg: De Chang Jiang is de langste rivier en ligt bij de Drie Klovendam; de Huang He is de Gele Rivier; de Xi Jiang mondt uit tussen Macau en Hongkong.",
+      "F": "Bekijk de bron nog eens en gebruik de uitleg: De Chang Jiang is de langste rivier en ligt bij de Drie Klovendam; de Huang He is de Gele Rivier; de Xi Jiang mondt uit tussen Macau en Hongkong."
+    }
   }
 ]

@@ -1,4 +1,8 @@
 export const items = {
+  "compass_hint": {"icon":"🧭","name":"Kompas van inzicht","price":80,"slot":"powerup","description":"Verwijder één fout antwoord per vraag."},
+  "pet_dikefox": {"icon":"🦊","name":"Dijkvos","price":25,"slot":"pet","description":"Een slimme metgezel voor je waterexpeditie."},
+  "pet_heron": {"icon":"🪶","name":"Blauwe reiger","price":145,"slot":"pet","description":"Spot water en landschap vanaf grote hoogte."},
+  "pet_turtle": {"icon":"🐢","name":"Deltaschildpad","price":195,"slot":"pet","description":"Rustige metgezel die overal mee naartoe gaat."},
   "boots": {"icon":"👟","name":"Expeditielaarzen","price":90,"slot":"footwear"},
   "backpack": {"icon":"🎒","name":"Geo-rugzak","price":160,"slot":"bag"},
   "cap": {"icon":"🧢","name":"Onderzoekerspet","price":210,"slot":"head"},

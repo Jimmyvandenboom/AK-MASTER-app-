@@ -6,9 +6,9 @@ import { grade, canSubmit, readWaterProgress, recordResult, getStats, selectSess
 const questions = JSON.parse(readFileSync(new URL('./questions.json', import.meta.url)));
 const pageReferences = JSON.parse(readFileSync(new URL('../../research/water/question-pages.json', import.meta.url)));
 const find = id => questions.find(q => q.id === id);
-test('alle 245 vragen hebben een unieke bron, sleutel en eigen toelichting', () => {
-  assert.equal(questions.length, 245); assert.equal(new Set(questions.map(q => q.id)).size, 245);
-  assert.equal(questions.reduce((n,q) => n + q.maxPoints, 0), 316);
+test('alle geïmporteerde vragen hebben een unieke bron, sleutel en eigen toelichting', () => {
+  assert.equal(questions.length, 253); assert.equal(new Set(questions.map(q => q.id)).size, 253);
+  assert.equal(questions.reduce((n,q) => n + q.maxPoints, 0), 324);
   for (const q of questions) {
     assert.ok(themes.some(t => t.id === q.theme)); assert.ok(q.explanation.length > 70); assert.ok(q.pitfall.length > 40);
     assert.equal(q.questionPage,pageReferences[q.id],q.id); assert.ok(q.sourcePages.some(page => page.page===q.questionPage),q.id);
@@ -53,7 +53,7 @@ test('herhaling telt niet dubbel en zelfbeoordeling blijft apart', () => {
   let p=readWaterProgress({getItem:()=>null},questions);
   const q=find('2026-2-18'); p=recordResult(p,q,'A',grade(q,'A')); p=recordResult(p,q,'B',grade(q,'B'));
   p=recordResult(p,find('2026-1-22'),'Een wadi',{points:1,method:'self'});
-  const stats=getStats(questions,p.records); assert.deepEqual(stats,{total:244,reviewed:2,retry:0,automatic:1,self:1});
+  const stats=getStats(questions,p.records); assert.deepEqual(stats,{total:252,reviewed:2,retry:0,automatic:1,self:1});
   assert.equal(p.records[q.id].attempts,2);
   assert.deepEqual(readWaterProgress({getItem:()=>JSON.stringify(p)},questions),p);
   assert.ok(!selectSession(questions,p.records,245).includes('2019-1-18'));
@@ -68,7 +68,7 @@ test('beschadigde, ontbrekende en kwaadaardig gevormde opslag crasht niet', () =
 
  test('geografische routes volgen de vraag én bron en behouden opgeslagen antwoorden', () => {
   assert.deepEqual(themes.map(t => t.id), ['nederland', 'china', 'midden-oosten']);
-  assert.deepEqual(Object.fromEntries(themes.map(t => [t.id, questions.filter(q => q.theme === t.id).length])), { nederland: 109, china: 46, 'midden-oosten': 90 });
+  assert.deepEqual(Object.fromEntries(themes.map(t => [t.id, questions.filter(q => q.theme === t.id).length])), { nederland: 116, china: 47, 'midden-oosten': 90 });
   for (const [id, region] of Object.entries({ '2018-1-24': 'china', '2021-1-27': 'midden-oosten', '2023-2-22': 'nederland', '2024-1-24': 'china', '2025-2-25': 'midden-oosten', '2026-2-24': 'nederland', '2026-2-32': 'midden-oosten' })) assert.equal(find(id).theme, region, id);
   const oldProgress = { records: { '2018-1-24': { points: 1, method: 'self', attempts: 2, response: 'Duurzame energie' } }, bookmarks: ['2018-1-24'] };
   const restored = readWaterProgress({ getItem: () => JSON.stringify(oldProgress) }, questions);
