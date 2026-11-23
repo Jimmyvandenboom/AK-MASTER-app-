@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="nl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#080f1c"><title>GFR EXAM QUEST • Water Wars</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap');
+:root{--bg:#07101b;--panel:#101d2c;--panel2:#16283a;--line:#284459;--mint:#66edc7;--blue:#64b8ff;--text:#eff8ff;--muted:#98b1c5;--gold:#ffc76d;--red:#ff8b95}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 75% 0,#133a43 0,transparent 38%),radial-gradient(circle at 0 40%,#102b48 0,transparent 40%),#07101b;color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh}button,input{font:inherit}button{cursor:pointer}button:disabled{opacity:.45;cursor:default}h1,h2,h3,h4{font-family:Outfit,sans-serif;margin:0}h1{font-size:clamp(34px,5vw,64px);line-height:1.03;letter-spacing:-1.6px}h2{font-size:28px}h3{font-size:21px}.muted{color:var(--muted)}.small{font-size:13px}.wrap{max-width:1320px;padding:24px;margin:auto}.top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:30px}.brand{font-family:Outfit;font-weight:900;letter-spacing:2px;font-size:19px}.brand b{color:var(--mint)}.tag{border:1px solid #416b72;background:#19383d;color:#b8ffe8;padding:7px 12px;border-radius:50px;font-size:12px;font-weight:800;letter-spacing:1.2px}.btn{border:none;background:linear-gradient(135deg,#67f3ce,#40bfb4);color:#072725;padding:13px 22px;border-radius:15px;font-weight:900;box-shadow:0 7px 24px #42caa63c}.btn.secondary{background:#1d3448;color:#e4f6ff;border:1px solid #35536a;box-shadow:none}.btn.danger{background:#45272f;color:#ffd1d6;box-shadow:none}.btn.ghost{background:transparent;color:#b9d8ed;box-shadow:none}.row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.card{border:1px solid #28435a;background:linear-gradient(160deg,#132539 0,#0d1b2b 100%);border-radius:25px;box-shadow:0 20px 65px #0003}.pad{padding:26px}.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:26px;align-items:center;min-height:350px;overflow:hidden;padding:38px;position:relative}.eyebrow{text-transform:uppercase;font-size:12px;letter-spacing:2px;font-weight:900;color:var(--mint);margin-bottom:13px}.hero p{line-height:1.7;max-width:520px;color:#b2c9d9}.scene{min-height:290px;position:relative;display:grid;place-items:center;isolation:isolate}.island{position:relative;width:310px;height:190px;background:linear-gradient(140deg,#a9ecb5,#47ae81);border-radius:44% 46% 31% 30%;transform:rotate(-19deg) skewX(9deg);box-shadow:0 22px 0 #276951,0 30px 0 #184934,0 40px 45px #000b;outline:6px solid #2c795a40}.river{position:absolute;inset:0;border:24px solid transparent;border-right-color:#4bb6ed;border-bottom-color:#4bb6ed;border-radius:40% 33% 42% 35%;transform:rotate(12deg)}.scene .build{position:absolute;font-size:54px;filter:drop-shadow(10px 12px 2px #1f5f4933);transform:rotate(19deg)}.build.a{top:2px;left:40px}.build.b{right:50px;top:60px}.build.c{bottom:20px;left:95px}.cloud{position:absolute;font-size:54px;top:5px;right:0;animation:float 5s ease-in-out infinite alternate}.floaty{animation:float 4s ease-in-out infinite alternate}@keyframes float{to{transform:translateY(-13px)}}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.world{padding:25px;min-height:210px;position:relative;overflow:hidden}.world .emoji{font-size:57px;display:block;margin-bottom:20px;filter:drop-shadow(0 9px 14px #0005)}.world p{color:#9fb4c4;font-size:14px;line-height:1.6}.world.lock{filter:saturate(.48);opacity:.68}.world.active{background:linear-gradient(145deg,#194b52,#102940);border-color:#398e95}.world .corner{position:absolute;right:16px;top:16px;font-size:11px;font-weight:900;letter-spacing:1px;color:var(--mint)}.section{margin:35px 0 17px;display:flex;justify-content:space-between;align-items:center;gap:12px}.chapters{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.chapter{border-radius:23px;padding:26px;min-height:225px;border:1px solid #32526a;background:linear-gradient(145deg,#203b4d,#112335);text-align:left;color:var(--text);position:relative;overflow:hidden;transition:transform .2s}.chapter:hover,.chapter:focus-visible{transform:translateY(-4px);outline:2px solid var(--mint)}.chapter .illustration{font-size:74px;text-align:right;margin:0 0 10px;filter:drop-shadow(0 15px 14px #0005)}.chapter .number{letter-spacing:2px;font-weight:800;color:var(--mint);font-size:12px}.progress{background:#203b4a;height:9px;border-radius:100px;overflow:hidden;margin-top:18px}.progress>div{background:linear-gradient(90deg,#53bafa,#63eac6);height:100%;border-radius:100px}.hud{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.pill{border:1px solid #2d4b60;background:#162b3d;padding:9px 13px;border-radius:13px;font-weight:800;font-size:13px}.pill.gold{color:var(--gold)}.pill.mint{color:var(--mint)}.character{display:inline-block;position:relative}.gear{position:absolute;right:-18px;bottom:-8px;white-space:nowrap;font-size:13px;background:#123c44;border-radius:20px;padding:2px 5px;border:1px solid #438d8e}.walker{position:absolute;left:-45px;top:20px;font-size:27px;animation:stepIn .6s ease-out both;filter:drop-shadow(0 5px 6px #0009)}@keyframes stepIn{from{transform:translateY(-20px);opacity:0}to{transform:translateY(0);opacity:1}}.avatar{display:grid;place-items:center;border-radius:50%;background:radial-gradient(circle at 35% 25%,#295d67,#112f46);width:48px;height:48px;border:2px solid #6be8c3;font-size:28px}.panel-grid{display:grid;grid-template-columns:1fr 300px;gap:20px}.path{padding:22px 28px 40px;position:relative}.path-line{height:42px;width:6px;background:repeating-linear-gradient(#65d4cf 0 18px,transparent 18px 30px);margin:auto;opacity:.55}.node{display:flex;align-items:center;justify-content:center;gap:15px;position:relative;margin:15px auto;max-width:490px}.node:nth-child(even){transform:translateX(-60px)}.node:nth-child(odd){transform:translateX(55px)}.orb{height:72px;width:72px;flex:none;border-radius:50%;border:3px solid #56859c;background:linear-gradient(145deg,#285274,#182c44);color:white;font-size:27px;box-shadow:0 7px 0 #0b1b2a,0 12px 19px #0005}.orb.done{background:linear-gradient(145deg,#68dfbd,#1b8179);border-color:#a5ffe6}.orb.next{background:linear-gradient(145deg,#ffcf72,#e58a62);border-color:#fff0ae;animation:pulse 2s infinite}@keyframes pulse{50%{box-shadow:0 7px 0 #5d3129,0 0 0 12px #ffc36f14}}.node-label{min-width:145px;font-size:13px;color:#adc6d7;font-weight:700}.sidecard{padding:22px;margin-bottom:18px}.sidecard h3{margin-bottom:14px}.video{display:block;color:#b9ebff;padding:10px 0;text-decoration:none;border-bottom:1px solid #26455a;font-size:13px}.video:hover{text-decoration:underline}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.stat{padding:20px;border:1px solid #294a60;background:#112536;border-radius:18px}.stat strong{display:block;font-family:Outfit;font-size:30px;margin-bottom:6px}.stat span{color:#aac0d2;font-size:13px}.screen{max-width:860px;margin:34px auto}.qbox{padding:35px}.qbox .question{font-size:clamp(22px,3vw,29px);margin:23px 0;line-height:1.35}.option{display:flex;gap:14px;align-items:center;text-align:left;padding:16px;border:1px solid #355269;background:#192d40;border-radius:15px;margin:11px 0;width:100%;color:#e6f4ff;font-weight:700}.option:hover{border-color:var(--mint)}.option.selected{border-color:var(--mint);background:#234b4c}.letter{border:1px solid #46657b;border-radius:10px;width:34px;height:34px;display:grid;place-items:center;flex:none}.answer{width:100%;background:#122435;border:1px solid #46657b;border-radius:14px;color:#fff;font:inherit;padding:18px;min-height:120px;resize:vertical}.feedback{padding:20px;border-radius:15px;background:#153b41;border:1px solid #377b6c;line-height:1.65}.feedback.bad{background:#36272d;border-color:#81484f}.store{display:grid;grid-template-columns:repeat(2,1fr);gap:13px}.storeitem{background:#132b3b;border:1px solid #345065;border-radius:16px;padding:18px}.storeitem .icon{font-size:36px;margin-bottom:8px}.overlay{position:fixed;inset:0;background:#020a11dd;display:flex;align-items:center;justify-content:center;z-index:20;padding:18px;backdrop-filter:blur(7px)}.modal{max-width:520px;width:100%;padding:35px}.input{width:100%;border:1px solid #476278;border-radius:13px;padding:15px;background:#0f2434;color:white;margin:9px 0 15px;outline-color:var(--mint)}.error{color:#ffb4bb;margin:10px 0}.subline{font-size:12px;color:#9fb7c7;line-height:1.6}.tabs{display:flex;gap:9px;margin-bottom:20px;flex-wrap:wrap}.tab{padding:10px 18px;border-radius:12px;border:1px solid #35546b;background:#172e40;color:#c5dfec;font-weight:800}.tab.on{color:#0f3433;background:var(--mint)}.teacher-table{width:100%;border-collapse:collapse;min-width:670px}.teacher-table th,.teacher-table td{padding:13px;border-bottom:1px solid #274153;text-align:left;font-size:13px}.teacher-table th{color:#98c6d0}.table-scroll{overflow:auto}footer{text-align:center;color:#668399;font-size:12px;padding:36px}a{color:#6ad7ef} .hide{display:none!important}@media(max-width:850px){.hero{grid-template-columns:1fr;padding:26px}.scene{min-height:240px}.grid3,.chapters{grid-template-columns:1fr}.panel-grid{grid-template-columns:1fr}.wrap{padding:14px}.top{align-items:start}.hud{gap:5px}.pill{font-size:11px;padding:8px}.node:nth-child(even),.node:nth-child(odd){transform:none}.stats{grid-template-columns:1fr}.path{padding:16px}.qbox{padding:22px}.scene .island{transform:scale(.8) rotate(-19deg) skewX(9deg)}}
+</style><link rel="stylesheet" href="./globe.css"><link rel="stylesheet" href="./levelmap.css"><style id="quest-theme">
+#theme-toggle{white-space:nowrap;display:inline-flex;align-items:center;gap:7px;font-size:13px}
+html[data-theme="light"]{color-scheme:light;--bg:#f6f5ef;--panel:#fffef9;--panel2:#eaf0e7;--line:#cad8cf;--mint:#216b57;--blue:#286b8c;--text:#233a35;--muted:#4c665f;--gold:#80551a;--red:#a83f4d}
+html[data-theme="light"] body{background:radial-gradient(ellipse at 80% 0%,#e3eddf,transparent 48%),#f6f5ef;color:var(--text)}
+html[data-theme="light"] body:before{opacity:.15;background-image:radial-gradient(#8ba99b 1px,transparent 1px)}
+html[data-theme="light"] .top{border-color:#cbd9ce}
+html[data-theme="light"] .card,html[data-theme="light"] .qbox{background:#fffefa;border-color:#d4ded5;box-shadow:0 12px 38px #35524412}
+html[data-theme="light"] .btn{background:#bde4d2;color:#204b3e;box-shadow:0 5px 14px #51866b22}
+html[data-theme="light"] .btn.secondary,html[data-theme="light"] .tab,html[data-theme="light"] .zone-switcher button{background:#e9eee7;color:#304d42;border-color:#c3d3c7;box-shadow:none}
+html[data-theme="light"] .btn.ghost{background:transparent;color:#35594c;box-shadow:none}
+html[data-theme="light"] .btn.danger{background:#f5dadd;color:#883743}
+html[data-theme="light"] .tag,html[data-theme="light"] .pill,html[data-theme="light"] .stat,html[data-theme="light"] .storeitem{background:#edf3e9;color:#35594c;border-color:#cbd9ce}
+html[data-theme="light"] .pill.gold{color:var(--gold)}
+html[data-theme="light"] .pill.mint{color:var(--mint)}
+html[data-theme="light"] .hero p,html[data-theme="light"] .world p,html[data-theme="light"] .stat span,html[data-theme="light"] .subline,html[data-theme="light"] .node-label,html[data-theme="light"] .video,html[data-theme="light"] .qbox:before,html[data-theme="light"] footer,html[data-theme="light"] .teacher-table th,html[data-theme="light"] .expedition-status .micro{color:var(--muted)}
+html[data-theme="light"] .world.active,html[data-theme="light"] .expedition-status{background:#e0eee5;border-color:#b6d2c3}
+html[data-theme="light"] .chapter{background:#dcece3;color:var(--text);border-color:#bdcfc3;box-shadow:0 8px 22px #35524415}
+html[data-theme="light"] .chapter:nth-child(2){background:#e4eaf5}
+html[data-theme="light"] .chapter:nth-child(3){background:#f4e4cc}
+html[data-theme="light"] .future-portal{box-shadow:none;border-color:#d0d9ce}
+html[data-theme="light"] .future-portal.climate{background:linear-gradient(130deg,#dfeae0,#e1edf5)}
+html[data-theme="light"] .future-portal.city{background:linear-gradient(130deg,#f2e3ca,#eee5ed)}
+html[data-theme="light"] .future-portal:after{background:#ffffffa6;color:#435b51}
+html[data-theme="light"] .option,html[data-theme="light"] .answer,html[data-theme="light"] .input{background:#f8faf6;color:var(--text);border-color:#becfc4}
+html[data-theme="light"] .option.selected,html[data-theme="light"] .tab.on,html[data-theme="light"] .zone-switcher button.on{background:#cce9dc;color:#204b3e;border-color:#75ad93}
+html[data-theme="light"] .letter,html[data-theme="light"] .teacher-table td,html[data-theme="light"] .teacher-table th,html[data-theme="light"] .video{border-color:#cbd9ce}
+html[data-theme="light"] .feedback{background:#e1f1e6;border-color:#a7cdb3}
+html[data-theme="light"] .feedback.bad{background:#f9e4e5;border-color:#dcacb1}
+html[data-theme="light"] .error{color:#a83f4d}
+html[data-theme="light"] .overlay{background:#344c4966}
+html[data-theme="light"] .progress{background:#d5e2d8}
+html[data-theme="light"] .path{background:linear-gradient(145deg,#e0eddf,#dcecf0);border-color:#b7cfc2}
+html[data-theme="light"] .globe-stage{background:radial-gradient(ellipse at 50% 45%,#dceef4,#eaf2ec 65%,#edf3e9);border-color:#bdd4d1;box-shadow:0 12px 35px #35524418}
+html[data-theme="light"] .globe-info h1{text-shadow:0 2px 10px #ffffffbb}
+html[data-theme="light"] .globe-info p,html[data-theme="light"] .globe-info .eyebrow,html[data-theme="light"] .globe-info .holo,html[data-theme="light"] .globe-caption,html[data-theme="light"] .globe-guide{color:#315e55}
+html[data-theme="light"] .globe-dest{background:#fffffff0;color:#29483d;border-color:#bcd1c7;box-shadow:0 6px 18px #35524419}
+html[data-theme="light"] .globe-dest:hover,html[data-theme="light"] .globe-dest.selected{background:#d8eee2;border-color:#78aa91}
+html[data-theme="light"] .globe-dest small{color:#4b665c}
+html[data-theme="light"] .quest-map-shell{box-shadow:0 12px 28px #35524422;border-color:#b6d0c2}
+html[data-theme="light"] .quest-map-shell:after{background:linear-gradient(0deg,#e9f1e24d,transparent 25%,transparent 75%,#ffffff26)}
+html[data-theme="light"] .map-point .map-label,html[data-theme="light"] .map-flag{background:#fffef5e8;color:#29483d;border-color:#b8cfc3}
+html[data-theme="light"] a{color:#286b8c}
+@media(max-width:850px){.top{flex-wrap:wrap}#theme-toggle{padding:9px 12px}}
+</style><script>(function(){var theme='dark';try{theme=localStorage.getItem('gfrq_theme')==='light'?'light':'dark'}catch(e){}document.documentElement.dataset.theme=theme;window.questTheme=function(toggle){if(toggle){theme=theme==='light'?'dark':'light';try{localStorage.setItem('gfrq_theme',theme)}catch(e){}}document.documentElement.dataset.theme=theme;var m=document.querySelector('meta[name="theme-color"]');if(m)m.content=theme==='light'?'#f6f5ef':'#080f1c';var b=document.getElementById('theme-toggle');if(b){b.textContent=theme==='light'?'☾ Dark mode':'☀ Light mode';b.setAttribute('aria-pressed',String(theme==='dark'));b.setAttribute('aria-label',theme==='dark'?'Schakel lichte modus in':'Schakel donkere modus in')}};window.questTheme(false)})();</script><style id="quest-v3">.character .pet{position:absolute;left:-22px;top:-11px;font-size:18px;background:var(--panel);border:1px solid var(--line);border-radius:50%;width:26px;height:26px;display:grid;place-items:center}.top{position:sticky;top:0;z-index:12;background:var(--bg);border-radius:0 0 16px 16px}.v3-nav{position:sticky;bottom:0;z-index:11;display:flex;justify-content:center;gap:8px;padding:10px;background:var(--panel);border:1px solid var(--line);border-radius:17px;margin-top:20px}.v3-nav button{font:700 13px 'DM Sans',sans-serif;background:var(--panel2);color:var(--text);border:1px solid var(--line);border-radius:12px;padding:10px;flex:1;max-width:170px}html[data-quest-backdrop="boots"] body{background-image:linear-gradient(125deg,#7bab8b55,transparent 80%)}html[data-quest-backdrop="backpack"] body{background-image:linear-gradient(125deg,#679bc455,transparent 80%)}html[data-quest-backdrop="cap"] body{background-image:linear-gradient(125deg,#d7b57966,transparent 80%)}html[data-quest-backdrop="board"] body{background-image:linear-gradient(125deg,#b68cb955,transparent 80%)}html[data-quest-backdrop="glow"] body{background-image:linear-gradient(125deg,#d8b34e77,transparent 80%)}</style><style>
+.option.eliminated { opacity: .45; text-decoration: line-through; }
+</style></head><body><div id="app"></div>
+<script src="./globe.js" defer></script><link rel="stylesheet" href="./game.css"><link rel="stylesheet" href="./v5-lobby.css">
+<script type="module">
+import {items,avatars,avatarColors,pass,dailyItems,dayNumber,legacyBackdrops} from './catalog.js';
+import {theoryPanel} from './theory.js';
+import {rareCollection} from './collection.js';
+import {examTrainer} from './exam-trainer.js';
+import {expedition} from './expedition.js';
+import {quest5Home} from './v5-lobby.js';
+const base='https://lcixyqpuzvpfyrxyctxc.supabase.co',api=base+'/functions/v1/exam-quest-preview',publicKey='sb_publishable_idWdSnjZWZbV2etfvlXbhw_eJPaJ5mx';
+const $=document.querySelector.bind(document),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let globeCleanup=null;
+let answerSound=localStorage.getItem('gfrq_answer_sound')!=='off';
+const AudioContextClass=window.AudioContext||window.webkitAudioContext;
+const soundLabel=()=>answerSound?'🔊 Geluid':'🔇 Geluid';
+let answerAudio, answerClips, playingClip;
+function prepareAnswerSound(){
+ if(!AudioContextClass||!answerSound)return;
+ try{
+  answerAudio??=new AudioContextClass();
+  if(answerAudio.state==='suspended')void answerAudio.resume().catch(()=>{});
+  answerClips??=Promise.all(['no','yes'].map(async word=>{
+   const response=await fetch(new URL('./audio/'+word+'.mp3',document.baseURI));
+   return answerAudio.decodeAudioData(await response.arrayBuffer());
+  })).catch(()=>null);
+ }catch{
+  // The quiz remains playable if sound is unavailable.
+ }
+}
+async function playAnswerSound(correct){
+ if(!answerSound||typeof correct!=='boolean')return;
+ const clips=await answerClips;
+ if(!answerSound||!clips)return;
+ playingClip?.stop();
+ const clip=answerAudio.createBufferSource();
+ clip.buffer=clips[Number(correct)];
+ clip.connect(answerAudio.destination);
+ clip.onended=()=>{if(playingClip===clip)playingClip=null;};
+ clip.start();
+ playingClip=clip;
+}
+const state={token:localStorage.getItem('gfrq_token'),student:null,attempts:[],purchases:[],profile:{},solved:[],pirate:false,questions:[],chapter:'H7',zone:0,view:'home',current:null,chosen:null,result:null,lastAnswer:null,reviews:{},boss:null,teacher:null,teacherData:null,teacherClassId:null,hintRemoved:null,examPage:0};
+const chapters={H7:{title:'Delta Defender',sub:'Water in Nederland',emoji:'🏡',bg:'Polders · rivieren · zeewering',video:[['Rivierenlandschap in Nederland','https://www.youtube.com/watch?v=rIzIIi7qekI&t=3079s'],['Zomerdijk en winterdijk','https://www.youtube.com/watch?v=rIzIIi7qekI&t=3165s']]},H8:{title:'Dragon River',sub:'Water in China',emoji:'🐉',bg:'Stuwdammen · debiet · regiem',video:[['Chinese rivieren','https://www.youtube.com/watch?v=rIzIIi7qekI&t=767s'],['Verzilting en stuwdammen','https://www.youtube.com/watch?v=rIzIIi7qekI&t=1142s']]},H9:{title:'Desert Survival',sub:'Water in het Midden-Oosten',emoji:'🏜️',bg:'Oases · irrigatie · waterconflicten',video:[['Uitleg waterconflicten: zoekopdracht','https://www.youtube.com/results?search_query=aardrijkskunde+vmbo+water+Midden+Oosten+waterconflicten']]}};
+async function call(action,data={}){const r=await fetch(api,{method:'POST',headers:{'Content-Type':'application/json',...(action==='teacher'&&state.teacher?{'Authorization':'Bearer '+state.teacher}:{})},body:JSON.stringify({action,...data})});const x=await r.json();if(!r.ok)throw Object.assign(Error(x.error||'Verbinding mislukt'),{status:r.status});return x;}
+const count=q=>state.solved.includes(q.id), tried=q=>state.attempts.some(a=>a.question_id===q.id);
+const done=ch=>state.questions.filter(q=>q.chapter===ch&&count(q)).length;
+
+const uniqueGood=()=>state.solved;
+const hasPirate=()=>state.pirate;
+const bonusReady=()=>uniqueGood().length>=3;
+const symbols=['⚓','💧','🧭','🐚'];
+let bonus=null;
+function bonusRound(round){Object.assign(bonus,{round,seq:bonus.rounds[round],picks:[],pos:0,show:true})}
+const bonusButton=()=>'<div class="card pad game-panel"><h3>Minigames</h3><p class="muted">'+(bonusReady()?'Kies een game en verdien een badge.':'Maak drie verschillende gesloten vragen goed om de games vrij te spelen.')+'</p><div class="row"><button class="btn" data-action="bonus-start" '+(!bonusReady()?'disabled':'')+'>Captain’s Memory</button><button class="btn secondary" data-action="bonus-river" '+(!bonusReady()?'disabled':'')+'>Rivierroute</button></div></div>';
+function bonusModal(){
+ if(!bonus)return '';
+ const route=bonus.routes?.[bonus.round];
+ const body=bonus.won?'<p>🏆 Badge verdiend!</p><button class="btn" data-action="bonus-close">Terug naar Quest</button>':bonus.game==='river'
+  ?'<p>Ronde '+(bonus.round+1)+' / 3</p><p>'+route.question+'</p>'+(bonus.missed?'<p role="status">Probeer de andere route.</p>':'')+route.options.map((label,i)=>'<button class="option" data-action="bonus-route-pick" data-val="'+i+'">'+label+'</button>').join('')
+  :'<p>Ronde '+(bonus.round+1)+' / 3 · Onthoud de symbolen op volgorde.</p><div class="memory-sequence">'+bonus.seq.map((v,i)=>'<span>'+(bonus.show||i<bonus.pos?symbols[v]:'◇')+'</span>').join('')+'</div>'+(bonus.show?'<button class="btn" data-action="bonus-hide">Ik heb het onthouden</button>':'<div class="row">'+symbols.map((v,i)=>'<button class="btn secondary" data-action="bonus-pick" data-val="'+i+'">'+v+'</button>').join('')+'</div>');
+ return '<div class="overlay game-overlay"><div class="card modal" role="dialog" aria-modal="true" aria-labelledby="game-title"><div class="row"><h2 id="game-title">'+(bonus.game==='river'?'Rivierroute':'Captain’s Memory')+'</h2><button class="btn ghost" data-action="bonus-close" aria-label="Sluiten">✕</button></div>'+body+'</div></div>';
+}
+async function bonusAction(a,el){
+ if(a==='bonus-close'){bonus=null;paint();return}
+ if(!bonusReady())return;
+ if(a==='bonus-start'||a==='bonus-river'){
+  const game=a==='bonus-start'?'memory':'river';
+  const run=await call('game-start',{token:state.token,game});
+  bonus={...run,game,round:0,answers:[]};
+  if(game==='memory')bonusRound(0);
+ }
+ else if(!bonus||bonus.won)return;
+ else if(a==='bonus-hide'){bonus.show=false;bonus.pos=0}
+ else {
+  const selection=Number(el.dataset.val);
+  let roundWon=false;
+  if(a==='bonus-route-pick'){
+   roundWon=selection===[0,1,0][bonus.round];
+   bonus.missed=!roundWon;
+  }else if(a==='bonus-pick'&&!bonus.show){
+   if(selection!==bonus.seq[bonus.pos]){bonus.pos=0;bonus.picks=[];bonus.show=true}
+   else {bonus.picks.push(selection);roundWon=++bonus.pos===bonus.seq.length;}
+  }
+  if(roundWon){
+   bonus.answers[bonus.round]=bonus.game==='memory'?bonus.picks:selection;
+   if(bonus.round===2){
+    try{state.profile=(await call('game-badge',{token:state.token,game:bonus.game,rules:bonus.rules,signature:bonus.signature,answers:bonus.answers})).profile;}
+    catch(error){bonus=null;paint();throw error;}
+    bonus.won=true;
+   }else if(bonus.game==='memory')bonusRound(bonus.round+1);
+   else bonus.round++;
+  }
+ }
+ paint();
+}
+const pirateCollection=()=>'<div class="section"><h3>Jouw collectie</h3></div><div class="store"><div class="storeitem"><div class="icon">🏆</div><h3>Minigamebadges</h3><p>'+[state.profile.badge_memory?'Captain’s Memory':'',state.profile.badge_river?'Rivierroute':''].filter(Boolean).join(' · ').replace(/^$/,'Nog geen badges')+'</p></div><div class="storeitem"><div class="icon">'+(hasPirate()?'🏴‍☠️':'🔒')+'</div><h3>Pirate Token</h3><p>'+(hasPirate()?'In je collectie':'Ultra rare · 1 op 500 per eerste goede vraag')+'</p></div></div>';
+
+function streakV3(){
+ const days=new Set(state.attempts.map(a=>dayNumber(new Date(a.created_at))));
+ let day=dayNumber(),streak=0;
+ if(!days.has(day))day--;
+ while(days.has(day--))streak++;
+ return streak;
+}
+function correctRun(){
+ let streak=0;
+ for(const answer of state.attempts){
+  if(answer.is_correct===null)continue;
+  if(!answer.is_correct)break;
+  streak++;
+ }
+ return streak;
+}
+const passRank=()=>Math.min(pass.length,Math.floor((state.student?.xp||0)/180));
+const unlockedItems=()=>[
+ ...state.purchases.filter(id=>items[id]).map(id=>({id,...items[id]})),
+ ...pass.filter(reward=>state.student?.xp>=reward.xp),
+];
+const backdropColor=id=>unlockedItems().find(item=>item.id===id)?.color||(state.purchases.includes(id)?legacyBackdrops[id]:'');
+function applyV3(){
+ const tint=state.student?backdropColor(state.profile.bg):'';
+ document.documentElement.classList.toggle('custom-backdrop',!!tint);
+ document.documentElement.style.setProperty('--backdrop-tint',tint||'transparent');
+ document.documentElement.style.setProperty('--avatar-accent',avatarColors[state.profile.color]||avatarColors.mint);
+}
+function passView(){
+ const rank=passRank(),xp=rank===pass.length?180:state.student.xp%180;
+ return '<div class="screen card pad"><h1>Battle Pass</h1><p class="muted">Gratis voor iedereen. Elke 180 XP komt een exclusieve beloning vrij in de Avatar Studio.</p><div class="progress" role="progressbar" aria-label="XP tot volgend niveau" aria-valuemin="0" aria-valuemax="180" aria-valuenow="'+xp+'"><div style="width:'+xp/180*100+'%"></div></div><p>Level '+rank+' · '+(rank===pass.length?'Alle beloningen vrijgespeeld':xp+' / 180 XP')+'</p><div class="store">'+pass.map((reward,i)=>'<article class="storeitem"><div class="icon">'+reward.icon+'</div><h3>'+reward.name+'</h3><p>'+(rank>i?'✓ In je collectie':'🔒 '+reward.xp+' XP')+'</p></article>').join('')+'</div><button class="btn secondary" data-action="studio-v3">Open Avatar Studio</button></div>';
+}
+function avatarView(){
+ const owned=unlockedItems();
+ const gear=owned.filter(item=>item.slot!=='background'&&item.slot!=='powerup'&&item.slot!=='pet');
+ const pets=owned.filter(item=>item.slot==='pet');
+ const powerups=owned.filter(item=>item.slot==='powerup');
+ const scenes=owned.filter(item=>item.slot==='background').concat(owned.filter(item=>legacyBackdrops[item.id]).map(item=>({...item,name:item.name+'-thema',color:legacyBackdrops[item.id]})));
+ return '<div class="screen card pad"><h1>Avatar Studio</h1><div class="avatar studio-preview" '+(backdropColor(state.profile.bg)?'style="--preview-tint:'+backdropColor(state.profile.bg)+'"':'')+'>'+avatar()+'</div><h3>Karakter</h3><div class="row">'+Object.entries(avatars).map(([id,icon])=>'<button class="orb '+(state.student.avatar===id?'done':'')+'" data-action="avatar" data-avatar="'+id+'" aria-pressed="'+(state.student.avatar===id)+'" aria-label="Karakter '+id+'">'+icon+'</button>').join('')+'</div><h3>Accentkleur</h3><div class="row">'+Object.keys(avatarColors).map(id=>'<button class="btn secondary" data-action="color-v3" data-id="'+id+'" aria-pressed="'+((state.profile.color||'mint')===id)+'">'+({mint:'Mint',blue:'Blauw',purple:'Paars',gold:'Goud'}[id])+'</button>').join('')+'</div><h3>Uitrusting</h3><div class="store">'+gear.map(item=>'<article class="storeitem"><div class="icon">'+item.icon+'</div><h3>'+item.name+'</h3><button class="btn secondary" data-action="equip-v3" data-id="'+item.id+'" aria-pressed="'+!!state.profile.gear?.includes(item.id)+'">'+(state.profile.gear?.includes(item.id)?'Uitdoen':'Aantrekken')+'</button></article>').join('')+'</div>'+(!gear.length?'<p class="muted">Verdien uitrusting met de Battle Pass of in de winkel.</p>':'')+(pets.length?'<h3>Metgezellen</h3><p class="muted">Kies een dier dat met je meereist. Je keuze wordt bij je profiel bewaard.</p><div class="store">'+pets.map(item=>'<article class="storeitem"><div class="icon">'+item.icon+'</div><h3>'+item.name+'</h3><p class="muted">'+item.description+'</p><button class="btn secondary" data-action="equip-v3" data-id="'+item.id+'" aria-pressed="'+!!state.profile.gear?.includes(item.id)+'">'+(state.profile.gear?.includes(item.id)?'Metgezel meenemen':'Kies als metgezel')+'</button></article>').join('')+'</div>':'')+(powerups.length?'<h3>Game-upgrades</h3><div class="store">'+powerups.map(item=>'<article class="storeitem"><div class="icon">'+item.icon+'</div><h3>'+item.name+'</h3><p class="muted">'+item.description+'</p></article>').join('')+'</div>':'')+'<h3>Achtergrond</h3><div class="store">'+scenes.map(item=>'<article class="storeitem"><div class="scene-preview" style="--scene-color:'+item.color+'">'+item.icon+'</div><h3>'+item.name+'</h3><button class="btn secondary" data-action="bg-v3" data-id="'+item.id+'" aria-pressed="'+(item.id===state.profile.bg)+'">'+(item.id===state.profile.bg?'Actief':'Kies achtergrond')+'</button></article>').join('')+'</div><div class="row"><button class="btn ghost" data-action="bg-v3" data-id="">Standaardachtergrond</button><button class="btn secondary" data-action="store">Open Daily Shop</button></div></div>';
+}
+const v3Nav=()=>state.student&&state.view!=='teacher'?'<nav class="v3-nav" aria-label="Game navigatie"><button data-action="home">🌍 Wereld</button><button data-action="store">🛍️ Shop</button><button data-action="studio-v3">👤 Avatar</button></nav>':'';
+function questionArt(q){
+ if(!q.source)return '';
+ const source=q.source;
+ return '<details class="exam-source" open><summary>Examenbron · '+source.year+' · tijdvak '+source.period+' · vraag '+source.number+' · '+source.points+' pt</summary>'+source.pages.map(page=>'<figure><a href="../water/'+esc(page.src)+'" target="_blank" rel="noopener"><img src="../water/'+esc(page.src)+'" alt="Examenbron '+esc(page.refs.join(', '))+' op pagina '+page.page+'"></a><figcaption>Pagina '+page.page+' · Tik op de afbeelding om in te zoomen</figcaption></figure>').join('')+'<p><a href="'+esc(source.url)+'" target="_blank" rel="noopener">Volledige opgave op Examenblad</a>'+(state.result?' · <a href="'+esc(source.correction)+'" target="_blank" rel="noopener">Correctievoorschrift</a>':'')+'</p></details>';
+}
+const avatar=()=>'<span class="character">'+(avatars[state.student?.avatar]||'🧑‍🚀')+'<small class="gear">'+unlockedItems().filter(item=>state.profile.gear?.includes(item.id)&&item.slot!=='pet').map(item=>item.icon).join('')+'</small>'+unlockedItems().filter(item=>state.profile.gear?.includes(item.id)&&item.slot==='pet').map(item=>'<small class="pet" aria-label="Metgezel: '+esc(item.name)+'">'+item.icon+'</small>').join('')+'</span>';
+const head=()=>'<header class="top"><div class="brand">GFR <b>EXAM QUEST</b> <span class="tag">4TL • SE WATER</span></div><div class="hud">'+(state.student?'<div class="avatar">'+avatar()+'</div><span class="pill">'+esc(state.student.first_name)+'</span><span class="pill gold">⭐ '+state.student.xp+' XP</span><span class="pill gold">🪙 '+state.student.coins+'</span><span class="pill mint">🔥 '+streakV3()+' dagen · '+correctRun()+' goed</span><span class="pill">🏆 Tier '+passRank()+'</span>'+(hasPirate()?'<span class="pill gold">🏴‍☠️ Pirate Token</span>':'')+(state.view==='home'?'<button class="btn shop-shortcut" data-action="store">🛍️ Open de shop</button>':'')+(AudioContextClass?'<button class="btn secondary" data-action="sound" aria-pressed="'+answerSound+'">'+soundLabel()+'</button>':''):'')+'<button id="theme-toggle" class="btn secondary" type="button" data-action="theme">☀ Light mode</button><button class="btn ghost" data-action="code">🔑 Mijn code</button><button class="btn secondary" data-action="teacher">👨‍🏫 Docent</button></div></header>';
+const heroScene=()=>'<div class="scene"><div class="cloud">☁️</div><div class="island floaty"><div class="river"></div><span class="build a">🏠</span><span class="build b">🌳</span><span class="build c">🌊</span></div></div>';
+const legacyHome=()=>'<div class="globe-stage"><canvas id="quest-globe" aria-label="Draaibare wereldbol met locaties Nederland, China en Midden-Oosten"></canvas><div class="globe-info"><div class="eyebrow">● SE WATER 23 NOVEMBER</div><h1>THE WORLD<br><span style="color:#7dffe3">IS YOURS.</span></h1><p>Stap op de wereldbol. Reis naar drie watergebieden, verzamel kennis en bereid je voor op het schoolexamen.</p><div class="holo">◈ EXPEDITION 01 / WATER WARS</div></div><div class="globe-caption">GFR · GEOFUTURE<br>SEASON 01 — WATER<br>LIVE WORLD ENGINE ●</div><div class="globe-guide">↔ SLEEP DE GLOBE OM TE DRAAIEN</div><div class="globe-destinations">'+Object.entries(chapters).map(([id,ch])=>'<button class="globe-dest" data-globe-ch="'+id+'"><span class="ico">'+ch.emoji+'</span><span><b>'+ch.title+'</b><small>'+ch.sub+' · '+(id==='H7'?'Nederland':id==='H8'?'China':'Midden-Oosten')+' →</small></span></button>').join('')+'</div></div><div class="expedition-status"><div><div class="eyebrow" style="margin:0 0 3px">JOUW EXPEDITIE</div><strong>'+esc(state.student.first_name)+', je wereld wacht.</strong><div class="micro">'+state.attempts.length+' antwoorden opgeslagen · '+Math.floor((state.student?.active_seconds||0)/60)+' min actieve sessie</div></div><div class="row"><span class="pill gold">⭐ '+state.student.xp+' XP</span><span class="pill gold">🪙 '+state.student.coins+' Coins</span><button class="btn secondary" data-action="studio-v3">👤 Mijn avatar</button></div></div><div class="game-rail"><div class="future-portal climate"><span class="portal-icon">🌪️</span><div><div class="eyebrow">WORLD 02</div><h3>Climate Chaos</h3><p class="small muted">De stormen komen eraan…</p></div></div><div class="future-portal city"><span class="portal-icon">🏙️</span><div><div class="eyebrow">WORLD 03</div><h3>Urban Empire</h3><p class="small muted">De steden wachten op je.</p></div></div></div><div class="section"><h2 class="section-title">Jouw expedities</h2><span class="muted small">Kies een bestemming op de globe</span></div><div class="chapters">'+Object.entries(chapters).map(([id,ch])=>'<button class="chapter" data-action="chapter" data-ch="'+id+'"><div class="number">'+id+' • WATER WARS</div><div class="illustration">'+ch.emoji+'</div><h3>'+ch.title+'</h3><p class="muted small">'+ch.sub+'</p><div class="progress"><div style="width:'+Math.round(done(id)/10*100)+'%"></div></div><p class="muted small">'+done(id)+' van 10 gesloten kennismissies goed · 14 open missies</p></button>').join('')+'</div><div class="section"><h2>Jouw vooruitgang</h2></div><div class="stats"><div class="stat"><strong>'+state.attempts.length+'</strong><span>Gemaakte antwoorden</span></div><div class="stat"><strong>'+Math.floor((state.student?.active_seconds||0)/60)+' min</strong><span>Geregistreerde zichtbare tijd</span></div><div class="stat"><strong>'+[...new Set(state.attempts.filter(a=>a.is_correct).map(a=>a.question_id))].length+'</strong><span>Goede unieke gesloten vragen</span></div></div>';
+const home=()=>quest5Home(state,chapters,avatar,done,esc);
+const mapBackground=(id)=>{const common='<defs><linearGradient id="water" x2="0.2" y2="1"><stop stop-color="#82dce7"/><stop offset="1" stop-color="#267a96"/></linearGradient><linearGradient id="grass" x2=".15" y2="1"><stop stop-color="#b5f7ad"/><stop offset="1" stop-color="#4fa57f"/></linearGradient><linearGradient id="sand" x2=".3" y2="1"><stop stop-color="#ffdf9b"/><stop offset="1" stop-color="#d18a5c"/></linearGradient><linearGradient id="rock" x2="0" y2="1"><stop stop-color="#e8e6da"/><stop offset="1" stop-color="#7e92a3"/></linearGradient></defs>';
+const shapes={
+H7:'<rect width="1000" height="620" fill="#3a9cbd"/><path d="M-90 150Q180 -10 470 110T1090 120V660H-90Z" fill="#155b69"/><path d="M-90 116Q180 -44 470 74T1090 84V626H-90Z" fill="url(#grass)"/><path d="M-30 350Q200 230 320 310T630 260T1030 360" fill="none" stroke="#166187" stroke-width="112"/><path d="M-30 325Q200 206 320 290T630 239T1030 335" fill="none" stroke="url(#water)" stroke-width="92"/><path d="M-40 435Q240 340 460 420T1030 440" fill="none" stroke="#527d5d" stroke-width="19"/><path d="M-40 435Q240 340 460 420T1030 440" fill="none" stroke="#d0c48e" stroke-width="9"/><g font-size="53"><text x="100" y="150">🌳</text><text x="315" y="175">🏡</text><text x="745" y="180">🌳</text><text x="680" y="495">🌾</text><text x="395" y="540">🚜</text><text x="825" y="515">🌳</text><text x="195" y="500">🏠</text></g>',
+H8:'<rect width="1000" height="620" fill="#6a99b5"/><path d="M-60 420L90 200 200 320 350 86 490 300 610 100 740 235 860 100 1080 350V700H-60Z" fill="#4c7785"/><path d="M-60 382L90 162 200 282 350 47 490 260 610 61 740 195 860 60 1080 312V700H-60Z" fill="url(#rock)"/><path d="M-60 400Q200 220 410 340T1040 390V690H-60Z" fill="#579b76"/><path d="M-70 460C150 390 330 530 495 440S760 360 1050 490" stroke="#13516a" stroke-width="104" fill="none"/><path d="M-70 445C150 375 330 515 495 425S760 345 1050 475" stroke="url(#water)" stroke-width="81" fill="none"/><path d="M620 360L690 505" stroke="#d5c1a0" stroke-width="34"/><path d="M622 360L692 505" stroke="#65717b" stroke-width="21"/><g font-size="56"><text x="160" y="380">🏞️</text><text x="680" y="240">🏭</text><text x="780" y="510">🌳</text><text x="350" y="555">🏘️</text><text x="80" y="540">🌾</text></g>',
+H9:'<rect width="1000" height="620" fill="#c39273"/><path d="M-40 270Q150 90 410 230T1040 180V660H-40Z" fill="#d7a269"/><path d="M-40 300Q180 150 470 270T1040 220V660H-40Z" fill="url(#sand)"/><path d="M-60 460Q220 300 430 400T1050 370V660H-60Z" fill="#c38152"/><path d="M-60 500Q230 350 490 440T1050 405V660H-60Z" fill="#f3ca88"/><path d="M40 580Q205 480 360 505T700 405T1070 465" fill="none" stroke="#246b88" stroke-width="52"/><path d="M40 578Q205 478 360 503T700 403T1070 463" fill="none" stroke="#58c2c4" stroke-width="40"/><ellipse cx="525" cy="305" rx="100" ry="36" fill="#4fa99b"/><ellipse cx="525" cy="305" rx="66" ry="21" fill="#75d8bf"/><g font-size="60"><text x="435" y="280">🌴</text><text x="555" y="290">🌴</text><text x="190" y="265">🐪</text><text x="805" y="280">🏜️</text><text x="320" y="520">🌴</text><text x="775" y="520">🏘️</text></g>'};
+const palettes={
+ H7:['#8bbd78','#497759','#345c55','#dfb988'],
+ H8:['#87b99f','#477b76','#305c65','#c6bba5'],
+ H9:['#e9bf85','#ba805b','#925c44','#f1d294'],
+};
+const [roof,side,shadow,track]=palettes[id];
+const tile=(x,y,w,d,h,top=roof)=>'<g transform="translate('+x+' '+y+')"><path d="M'+(-w)+' 0 0 '+d+' '+w+' 0 0 '+(-d)+'Z" fill="'+top+'"/><path d="M'+(-w)+' 0 0 '+d+'v'+h+'l'+(-w)+' '+(-d)+'Z" fill="'+side+'"/><path d="M0 '+d+' '+w+' 0v'+h+'L0 '+(d+h)+'Z" fill="'+shadow+'"/></g>';
+const trees=(x,y)=>'<g transform="translate('+x+' '+y+')"><ellipse cx="12" cy="3" rx="20" ry="7" fill="#183d4260"/><path d="M0 5v-24" stroke="#624733" stroke-width="5"/><path d="M-14 -14 0 -42 14 -14 0 -4Z" fill="'+side+'"/><path d="M0 -42 14 -14 0 -4Z" fill="'+shadow+'"/></g>';
+const props={
+ H7:tile(226,205,77,33,15)+tile(226,174,29,17,24,'#d47160')+tile(784,440,74,32,16)+tile(766,410,28,16,28,'#d98169')+tile(817,428,19,11,14,'#e6c98f')+[[112,191],[151,218],[322,207],[733,415],[843,444],[900,489]].map(([x,y])=>trees(x,y)).join(''),
+ H8:tile(440,266,104,46,30)+tile(420,225,60,31,40,'#d6c4ae')+tile(428,214,37,19,11,'#d58564')+tile(725,257,94,42,24)+tile(701,223,35,17,35,'#c9a87f')+[[135,365],[206,389],[243,371],[780,305],[821,362],[863,343]].map(([x,y])=>trees(x,y)).join(''),
+ H9:tile(543,360,117,46,19)+tile(504,333,50,26,20,'#74b4a5')+tile(622,336,27,13,34,'#f5dca1')+tile(835,465,73,32,20)+tile(856,423,25,14,27,'#f4dfab')+[[442,325],[474,290],[641,352],[787,446],[888,472]].map(([x,y])=>trees(x,y)).join(''),
+};
+const texture=Array.from({length:26},(_,i)=>{
+ const x=(i*137+36)%990,y=(i*88+119)%570;
+ return '<path d="M'+x+' '+y+'l22 -8 18 7" fill="none" stroke="'+track+'" opacity=".33" stroke-width="3"/>';
+}).join('');
+return '<svg class="quest-map-art" viewBox="0 0 1000 620" preserveAspectRatio="xMidYMid slice" aria-hidden="true">'+common+shapes[id]+texture+props[id]+'</svg>';};
+const chapterView=()=>{
+ const ch=chapters[state.chapter],qs=state.questions.filter(x=>x.chapter===state.chapter),zone=state.zone||0,practice=qs.filter(q=>!q.source),ceQuestions=qs.filter(q=>q.source).sort((a,b)=>a.source.year-b.source.year||a.source.period-b.source.period||a.source.number-b.source.number),examPageCount=Math.max(1,Math.ceil(ceQuestions.length/8)),stage=zone===3?ceQuestions.slice(state.examPage*8,(state.examPage+1)*8):practice.slice(zone*8,(zone+1)*8),positions=[[13,72],[28,57],[44,69],[63,55],[79,69],[85,39],[63,26],[36,30]],first=stage.find(q=>!tried(q));
+ const connections=positions.map((p,i)=>[p[0]*10,p[1]*6.2]);
+ const path='M'+connections.map(([x,y])=>x+','+y).join(' L');
+ return '<div class="row" style="margin-bottom:18px"><button class="btn ghost" data-action="home">← Terug naar de globe</button><span class="tag">WATER WARS / '+state.chapter+'</span></div><div style="margin:12px 0 24px"><div class="eyebrow">EXPEDITION LOG · '+state.chapter+'</div><h1>'+ch.title+'</h1><p class="muted">'+ch.sub+' — '+qs.length+' missies, inclusief '+qs.filter(q=>q.type==='open').length+' open vragen. Jouw avatar reist door het gebied.</p><div class="row"><span class="pill mint">✔ '+done(state.chapter)+' gesloten opdrachten goed</span><span class="pill">✍️ '+qs.filter(q=>q.type==='open'&&tried(q)).length+' open opdrachten gemaakt</span></div></div>'+theoryPanel(state.chapter,esc)+'<div class="zone-switcher">'+['Discover','Explore','Master',...(qs.some(q=>q.source)?['CE-bronnen']:[])].map((label,i)=>'<button data-action="zone" data-zone="'+i+'" class="'+(i===zone?'on':'')+'">'+label+'</button>').join('')+'</div>'+(zone===3&&examPageCount>1?'<div class="row card pad" aria-label="Navigatie examenbronnen" style="justify-content:space-between;margin:14px 0"><button class="btn secondary" data-action="ce-page" data-page="'+Math.max(0,state.examPage-1)+'" '+(state.examPage===0?'disabled':'')+'>← Vorige vragen</button><span>Pagina '+(state.examPage+1)+' van '+examPageCount+'</span><button class="btn secondary" data-action="ce-page" data-page="'+Math.min(examPageCount-1,state.examPage+1)+'" '+(state.examPage>=examPageCount-1?'disabled':'')+'>Volgende vragen →</button></div>':'')+'<div class="panel-grid"><div><div class="quest-map-shell '+(state.chapter==='H7'?'nl':state.chapter==='H8'?'cn':'me')+'">'+mapBackground(state.chapter)+'<div class="map-flag">'+ch.emoji+' · '+ch.title.toUpperCase()+' · ACT '+(zone+1)+'</div><div class="quest-map-checkpoints"><svg class="quest-map-line" viewBox="0 0 1000 620" preserveAspectRatio="none" aria-hidden="true"><path d="'+path+'" fill="none" stroke="#163648" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/><path d="'+path+'" fill="none" stroke="#f9e4aa" stroke-width="13" stroke-dasharray="22 14" stroke-linecap="round" stroke-linejoin="round"/></svg>'+stage.map((q,i)=>{const p=positions[i],complete=count(q),answered=tried(q);return '<div class="map-point" style="left:'+p[0]+'%;top:'+p[1]+'%">'+(q.id===first?.id?'<span class="player-pin">'+avatar()+'</span>':'')+'<button class="'+(complete?'complete':answered?'answered':q.id===first?.id?'current':'')+'" data-action="question" data-id="'+q.id+'" aria-label="'+esc(q.source?.title||q.text)+'" title="'+esc(q.text)+'">'+(complete?'✓':answered?'↻':q.type==='open'?'✍️':i%3===0?'🧠':i%3===1?'🗺️':'💧')+'</button><span class="map-label">'+(zone===3?'CE '+q.source.number:zone*8+i+1)+'. '+(q.type==='open'?'Verklaar!':q.skill==='toepassen'?'Bronnenmissie':'Kennismissie')+'</span></div>'}).join('')+'</div><div class="map-flag bottom">Kies een checkpoint</div></div><div class="row" style="justify-content:space-between;margin-top:20px"><button class="btn secondary" data-action="zone" data-zone="'+Math.max(0,zone-1)+'" '+(zone===0?'disabled':'')+'>← Vorige gebied</button><button class="btn secondary" data-action="zone" data-zone="'+Math.min(qs.some(q=>q.source)?3:2,zone+1)+'" '+(zone===(qs.some(q=>q.source)?3:2)?'disabled':'')+'>Volgende gebied →</button></div><div class="card pad" style="margin-top:18px"><div class="eyebrow">🏆 THE CHAPTER BOSS</div><h3>Durf jij het aan?</h3><p class="muted small">5 lastige vragen: 3 open verklaringsvragen en 2 gesloten vragen. Bespreek je antwoorden met de voorbeeldoplossingen.</p><button class="btn" data-action="boss">Start de eindbaas →</button></div></div><aside class="map-side"><div class="card sidecard"><h3>🧠 Smart Training</h3><p class="muted small">Pak je eerdere fouten aan en haal kennis actief op uit je geheugen.</p><button class="btn secondary" data-action="daily">Start kennisboost</button></div><div class="card sidecard"><h3>🎬 Video Coach</h3><p class="muted small">Kijk een korte uitleg wanneer je vastloopt. Probeer daarna weer een vraag.</p>'+ch.video.map(v=>'<a class="video" target="_blank" rel="noopener" href="'+v[1]+'">▶ '+esc(v[0])+' ↗</a>').join('')+'</div><div class="card sidecard"><h3>💎 Memory Quest</h3><p class="muted small">Haal kennis terug die je eerder geoefend hebt.</p><button class="btn secondary" data-action="repeat">Herhaal een vraag</button></div><div class="card sidecard"><h3>🎒 Beloning</h3><p class="muted small">Geo Coins en avatarupgrades zijn cosmetisch. Je leerresultaat telt!</p><button class="btn secondary" data-action="store">Open Geo Shop</button></div></aside></div>';};
+function openReviewPanel(question){
+ const result=state.result;
+ const review=result?.review||(!result&&state.reviews[question.id]);
+ if(review){
+  return '<section class="feedback" aria-label="AI-oefenfeedback"><b>'+(!result?'Vorige AI-oefenscore':'AI-oefenscore')+' · '+esc(review.points)+' / '+esc(review.maxPoints)+'</b><p>'+esc(review.feedback)+'</p><p><strong>Verbetertip</strong> '+esc(review.nextStep)+'</p></section>';
+ }
+ if(!result)return '';
+ if(result.reviewPending)return '<p role="status">AI kijkt je antwoord na…</p>';
+ if(result.reviewError)return '<p role="status">'+esc(result.reviewError)+'</p>';
+ if(!result.aiReviewAvailable)return '<p class="small muted">AI-nakijken is nog niet beschikbaar.</p>';
+ return '<button class="btn secondary" data-action="open-review">Laat AI nakijken</button>';
+}
+const questionView=()=>{const q=state.current;if(!q)return '';const has=!!state.result;return '<div class="screen"><div class="row" style="justify-content:space-between;margin-bottom:20px"><button class="btn ghost" data-action="'+(state.examPaper?'exam-trainer':'chapter')+'" data-ch="'+state.chapter+'">'+(state.examPaper?'← Terug naar examentrainer':'← Terug naar pad')+'</button><span class="pill">'+q.chapter+' • '+(q.source?'Centraal examen':q.type==='open'?'Open oefenvraag':q.skill)+'</span></div>'+theoryPanel(q.chapter,esc)+'<div class="card qbox"><div class="eyebrow">'+(state.boss?'🏆 BOSS BATTLE · '+(state.boss.index+1)+' / '+state.boss.ids.length+' · ':'')+(q.type==='open'?'✍️ GEOGRAFISCH VERKLAREN':'🧠 KENNIS & TOEPASSEN')+'</div>'+questionArt(q)+'<h2 class="question">'+esc(q.text)+'</h2>'+(q.type==='choice'?(!has&&state.purchases.includes('compass_hint')&&!state.profile.usedHints?.includes(q.id)?'<button class="btn secondary" data-action="powerup-hint">🧭 Gebruik Kompas van inzicht</button>':'')+q.options.map((o,i)=>'<button class="option '+(state.chosen===String(i)?'selected':'')+(i===state.hintRemoved?' eliminated':'')+'" data-action="choose" data-val="'+i+'" '+(has||i===state.hintRemoved?'disabled':'')+' aria-label="'+(i===state.hintRemoved?'Uitgeschakeld met de kompas hint. ':'')+('ABCDEF'[i])+': '+esc(o)+'"><span class="letter">'+('ABCDEF'[i])+'</span>'+esc(o)+(i===state.hintRemoved?' · afgevallen met je hint':'')+'</button>').join('')+(q.type==='choice'&&!state.purchases.includes('compass_hint')&&!has?'<p class="muted">Koop het Kompas van inzicht in de shop om per vraag één fout antwoord weg te strepen.</p>':''):'<textarea class="answer" id="openResponse" placeholder="Schrijf je uitleg in eigen woorden. Probeer oorzaak en gevolg te benoemen." '+(has?'disabled':'')+'></textarea>')+(!has&&q.type==='open'?openReviewPanel(q):'')+(has?'<div class="feedback '+(state.result.correct===false?'bad':'')+'">'+(state.result.selfCheck?'<div class="own-answer"><b>Jouw eigen antwoord</b><p style="white-space:pre-wrap">'+esc(state.lastAnswer||'')+'</p></div>':'')+'<b>'+(state.result.selfCheck?(q.source?'Correctiemodel':'Voorbeeldantwoord'):state.result.correct?'Goed! +'+state.result.awarded+' XP':'Nog niet goed — dit leer je ervan')+'</b><p>'+esc(state.result.explanation)+'</p>'+(state.result.selfCheck?'<p class="subline">Deze open oefenvraag is opgeslagen. Een AI-score is oefenfeedback.</p>':'')+'</div>'+(q.type==='open'?openReviewPanel(q):'')+'<div class="row" style="margin-top:22px"><button class="btn" data-action="next">Volgende missie →</button><button class="btn secondary" data-action="'+(state.examPaper?'exam-trainer':'chapter')+'" data-ch="'+state.chapter+'">'+(state.examPaper?'Terug naar examentrainer':'Terug naar kaart')+'</button></div>':'<div class="row" style="margin-top:24px"><button class="btn" data-action="submit">Controleer antwoord →</button><span class="muted small">Geen tijdslimiet • Denk eerst zelf na</span></div>')+'</div></div>';};
+const bossResult=()=>'<div class="screen card pad" style="text-align:center"><div style="font-size:100px">🏆</div><h1>Chapter Boss voltooid!</h1><p class="muted">Je hebt '+(state.boss?.ids.length||5)+' vragen gemaakt, waaronder '+(state.boss?.open||0)+' open verklaringsvragen. Gesloten vragen goed: '+(state.boss?.correct||0)+'. Vergelijk je open antwoorden kritisch met het voorbeeld. Dit is geen officiële examenuitslag.</p><button class="btn" data-action="chapter" data-ch="'+state.chapter+'">Terug naar de expeditie →</button></div>';function shopItem(id){
+ const item=items[id],owned=state.purchases.includes(id);
+ return '<article class="storeitem">'+(item.color?'<div class="scene-preview" style="--scene-color:'+item.color+'">'+item.icon+'</div>':'<div class="icon">'+item.icon+'</div>')+'<h3>'+item.name+'</h3><p class="muted">🪙 '+item.price+' Geo Coins</p><button class="btn secondary" '+(owned||state.student.coins<item.price?'disabled':'')+' data-action="buy" data-id="'+id+'">'+(owned?'In je collectie':state.student.coins<item.price?'Onvoldoende coins':'Koop')+'</button></article>';
+}
+const store=()=>'<div class="screen card pad"><h1>Daily Shop</h1><p class="muted">Elke dag om middernacht verschijnen zes upgrades en twee achtergronden in de etalage.</p><div class="store daily-selection">'+dailyItems().map(shopItem).join('')+'</div><details class="shop-catalog"><summary>Catalogus · '+Object.keys(items).length+' items</summary><div class="store">'+Object.keys(items).map(shopItem).join('')+'</div></details>'+pirateCollection()+rareCollection(chapters,state.questions,state.solved)+'</div>';
+const teacherView=()=>{const d=state.teacherData;if(!d)return '<div class="screen card pad"><h1>Docent Mission Control</h1><p class="muted">Log in met het bestaande docentaccount van de GFR-omgeving.</p><form id="teacherForm"><label>E-mailadres</label><input class="input" type="email" name="email" required autocomplete="username"><label>Wachtwoord</label><input class="input" type="password" name="password" required autocomplete="current-password"><button class="btn">Open docentendashboard</button></form><p class="small muted">Alleen accounts die geregistreerd zijn als docent krijgen toegang.</p><button class="btn ghost" data-action="home">Terug naar leerlingomgeving</button></div>';
+const cl=d.classes.find(item=>item.id===state.teacherClassId)||d.classes[0];
+const st=d.students.filter(student=>student.class_id===cl?.id);
+const classStudents=new Set(st.map(student=>student.id));
+const at=d.attempts.filter(attempt=>classStudents.has(attempt.student_id));
+const classPicker=d.classes.length>1?'<label for="teacher-class">Klas</label><select class="input" id="teacher-class">'+d.classes.map(item=>'<option value="'+esc(item.id)+'" '+(item.id===cl?.id?'selected':'')+'>'+esc(item.label)+'</option>').join('')+'</select>':'';
+const openResponses=at.filter(a=>a.is_correct===null).slice(0,20);const avg=st.length?Math.round(st.reduce((n,s)=>n+s.active_seconds,0)/st.length/60):0;
+const tCount=(s,ch)=>new Set(at.filter(a=>a.student_id===s.id&&a.topic===ch&&a.is_correct).map(a=>a.question_id)).size;
+const learnerFocus=s=>{const wrong=at.filter(a=>a.student_id===s.id&&a.is_correct===false);const skills=Object.entries(wrong.reduce((ob,a)=>{const k=(a.topic||'Water')+' · '+(a.skill||'Algemeen');ob[k]=(ob[k]||0)+1;return ob;},{})).sort((a,b)=>b[1]-a[1]).slice(0,3);const open=at.filter(a=>a.student_id===s.id&&a.is_correct===null).length;return '<details><summary>'+wrong.length+' fout · '+open+' open</summary>'+(skills.length?'<ul>'+skills.map(([label,count])=>'<li>'+esc(label)+' ('+count+')</li>').join('')+'</ul>':'<p class="muted">Nog geen fout beantwoorde gesloten vragen.</p>')+'</details>';};
+const groups=['H7','H8','H9'].map(ch=>{const v=at.filter(a=>a.topic===ch&&a.is_correct!==null);return {ch,total:v.length,ok:v.filter(a=>a.is_correct).length};});
+const weak=Object.entries(at.filter(a=>a.is_correct!==null).reduce((ob,a)=>{const k=a.topic+' / '+a.skill;const x=ob[k]||(ob[k]={total:0,bad:0});x.total++;if(!a.is_correct)x.bad++;return ob;},{})).filter(([k,v])=>v.total>=3&&v.bad>0).sort((a,b)=>b[1].bad/b[1].total-a[1].bad/a[1].total).slice(0,6);
+return '<div class="row" style="justify-content:space-between;margin-bottom:18px"><h1>Mission Control</h1><button class="btn secondary" data-action="refreshTeacher">↻ Ververs</button><button class="btn ghost" data-action="teacherLogout">Docent uitloggen</button></div>'+classPicker+'<p class="muted">'+esc(cl?.label||'Geen klas beschikbaar')+' · tussentijdse klasresultaten</p><div class="stats"><div class="stat"><strong>'+st.length+'</strong><span>Leerlingen aangemeld</span></div><div class="stat"><strong>'+at.length+'</strong><span>Antwoorden opgeslagen</span></div><div class="stat"><strong>'+avg+' min</strong><span>Gemiddeld actieve oefentijd</span></div></div><div class="section"><h2>Klasoverzicht</h2></div><div class="card pad table-scroll"><p class="small muted">H7, H8 en H9 tonen het aantal verschillende gesloten vragen dat de leerling goed heeft beantwoord.</p><table class="teacher-table"><thead><tr><th>Voornaam</th><th>H7</th><th>H8</th><th>H9</th><th>XP</th><th>Actieve tijd</th><th>Laatst actief</th><th>Individuele focus</th></tr></thead><tbody>'+st.map(s=>'<tr><td><b>'+esc(s.first_name)+'</b></td>'+['H7','H8','H9'].map(ch=>'<td>'+tCount(s,ch)+'</td>').join('')+'<td>'+s.xp+'</td><td>'+Math.floor(s.active_seconds/60)+' min</td><td>'+new Date(s.last_seen).toLocaleString('nl-NL')+'</td><td>'+learnerFocus(s)+'</td></tr>').join('')+'</tbody></table></div><div class="section"><h2>Waar aandacht aan besteden?</h2></div><div class="grid3">'+groups.map(x=>'<div class="card pad"><h3>'+x.ch+'</h3><p class="muted">Antwoorden: '+x.total+'</p><h2 style="color:var(--mint)">'+(x.total?Math.round(x.ok/x.total*100)+'%':'—')+'</h2><p class="small muted">Percentage goed op gemaakte gesloten vragen, geen SE-cijfer.</p></div>').join('')+'</div><div class="section"><h2>Veelgemaakte fouten</h2></div><div class="card pad">'+(weak.length?weak.map(([k,v])=>'<p><b>'+esc(k)+'</b> — '+v.bad+' van '+v.total+' antwoorden fout ('+Math.round(v.bad/v.total*100)+'%)</p>').join(''):'<p class="muted">Nog te weinig gegevens voor een betrouwbaar advies.</p>')+'</div><div class="section"><h2>Open antwoorden · bespreek samen</h2></div><div class="card pad"><p class="muted small">Bekijk de laatst ingeleverde open antwoorden en bespreek de uitleg met je klas.</p>'+(openResponses.length?openResponses.map(a=>'<details style="padding:12px 0;border-bottom:1px solid #315164"><summary><b>'+esc(st.find(x=>x.id===a.student_id)?.first_name||'Leerling')+'</b> · '+esc(a.topic)+' · '+esc(a.question_id)+'</summary><p style="white-space:pre-wrap;color:var(--text)">'+esc(a.response)+'</p></details>').join(''):'<p class="muted">Nog geen open antwoorden.</p>')+'</div><div class="section"><h2>Klas aanmelden</h2></div><div class="card pad"><p>Klascode: <strong style="font-size:25px;letter-spacing:3px;color:var(--mint)">'+esc(cl?.join_code||'')+'</strong></p><p class="small muted">Deel deze code alleen met je klas. Leerlingen gebruiken daarnaast een persoonlijke herstelcode voor hun eigen profiel.</p></div><button class="btn secondary" data-action="home" style="margin-top:20px">Terug naar game</button>';};
+function paint(){applyV3();if(globeCleanup){globeCleanup();globeCleanup=null;}const teacher=state.view==='teacher';$('#app').innerHTML='<div class="wrap">'+head()+(teacher?teacherView():!state.student?'<div class="screen card pad"><h1>Welkom, ontdekkingsreiziger!</h1><p class="muted">Maak je profiel aan met je voornaam en de klascode van je docent.</p><form id="joinForm"><label for="join-name">Jouw voornaam</label><input id="join-name" class="input" type="text" name="name" minlength="2" maxlength="32" required autocomplete="given-name" placeholder="Bijvoorbeeld Sam"><label for="join-code">Klascode</label><input id="join-code" class="input" name="code" required minlength="6" placeholder="Vraag deze aan je docent"><button class="btn">🎮 Start mijn avontuur</button></form><hr style="border-color:#25485a;margin:24px 0"><p class="small muted">Heb je al een profiel op een ander apparaat?</p><button class="btn secondary" data-action="recover">Gebruik mijn herstelcode</button></div>':state.view==='expedition'?expedition(state,esc):state.view==='home'?home():state.view==='examTrainer'?examTrainer(state.questions,state.attempts,esc):state.view==='chapter'?chapterView():state.view==='question'?questionView():state.view==='bossResult'?bossResult():state.view==='store'?store():state.view==='studio'?avatarView():state.view==='pass'?passView():home())+(state.student&&state.view==='home'?bonusButton():'')+bonusModal()+v3Nav()+'<footer>GFR • Maris College Bohemen · Gemaakt om te leren, niet alleen te winnen. <br>Bij open vragen krijg je een correctiemodel of voorbeeldantwoord. AI-punten zijn oefenfeedback.</footer></div>';bind();if(state.student&&state.view==='home'&&$('#quest-globe')&&window.mountQuestGlobe){globeCleanup=window.mountQuestGlobe(id=>{state.chapter=id;state.zone=0;state.view='chapter';paint();window.scrollTo(0,0);},avatars[state.student.avatar]||'🧑‍🚀');}}
+function notify(message){alert(message)}
+async function refresh(){if(!state.token)return;const [me,qs]=await Promise.all([call('me',{token:state.token}),call('questions',{token:state.token})]);state.student=me.student;state.attempts=me.attempts;state.purchases=me.purchases;state.questions=qs.questions;state.profile=me.profile||{};state.solved=me.solved||[...new Set(me.attempts.filter(a=>a.is_correct).map(a=>a.question_id))];state.pirate=!!me.pirate;state.reviews=me.reviews||{};}
+function showQ(q){state.hintRemoved=null;state.current=q;state.chapter=q.chapter;state.chosen=null;state.result=null;state.lastAnswer=null;state.view='question';paint();window.scrollTo(0,0);}
+async function teacherLoad(){state.teacher=sessionStorage.getItem('gfrq_teacher_token');if(state.teacher){try{state.teacherData=await call('teacher');}catch{state.teacher=null;state.teacherData=null;sessionStorage.removeItem('gfrq_teacher_token');}}state.view='teacher';paint();}
+async function action(a,el){
+ const mutating=['powerup-hint','submit','buy','avatar','equip-v3','bg-v3','color-v3','bonus-pick','bonus-route-pick','bonus-start','bonus-river'].includes(a);
+ if(mutating&&action.pending)return;
+ if(mutating){action.pending=true;el.disabled=true;}
+ try{
+ if(a==='exp-region'){state.chapter=el.dataset.ch;paint();return;}
+ if(['expedition','exp-refresh','exp-join','exp-leave'].includes(a)){
+   if(a==='expedition'){state.expeditionBoard=null;state.view='expedition';paint();window.scrollTo(0,0);}
+   el.disabled=true;
+   try{
+     const response=await fetch(base+'/functions/v1/quest-expeditie',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({token:state.token,action:a==='exp-join'||a==='exp-leave'?'visibility':'board',visible:a==='exp-join'})});
+     const data=await response.json();if(!response.ok)throw Error(data.error||'Team ophalen mislukt.');
+     state.expeditionBoard=data;if(state.view==='expedition')paint();
+   }finally{el.disabled=false;}
+   return;
+ }
+ if(a==='exam-trainer'){state.examPaper=null;state.boss=null;state.view='examTrainer';paint();window.scrollTo(0,0);return;}
+ if(a==='exam-question'){const q=state.questions.find(q=>q.id===el.dataset.id && q.source);if(q){state.examPaper=q.source.year+'-'+q.source.period;showQ(q);}return;}
+ if(a==='studio-v3'||a==='pass-v3'){state.view=a==='studio-v3'?'studio':'pass';paint();window.scrollTo(0,0);return;}
+ if(a==='color-v3'){
+  state.profile=(await call('profile',{token:state.token,patch:{color:el.dataset.id}})).profile;
+  paint();return;
+ }
+ if(a==='equip-v3'||a==='bg-v3'){
+  const id=el.dataset.id,item=unlockedItems().find(entry=>entry.id===id);
+  if(id&&!item)return;
+  const current=state.profile.gear||[];
+  const gear=current.filter(equipped=>unlockedItems().find(entry=>entry.id===equipped)?.slot!==item?.slot);
+  if(a==='equip-v3'&&!current.includes(id))gear.push(id);
+  const patch=a==='bg-v3'?{bg:id}:{gear};
+  state.profile=(await call('profile',{token:state.token,patch})).profile;
+  paint();return;
+ }
+ if(a.startsWith('bonus-')){await bonusAction(a,el);return;}
+ if(a==='sound'){
+  answerSound=!answerSound;
+  localStorage.setItem('gfrq_answer_sound',answerSound?'on':'off');
+  if(!answerSound)playingClip?.stop();
+  el.setAttribute('aria-pressed',String(answerSound));
+  el.textContent=soundLabel();
+  return;
+ }
+ if(a==='theme'){window.questTheme(true);return;}
+if(a==='home'){state.examPaper=null;state.boss=null;state.view='home';paint();window.scrollTo(0,0)}
+if(a==='chapter'){state.examPaper=null;state.boss=null;const destination=el.dataset.ch||state.chapter;if(state.view!=='question'||destination!==state.chapter)state.zone=0;state.chapter=destination;state.examPage=0;state.view='chapter';paint()}
+if(a==='zone'){state.zone=Math.max(0,Math.min(3,Number(el.dataset.zone)||0));state.examPage=0;state.view='chapter';paint()}
+if(a==='ce-page'){state.examPage=Math.max(0,Math.min(Math.ceil(state.questions.filter(q=>q.chapter===state.chapter&&q.source).length/8)-1,Number(el.dataset.page)||0));state.zone=3;state.view='chapter';paint()}
+if(a==='question'){showQ(state.questions.find(x=>x.id===el.dataset.id))}
+if(a==='choose'){state.chosen=el.dataset.val;paint()}
+if(a==='submit'){const response=state.current.type==='choice'?state.chosen:$('#openResponse')?.value?.trim();if(response===null||response===undefined||response==='')return notify('Vul eerst een antwoord in.');const question=state.current;if(question.type==='choice')prepareAnswerSound();const result=await call('answer',{token:state.token,questionId:question.id,response});if(state.view!=='question'||state.current!==question){await refresh();paint();return;}state.lastAnswer=question.type==='open'?response:null;state.result=result;void playAnswerSound(result.selfCheck?null:result.correct);if(state.boss){if(state.result.correct)state.boss.correct++;if(state.result.selfCheck)state.boss.open++;}await refresh();paint()}
+if(a==='open-review'){
+ const {current:question,result,lastAnswer}=state;
+ if(!result?.aiReviewAvailable||result.reviewPending||result.review)return;
+ result.reviewPending=true;
+ paint();
+ try{
+  const {review}=await call('open-review',{token:state.token,questionId:question.id,response:lastAnswer});
+  result.review=review;
+  state.reviews[question.id]=review;
+ }catch(error){
+  result.reviewError=error.message;
+ }finally{
+  result.reviewPending=false;
+  if(state.result===result&&state.view==='question')paint();
+ }
+ return;
+}
+if(a==='next' && state.examPaper){const next=state.questions.filter(q=>q.source && q.source.year+'-'+q.source.period===state.examPaper && q.source.number>state.current.source.number).sort((a,b)=>a.source.number-b.source.number)[0];if(next){showQ(next)}else{state.examPaper=null;state.view='examTrainer';paint()}return;}
+if(a==='next'){if(state.boss){state.boss.index++;if(state.boss.index>=state.boss.ids.length){state.view='bossResult';paint();return;}showQ(state.questions.find(q=>q.id===state.boss.ids[state.boss.index]));return;}const qs=state.questions.filter(q=>q.chapter===state.chapter);const pool=qs.filter(q=>!!q.source===!!state.current?.source);const next=pool.find(q=>q.type!==state.current?.type&&!tried(q)&&q.id!==state.current?.id)||qs.find(q=>!tried(q)&&q.id!==state.current?.id)||qs.find(q=>q.type==='choice'&&!count(q)&&q.id!==state.current?.id);if(next)showQ(next);else{state.view='chapter';paint();notify('Goed gewerkt! Je hebt de beschikbare missies doorlopen. Herhaal vragen voor extra oefening.')}}
+if(a==='store'){state.view='store';paint();window.scrollTo(0,0)}
+if(a==='avatar'){await call('avatar',{token:state.token,avatar:el.dataset.avatar});await refresh();paint()}
+if(a==='powerup-hint'){const result=await call('powerup',{token:state.token,questionId:state.current.id});state.profile=result.profile;state.hintRemoved=result.removedIndex;paint()}
+if(a==='buy'){await call('buy',{token:state.token,item:el.dataset.id});await refresh();paint()}
+if(a==='daily'||a==='repeat'){const pool=state.questions.filter(q=>q.chapter===state.chapter);const q=a==='repeat'?pool.find(x=>tried(x)&&!count(x))||pool.find(x=>tried(x)):pool.find(x=>x.type==='choice'&&tried(x)&&!count(x))||pool.find(x=>!tried(x));if(q)showQ(q);else notify(a==='repeat'?'Maak eerst een missie op het pad.':'Je hebt alle vragen in deze regio geoefend. Kies een andere regio of herhaal een missie.')}
+if(a==='boss'){const pool=state.questions.filter(q=>q.chapter===state.chapter);const pick=[...pool.filter(q=>q.type==='choice').sort(()=>Math.random()-.5).slice(0,2),...pool.filter(q=>q.type==='open').sort(()=>Math.random()-.5).slice(0,3)];state.boss={ids:pick.map(q=>q.id),index:0,correct:0,open:0};showQ(pick[0])}
+if(a==='teacher'){await teacherLoad()}
+if(a==='teacherLogout'){sessionStorage.removeItem('gfrq_teacher_token');state.teacher=null;state.teacherData=null;state.teacherClassId=null;paint()}
+if(a==='refreshTeacher'){await teacherLoad()}
+if(a==='code'){if(!state.token)return notify('Je bent nog niet aangemeld.');try{await navigator.clipboard.writeText(state.token);notify('Je persoonlijke herstelcode is gekopieerd. Bewaar hem privé.')}catch{notify('Jouw herstelcode: '+state.token+' — bewaar hem privé.')}}
+if(a==='recover'){const token=prompt('Vul je persoonlijke herstelcode in:');if(token){const old=state.token;state.token=token.trim();try{await refresh();localStorage.setItem('gfrq_token',state.token);state.view='home';paint()}catch(e){state.token=old;notify('Ongeldige herstelcode.')}}}
+}catch(e){notify(e.message)}finally{if(mutating){action.pending=false;el.disabled=false;}}}
+function bind(){window.questTheme(false);$('#teacher-class')?.addEventListener('change',event=>{state.teacherClassId=event.target.value;paint()});document.querySelectorAll('[data-action]').forEach(el=>el.addEventListener('click',()=>action(el.dataset.action,el)));
+$('#joinForm')?.addEventListener('submit',async e=>{e.preventDefault();const f=new FormData(e.target);try{const r=await call('join',{name:f.get('name'),code:f.get('code')});state.token=r.token;localStorage.setItem('gfrq_token',r.token);await refresh();state.view='home';paint()}catch(err){notify(err.message)}});
+$('#teacherForm')?.addEventListener('submit',async e=>{e.preventDefault();const f=new FormData(e.target);try{const res=await fetch(base+'/auth/v1/token?grant_type=password',{method:'POST',headers:{'Content-Type':'application/json','apikey':publicKey},body:JSON.stringify({email:f.get('email'),password:f.get('password')})});const data=await res.json();if(!res.ok||!data.access_token)throw Error(data.error_description||data.msg||'Inloggen mislukt');state.teacher=data.access_token;state.teacherData=await call('teacher');sessionStorage.setItem('gfrq_teacher_token',state.teacher);paint()}catch(err){state.teacher=null;state.teacherData=null;notify(err.message)}});}
+paint();if(state.token){refresh().then(()=>paint()).catch(error=>{if(error.status===401){state.token=null;localStorage.removeItem('gfrq_token')}paint();if(error.status!==401)notify('Verbinding tijdelijk niet beschikbaar. Vernieuw de pagina om je voortgang opnieuw te laden.')})}
+setInterval(()=>{if(state.student&&document.visibilityState==='visible'&&state.view!=='teacher'){call('heartbeat',{token:state.token}).catch(()=>{})}},30000);
+</script></body></html>
