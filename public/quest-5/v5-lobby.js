@@ -62,7 +62,6 @@ export function quest5Home(state, chapters, avatar, done, esc) {
     H8: 'De berghelling',
     H9: 'Het irrigatieveld'
   };
-  const tree='🌲';
   const missionQuestions = (state.questions ?? []).filter(question => (
     question.chapter === current[0] && question.type === 'choice'
   ));
@@ -79,19 +78,14 @@ export function quest5Home(state, chapters, avatar, done, esc) {
     </div>
     <div class="q5-layout">
       <section class="q5-camp" aria-label="Jouw groeiende expeditiekamp">
-        <div class="q5-camp-sky"><span class="q5-sun" aria-hidden="true"></span><span class="q5-cloud c1"></span><span class="q5-cloud c2"></span></div>
         <div class="q5-landscape" aria-hidden="true">
-          <div class="q5-mountain m1"></div><div class="q5-mountain m2"></div>
-          <div class="q5-ground"></div><div class="q5-creek"></div>
-          <span class="q5-prop p1">${tree}</span><span class="q5-prop p2">🌳</span><span class="q5-prop p3">🌲</span>
-          <span class="q5-tent">⛺</span>
           ${stage>=2?'<span class="q5-prop p4">🔥</span>':''}
           ${stage>=3?'<span class="q5-prop p5">🛖</span>':''}
           ${stage>=4?'<span class="q5-prop p6">🔭</span>':''}
           ${stage>=5?'<span class="q5-prop p7">🏰</span>':''}
         </div>
         <div class="q5-camper" aria-label="Je avatar">${avatar()}</div>
-        <div class="q5-camp-caption"><span class="q5-overline">JOUW BASISKAMP</span><strong>${stageNames[stage]}</strong><span>${campProgress}</span></div>
+        <div class="q5-camp-caption"><span class="q5-overline">EXPEDITIEKAMP · LEVEL ${stage} / 5</span><strong>${stageNames[stage]}</strong><span>${campProgress}</span><progress aria-label="Voortgang naar de volgende kampuitbreiding" value="${stage === 5 ? 350 : xp % 350}" max="350"></progress></div>
         <div class="q5-camp-actions">
           <button class="q5-maincta" data-action="chapter" data-ch="${esc(current[0])}">🧭 OP AVONTUUR <span>→</span></button>
           <button class="q5-softcta" data-action="studio-v3">🧑‍🚀 Mijn avatar</button>

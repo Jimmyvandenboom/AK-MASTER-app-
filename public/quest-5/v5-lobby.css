@@ -95,3 +95,51 @@ html[data-theme="light"] .q5-region-go {
 .q5-discovery summary:focus-visible { outline: 3px solid var(--q5-focus); }
 .q5-discovery p { margin: 4px 0 12px; line-height: 1.5; }
 .q5-discovery details { border-left: 2px solid currentColor; padding-left: 12px; }
+
+/* The illustrated clearing leaves space for the student's avatar and camp upgrades. */
+.q5-camp {
+  background: #193b3c url("./basecamp-vallei.jpg") center 58% / cover no-repeat;
+  isolation: isolate;
+  border-color: #718d79;
+}
+.q5-camp::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #102d399c, transparent 34%, transparent 64%, #0c292ede);
+  pointer-events: none;
+}
+.q5-camp-caption {
+  background: #102e37eb;
+  border-color: #f0dfb54d;
+  border-radius: 6px 16px 16px 6px;
+  border-left: 3px solid #ffc680;
+  gap: 5px;
+}
+.q5-camp .q5-camp-caption .q5-overline {color: #ffce90}
+.q5-camp-caption strong {font-size: clamp(20px, 2.4vw, 32px); line-height: 1.05}
+.q5-camp-caption > span:nth-child(3) {color: #ecf1e8; font-size: 13px}
+.q5-camp-caption progress {
+  appearance: none;
+  border: none;
+  background: #496066;
+  color: #ffca7c;
+  width: 100%;
+  height: 4px;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 3px;
+}
+.q5-camp-caption progress::-webkit-progress-bar {background: #496066}
+.q5-camp-caption progress::-webkit-progress-value {background: #ffca7c}
+.q5-camp-caption progress::-moz-progress-bar {background: #ffca7c}
+.q5-camp .q5-maincta {
+  background: #ffd18b;
+  color: #302d23;
+  box-shadow: 0 3px 0 #ad7843, 0 7px 18px #091c254d;
+}
+.q5-camp .q5-softcta {color: #fff9eb; background: #143139f2; border-color: #b7c8b880}
+@media (max-width: 690px) {
+  .q5-camp {background-position: 45% center}
+  .q5-camp-caption {max-width: calc(100% - 24px)}
+}
