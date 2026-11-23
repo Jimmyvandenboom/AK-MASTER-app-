@@ -29,3 +29,17 @@
 .supply-catalog summary span {color:var(--muted);font-size:.85em;margin-left:.5em}
 .supply-catalog[open] {padding-bottom:18px}
 @media(max-width:540px){.supply-grid {grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.supply-info {padding:10px}.supply-art {min-height:82px}.supply-wallet {padding:9px}.supply-header {min-height:150px}.supply-header p {font-size:.85rem}}
+
+.supply-fitting {display:flex;align-items:center;gap:18px;margin:18px 0}
+.supply-fitting .studio-preview {margin:0;width:80px;height:80px;font-size:44px;background-color:var(--backdrop-tint)}
+.supply-buy[aria-pressed="true"] {background:var(--panel2);color:var(--text);border:1px solid var(--mint)}
+.character.dressed {display:inline-grid;place-items:center;isolation:isolate;width:1.28em;height:1.32em;line-height:1;vertical-align:middle}
+.avatar-body {position:relative;z-index:2}
+.worn-piece {position:absolute;font-size:.45em;line-height:1;pointer-events:none;z-index:3}
+.worn-piece[data-slot="head"] {top:0;left:45%;transform:translateX(-50%);font-size:.55em}
+.worn-piece[data-slot="bag"] {left:-4%;bottom:25%;transform:rotate(-12deg)}
+.worn-piece[data-slot="accessory"],.worn-piece[data-slot="powerup"] {right:-3%;bottom:24%}
+.worn-piece[data-slot="footwear"] {bottom:2%;left:28%}
+.worn-piece[data-slot="transport"] {bottom:-11%;left:34%;z-index:1;font-size:.62em}
+.worn-piece[data-slot="pet"] {bottom:0;right:-21%}
+.worn-piece[data-slot="aura"] {inset:0;z-index:0;border-radius:50%;box-shadow:0 0 .45em var(--avatar-accent);color:var(--avatar-accent)}
