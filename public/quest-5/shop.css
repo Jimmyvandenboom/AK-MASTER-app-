@@ -1,0 +1,31 @@
+.supply {color:var(--text);min-width:0}
+.supply-header {position:relative;display:flex;align-items:flex-end;justify-content:space-between;gap:14px;min-height:180px;padding:clamp(16px,4vw,36px);border-radius:20px;overflow:hidden;background:linear-gradient(90deg,rgba(8,27,34,.97),rgba(8,27,34,.78) 44%,rgba(8,27,34,.12)),url('./basecamp-vallei.jpg') center 53% / cover;color:#fff4db}
+.supply-header h1 {margin:0;color:#ffdfaa;font-size:clamp(2.6rem,6vw,4.7rem);line-height:1;letter-spacing:-.05em}
+.supply-header p {margin:10px 0 0;color:#fff5e3;font-size:.95rem;max-width:28ch}
+.supply-wallet {align-self:flex-start;display:grid;gap:2px;flex-shrink:0;padding:12px 17px;border-radius:12px;color:#ffe1a0;background:#112b31f5;border:1px solid #ffdb9c80}
+.supply-wallet small,.supply-info small {font-weight:750;letter-spacing:.07em;text-transform:uppercase;font-size:.69rem}
+.supply-wallet strong {font-size:1.55rem;line-height:1.15}
+.supply-wallet span {font-size:.77rem}
+.supply h2 {margin:26px 0 12px;font-size:clamp(1.25rem,3vw,1.7rem)}
+.supply-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,165px),1fr));gap:12px}
+.supply-card {display:flex;flex-direction:column;min-width:0;overflow:hidden;border:1px solid var(--line);border-radius:15px;background:var(--panel);color:var(--text)}
+.supply-art {--hue:#7bc9b2;position:relative;isolation:isolate;display:grid;place-items:center;min-height:100px;overflow:hidden;background-color:#163e49;background-image:repeating-radial-gradient(ellipse at 2% 110%,transparent 0 15px,#ffffff17 16px 17px,transparent 18px 26px),radial-gradient(ellipse at 65% 85%,var(--hue),transparent 77%)}
+.supply-card[data-slot="head"] .supply-art,.supply-card[data-slot="bag"] .supply-art {--hue:#d5a77e}
+.supply-card[data-slot="aura"] .supply-art,.supply-card[data-slot="powerup"] .supply-art {--hue:#afa2ed}
+.supply-card[data-slot="background"] .supply-art {background-color:var(--hue);background-image:linear-gradient(150deg,transparent 57%,#123b4d80 57.5%),linear-gradient(35deg,#254a57a6 35%,transparent 35.5%),linear-gradient(0deg,#22435877,transparent)}
+.supply-symbol {font-size:3.3rem;line-height:1.2;filter:drop-shadow(0 6px 5px #142c3766)}
+.supply-info {padding:13px;display:flex;flex-direction:column;flex:1}
+.supply-info small,.supply-info p {color:var(--muted)}
+.supply-info h3 {margin:4px 0 10px;font-size:1.05rem;line-height:1.2;color:var(--text);overflow-wrap:anywhere}
+.supply-info p {font-size:.83rem;margin:0 0 12px}
+.supply-price {margin-top:auto;font-size:.85rem;font-weight:700}
+.supply-price b {color:var(--gold)}
+.supply-buy {margin-top:8px;min-height:44px;background:#ffcf88;color:#332717;border:0;border-radius:9px;font:inherit;font-weight:750;cursor:pointer}
+.supply-buy:enabled:hover {background:#ffe0ad}
+.supply-buy:disabled {background:var(--panel2);color:var(--muted);cursor:default;font-size:.82rem}
+.supply :is(button,summary):focus-visible {outline:3px solid var(--blue);outline-offset:-3px}
+.supply-catalog {margin:24px 0;border-block:1px solid var(--line);padding:4px 0}
+.supply-catalog summary {cursor:pointer;padding:14px 2px;font-weight:750}
+.supply-catalog summary span {color:var(--muted);font-size:.85em;margin-left:.5em}
+.supply-catalog[open] {padding-bottom:18px}
+@media(max-width:540px){.supply-grid {grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.supply-info {padding:10px}.supply-art {min-height:82px}.supply-wallet {padding:9px}.supply-header {min-height:150px}.supply-header p {font-size:.85rem}}
