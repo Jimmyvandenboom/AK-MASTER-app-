@@ -115,6 +115,7 @@ export function quest5Home(state, chapters, avatar, done, esc) {
         </div>
         <div class="q5-module q5-arcade">
           <div class="q5-overline">JOUW GAME HUB</div>
+          <button data-action="expedition">🗺️ Social Adventure · veldmissies en klasteam <span>→</span></button>
           <button data-action="store">⚡ Power-ups en outfits <span>→</span></button>
           <button data-action="studio-v3">🎭 Avatar aanpassen <span>→</span></button>
           <button data-action="exam-trainer">📖 Examentrainer <span>→</span></button>
